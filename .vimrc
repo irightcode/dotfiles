@@ -1,24 +1,21 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
-
-call vundle#rc()
+set rtp+=$HOME/.vim/bundle/Vundle.vim/
+call vundle#begin('$HOME/.vim/bundle/')
 
 " Let Vundle manage Vundle
-Plugin 'gmarik/vundle'
+Plugin 'VundleVim/Vundle.vim'
 
 " My Bundles
 Plugin 'Lokaltog/vim-powerline'
 " Completion
-Plugin 'valloric/youcompleteme'
-" Plugin 'Shougo/neocomplete'
-" Plugin 'Shougo/neosnippet'
-" Plugin 'Shougo/neosnippet-snippets'
+" Plugin 'valloric/youcompleteme'
+Plugin 'Shougo/neocomplete'
+Plugin 'Shougo/neosnippet'
+Plugin 'Shougo/neosnippet-snippets'
 Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'fatih/vim-go'
 Plugin 'kien/ctrlp.vim'
-Plugin 'leafgarland/typescript-vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'rking/ag.vim'
@@ -28,7 +25,6 @@ Plugin 'tpope/vim-bundler'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-dispatch'
 Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
@@ -39,7 +35,15 @@ Plugin 'dhruvasagar/vim-dotoo'
 Plugin 'kana/vim-textobj-user'
 Plugin 'nelstrom/vim-textobj-rubyblock'
 Plugin 'vim-scripts/argtextobj.vim'
+"" File Type
+Plugin 'tpope/vim-rails'
 Plugin 'scrooloose/nerdtree'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'fatih/vim-go'
+Plugin 'hashivim/vim-terraform.git'
+Plugin 'PProvost/vim-ps1'
+
+call vundle#end()
 
 filetype plugin indent on
 
@@ -53,6 +57,8 @@ set shiftwidth=2
 set clipboard=unnamed
 set synmaxcol=128
 set ttyscroll=10
+set guioptions-=m
+set guioptions-=T
 set mouse=a
 set ttymouse=xterm2
 set encoding=utf-8
@@ -67,6 +73,8 @@ set nobackup
 set hlsearch
 set ignorecase
 set smartcase
+
+set guifont=Consolas:h10:cANSI:qDRAFT
 
 if has("mouse_sgr")
     set ttymouse=sgr
@@ -226,6 +234,11 @@ let g:tagbar_type_go = {
     \ 'ctagsbin'  : 'gotags',
     \ 'ctagsargs' : '-sort -silent'
 \ }
+
+"Terraform
+let g:terraform_align=1
+autocmd FileType terraform setlocal commentstring=#%s
+
 
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
