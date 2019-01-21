@@ -2,33 +2,36 @@ set nocompatible
 filetype off
 
 set rtp+=$HOME/.vim/bundle/Vundle.vim/
+set rtp+=/usr/local/opt/fzf
 call vundle#begin('$HOME/.vim/bundle/')
 
 " Let Vundle manage Vundle
 Plugin 'VundleVim/Vundle.vim'
 
 " My Bundles
-Plugin 'Lokaltog/vim-powerline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'junegunn/fzf.vim'
 " Completion
-" Plugin 'valloric/youcompleteme'
-Plugin 'Shougo/neocomplete'
-Plugin 'Shougo/neosnippet'
-Plugin 'Shougo/neosnippet-snippets'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'kien/ctrlp.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'nanotech/jellybeans.vim'
+Plugin 'airblade/vim-gitgutter'
 Plugin 'rking/ag.vim'
-Plugin 'scrooloose/syntastic'
+Plugin 'w0rp/ale'
+Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'tommcdo/vim-exchange'
 Plugin 'tpope/vim-bundler'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-dispatch'
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
-Plugin 'tpope/vim-vinegar'
+Plugin 'justinmk/vim-dirvish'
+Plugin 'kristijanhusak/vim-dirvish-git'
+
 "" Notes
 Plugin 'dhruvasagar/vim-dotoo'
 "" Indent
@@ -110,7 +113,7 @@ nmap <leader>s<right>  :rightbelow vnew<cr>
 nmap <leader>s<up>     :leftabove  new<cr>
 nmap <leader>s<down>   :rightbelow new<cr>
 
-" Underline (maybe should be filetype bound) 
+" Underline (maybe should be filetype bound)
 nmap <silent> <leader>u= :t.\|s/./=/g\|:nohls<cr>
 nmap <silent> <leader>u- :t.\|s/./-/g\|:nohls<cr>
 nmap <silent> <leader>u~ :t.\|s/./\\~/g\|:nohls<cr>
@@ -130,25 +133,6 @@ nmap <leader>n :NERDTreeToggle<CR>
 let NERDTreeHighlightCursorline=1
 let NERDTreeHijackNetrw = 0
 let NERDTreeIgnore = ['tmp', '.yardoc', 'pkg']
-
-" Syntastic
-"let g:syntastic_mode_map = { 'mode': 'passive' }
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_loc_list_height = 5
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
-let g:syntastic_javascript_checkers = ['standard']
-
-let g:syntastic_error_symbol = '❌'
-let g:syntastic_style_error_symbol = '⁉️'
-let g:syntastic_warning_symbol = '⚠️'
-let g:syntastic_style_warning_symbol = '💩'
-
-highlight link SyntasticErrorSign SignColumn
-highlight link SyntasticWarningSign SignColumn
-highlight link SyntasticStyleErrorSign SignColumn
-highlight link SyntasticStyleWarningSign SignColumn
 
 " CtrlP
 nnoremap <leader>p :CtrlP<cr>
