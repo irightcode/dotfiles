@@ -8,30 +8,29 @@ call vundle#begin('$HOME/.vim/bundle/')
 " Let Vundle manage Vundle
 Plugin 'VundleVim/Vundle.vim'
 
-" My Bundles
-Plugin 'vim-airline/vim-airline'
-Plugin 'junegunn/fzf.vim'
-" Completion
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'kien/ctrlp.vim'
-Plugin 'majutsushi/tagbar'
+"" Color scheme
 Plugin 'nanotech/jellybeans.vim'
-Plugin 'airblade/vim-gitgutter'
+Plugin 'vim-airline/vim-airline'
+Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'majutsushi/tagbar'
 Plugin 'rking/ag.vim'
 Plugin 'w0rp/ale'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'tommcdo/vim-exchange'
-Plugin 'tpope/vim-bundler'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-dispatch'
-Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
+Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
+"" File Navigation
+Plugin 'junegunn/fzf.vim'
 Plugin 'justinmk/vim-dirvish'
 Plugin 'kristijanhusak/vim-dirvish-git'
-
+"" Undo Tree
+Plugin 'simnalamburt/vim-mundo'
 "" Notes
 Plugin 'dhruvasagar/vim-dotoo'
 "" Indent
@@ -76,6 +75,8 @@ set nobackup
 set hlsearch
 set ignorecase
 set smartcase
+set undofile
+set undodir=~/.vim/undo
 
 set guifont=Consolas:h10:cANSI:qDRAFT
 
@@ -133,6 +134,8 @@ nmap <leader>n :NERDTreeToggle<CR>
 let NERDTreeHighlightCursorline=1
 let NERDTreeHijackNetrw = 0
 let NERDTreeIgnore = ['tmp', '.yardoc', 'pkg']
+
+nnoremap <leader>f :FZF<cr>
 
 " CtrlP
 nnoremap <leader>p :CtrlP<cr>
