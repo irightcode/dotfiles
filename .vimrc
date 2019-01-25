@@ -137,30 +137,6 @@ let NERDTreeIgnore = ['tmp', '.yardoc', 'pkg']
 
 nnoremap <leader>f :FZF<cr>
 
-" CtrlP
-nnoremap <leader>p :CtrlP<cr>
-let g:ctrlp_working_path_mode = 2
-let g:ctrlp_by_filename = 1
-let g:ctrlp_max_files = 0
-let g:ctrlp_max_depth = 40
-
-" The Silver Searcher
-if executable('ag')
-  " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
-endif
-
-" Ignore some folders and files for CtrlP indexing
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|\.sass-cache$|\.hg$\|\.svn$\|\.yardoc\|public$|log\|tmp$',
-  \ 'file': '\.a$\|\.so$\|\.dat$|\.DS_Store$'
-  \ }
 " Vim Dispatch
 nmap <leader>d :Dispatch<cr>
 
