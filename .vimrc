@@ -25,6 +25,9 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'jremmen/vim-ripgrep'
+"eye candy
+Plugin 'ryanoasis/vim-devicons'
 "" File Navigation
 Plugin 'junegunn/fzf.vim'
 Plugin 'justinmk/vim-dirvish'
@@ -32,7 +35,7 @@ Plugin 'kristijanhusak/vim-dirvish-git'
 "" Undo Tree
 Plugin 'simnalamburt/vim-mundo'
 "" Notes
-Plugin 'dhruvasagar/vim-dotoo'
+Plugin 'vimwiki/vimwiki'
 "" Indent
 Plugin 'kana/vim-textobj-user'
 Plugin 'nelstrom/vim-textobj-rubyblock'
