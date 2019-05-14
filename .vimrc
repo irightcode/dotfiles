@@ -11,9 +11,9 @@ Plugin 'VundleVim/Vundle.vim'
 "" Color scheme
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'majutsushi/tagbar'
-Plugin 'rking/ag.vim'
 Plugin 'w0rp/ale'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'tommcdo/vim-exchange'
@@ -26,23 +26,29 @@ Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'jremmen/vim-ripgrep'
-"eye candy
+
+"" Eye candy
 Plugin 'ryanoasis/vim-devicons'
+
 "" File Navigation
+Plugin 'scrooloose/nerdtree'
 Plugin 'junegunn/fzf.vim'
 Plugin 'justinmk/vim-dirvish'
 Plugin 'kristijanhusak/vim-dirvish-git'
+
 "" Undo Tree
 Plugin 'simnalamburt/vim-mundo'
+
 "" Notes
 Plugin 'vimwiki/vimwiki'
+
 "" Indent
 Plugin 'kana/vim-textobj-user'
 Plugin 'nelstrom/vim-textobj-rubyblock'
 Plugin 'vim-scripts/argtextobj.vim'
+
 "" File Type
 Plugin 'tpope/vim-rails'
-Plugin 'scrooloose/nerdtree'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'fatih/vim-go'
 Plugin 'hashivim/vim-terraform.git'
@@ -96,11 +102,15 @@ autocmd VimEnter * set nosc
 
 " Mappings
 let mapleader=","
+
 nnoremap \ ,
 
+map <Left>  <nop>
+map <Right> <nop>
+map <Down>  <nop>
+map <Up>    <nop>
+
 " Jump to the next row on long lines
-map <Down> gj
-map <Up>   gk
 nnoremap j gj
 nnoremap k gk
 
@@ -131,6 +141,9 @@ nnoremap <leader>gv :vsplit $MYVIMRC<cr>
 noremap <silent> <C-S>          :update<CR>
 vnoremap <silent> <C-S>         <C-C>:update<CR>
 inoremap <silent> <C-S>         <C-O>:update<CR>
+
+" Airline
+let g:airline_powerline_fonts = 1
 
 " NERDTree
 nmap <leader>n :NERDTreeToggle<CR>
@@ -168,7 +181,6 @@ endfunction
 
 autocmd FileType go set autowrite
 autocmd FileType go nmap <leader>r <Plug>(go-run)
-" autocmd FileType go nmap <leader>b <Plug>(go-build)
 autocmd FileType go nmap <leader>t <Plug>(go-test)
 autocmd FileType go nmap <leader>c <Plug>(go-coverage)
 autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
@@ -204,7 +216,6 @@ let g:tagbar_type_go = {
 "Terraform
 let g:terraform_align=1
 autocmd FileType terraform setlocal commentstring=#%s
-
 
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
