@@ -9,7 +9,7 @@ call vundle#begin('$HOME/.vim/bundle/')
 Plugin 'VundleVim/Vundle.vim'
 
 "" Color scheme
-Plugin 'nanotech/jellybeans.vim'
+Plugin 'morhetz/gruvbox'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'christoomey/vim-tmux-navigator'
@@ -26,6 +26,7 @@ Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'jremmen/vim-ripgrep'
+Plugin 'aymericbeaumet/symlink.vim'
 
 "" Eye candy
 Plugin 'ryanoasis/vim-devicons'
@@ -58,7 +59,7 @@ call vundle#end()
 
 filetype plugin indent on
 
-color jellybeans
+color gruvbox
 
 set hidden
 set cursorline
@@ -101,9 +102,7 @@ autocmd BufNewFile * set noeol
 autocmd VimEnter * set nosc
 
 " Mappings
-let mapleader=","
-
-nnoremap \ ,
+let mapleader=" "
 
 map <Left>  <nop>
 map <Right> <nop>
@@ -127,20 +126,11 @@ nmap <leader>s<right>  :rightbelow vnew<cr>
 nmap <leader>s<up>     :leftabove  new<cr>
 nmap <leader>s<down>   :rightbelow new<cr>
 
-" Underline (maybe should be filetype bound)
-nmap <silent> <leader>u= :t.\|s/./=/g\|:nohls<cr>
-nmap <silent> <leader>u- :t.\|s/./-/g\|:nohls<cr>
-nmap <silent> <leader>u~ :t.\|s/./\\~/g\|:nohls<cr>
-
 " Switch between last two buffers
 nnoremap <leader><leader> <C-^>
 
 " Goto File
 nnoremap <leader>gv :vsplit $MYVIMRC<cr>
-
-noremap <silent> <C-S>          :update<CR>
-vnoremap <silent> <C-S>         <C-C>:update<CR>
-inoremap <silent> <C-S>         <C-O>:update<CR>
 
 " Airline
 let g:airline_powerline_fonts = 1
@@ -224,7 +214,15 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
+" Vim wiki
+" let g:vimwiki_list = [{'path': '~/dev/vimwiki/',
+"                       \ 'syntax': 'markdown', 'ext': '.md'}]
+
 " For conceal markers.
 if has('conceal')
   set conceallevel=2 concealcursor=niv
+endif
+
+if has("termguicolors")
+  set termguicolors
 endif
