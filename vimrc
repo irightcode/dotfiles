@@ -1,61 +1,56 @@
 set nocompatible
 filetype off
 
-set rtp+=$HOME/.vim/bundle/Vundle.vim/
 set rtp+=/usr/local/opt/fzf
-call vundle#begin('$HOME/.vim/bundle/')
-
-" Let Vundle manage Vundle
-Plugin 'VundleVim/Vundle.vim'
+call plug#begin('$HOME/.vim/bundle')
 
 "" Color scheme
-Plugin 'morhetz/gruvbox'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'majutsushi/tagbar'
-Plugin 'w0rp/ale'
-Plugin 'ntpeters/vim-better-whitespace'
-Plugin 'tommcdo/vim-exchange'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-dispatch'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-sensible'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-eunuch'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'aymericbeaumet/symlink.vim'
-Plugin 'wincent/ferret'
+Plug 'morhetz/gruvbox'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'majutsushi/tagbar'
+Plug 'w0rp/ale'
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'tommcdo/vim-exchange'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-eunuch'
+Plug 'airblade/vim-gitgutter'
+Plug 'aymericbeaumet/symlink.vim'
+Plug 'wincent/ferret'
 "" Eye candy
-Plugin 'ryanoasis/vim-devicons'
+Plug 'ryanoasis/vim-devicons'
 
 "" File Navigation
-Plugin 'scrooloose/nerdtree'
-Plugin 'junegunn/fzf.vim'
-Plugin 'justinmk/vim-dirvish'
-Plugin 'kristijanhusak/vim-dirvish-git'
+Plug 'scrooloose/nerdtree'
+Plug 'junegunn/fzf.vim'
+Plug 'justinmk/vim-dirvish'
+Plug 'kristijanhusak/vim-dirvish-git'
 
 "" Undo Tree
-Plugin 'simnalamburt/vim-mundo'
+Plug 'simnalamburt/vim-mundo'
 
 "" Notes
-Plugin 'vimwiki/vimwiki'
+Plug 'vimwiki/vimwiki'
 
 "" Indent
-Plugin 'kana/vim-textobj-user'
-Plugin 'nelstrom/vim-textobj-rubyblock'
-Plugin 'vim-scripts/argtextobj.vim'
+Plug 'kana/vim-textobj-user'
+Plug 'nelstrom/vim-textobj-rubyblock'
+Plug 'vim-scripts/argtextobj.vim'
 
 "" File Type
-Plugin 'tpope/vim-rails'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'fatih/vim-go'
-Plugin 'hashivim/vim-terraform.git'
-Plugin 'PProvost/vim-ps1'
+Plug 'tpope/vim-rails'
+Plug 'leafgarland/typescript-vim'
+Plug 'fatih/vim-go'
+Plug 'PProvost/vim-ps1'
 
-call vundle#end()
+call plug#end()
 
 filetype plugin indent on
 
