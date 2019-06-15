@@ -24,10 +24,10 @@ Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-eunuch'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'jremmen/vim-ripgrep'
 Plugin 'aymericbeaumet/symlink.vim'
-
+Plugin 'wincent/ferret'
 "" Eye candy
 Plugin 'ryanoasis/vim-devicons'
 
@@ -87,14 +87,25 @@ set ignorecase
 set smartcase
 set undofile
 set undodir=~/.vim/undo
-
+set t_Co=256
 set guifont=Consolas:h10:cANSI:qDRAFT
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 if has("mouse_sgr")
     set ttymouse=sgr
 else
     set ttymouse=xterm2
 end
+
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
+
+if has("termguicolors")
+  set termguicolors
+endif
 
 autocmd BufNewFile * set noeol
 
@@ -218,11 +229,3 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 " let g:vimwiki_list = [{'path': '~/dev/vimwiki/',
 "                       \ 'syntax': 'markdown', 'ext': '.md'}]
 
-" For conceal markers.
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
-
-if has("termguicolors")
-  set termguicolors
-endif
