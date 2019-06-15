@@ -2,55 +2,10 @@ set nocompatible
 filetype off
 
 set rtp+=/usr/local/opt/fzf
-call plug#begin('$HOME/.vim/bundle')
 
-"" Color scheme
-Plug 'morhetz/gruvbox'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'majutsushi/tagbar'
-Plug 'w0rp/ale'
-Plug 'ntpeters/vim-better-whitespace'
-Plug 'tommcdo/vim-exchange'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-dispatch'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-sensible'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-eunuch'
-Plug 'airblade/vim-gitgutter'
-Plug 'aymericbeaumet/symlink.vim'
-Plug 'wincent/ferret'
-"" Eye candy
-Plug 'ryanoasis/vim-devicons'
-
-"" File Navigation
-Plug 'scrooloose/nerdtree'
-Plug 'junegunn/fzf.vim'
-Plug 'justinmk/vim-dirvish'
-Plug 'kristijanhusak/vim-dirvish-git'
-
-"" Undo Tree
-Plug 'simnalamburt/vim-mundo'
-
-"" Notes
-Plug 'vimwiki/vimwiki'
-
-"" Indent
-Plug 'kana/vim-textobj-user'
-Plug 'nelstrom/vim-textobj-rubyblock'
-Plug 'vim-scripts/argtextobj.vim'
-
-"" File Type
-Plug 'tpope/vim-rails'
-Plug 'leafgarland/typescript-vim'
-Plug 'fatih/vim-go'
-Plug 'PProvost/vim-ps1'
-
-call plug#end()
+if filereadable(expand("~/.vimrc.bundles"))
+  source ~/.vimrc.bundles
+endif
 
 filetype plugin indent on
 
@@ -88,9 +43,9 @@ let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 if has("mouse_sgr")
-    set ttymouse=sgr
+  set ttymouse=sgr
 else
-    set ttymouse=xterm2
+  set ttymouse=xterm2
 end
 
 " For conceal markers.
