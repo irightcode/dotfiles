@@ -1,12 +1,10 @@
 [user]
 	name = Charles Russell
-	email = Charles_Russell@ultimatesoftware.com
 [core]
   editor = vim
 	pager = less -F -X
-	excludesfile = /Users/charlesr/.gitignore_global
+	excludesfile = ~/.gitingore
 [alias]
-  dc = diff --cached
   pr = pull --rebase
   fp = fetch --prune
   hist = log --pretty=format:'%C(yellow)[%ad]%C(reset) %C(green)[%h]%C(reset) | %C(red)%s %C(bold red){{%an}}%C(reset) %C(blue)%d%C(reset)' --graph --date=short
@@ -15,9 +13,5 @@
 	tool = vimdiff
 [difftool]
 	prompt = false
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+[include]
+  path = ~/.gitconfig.local
