@@ -16,7 +16,6 @@ set cursorline
 set expandtab
 set modelines=0
 set shiftwidth=2
-set clipboard=unnamed
 set synmaxcol=128
 set ttyscroll=10
 set guioptions-=m

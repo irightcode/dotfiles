@@ -68,6 +68,7 @@ plugins=(
   git
   autojump
   zsh-autosuggestions
+  docker-compose
 )
 
 # JAVA
@@ -75,7 +76,7 @@ java_locate() {
   echo | /usr/libexec/java_home -v 1.8
 }
 
-java_set() {
+load_java_home() {
   export JAVA_HOME=$(java_locate)
 }
 
@@ -124,4 +125,18 @@ alias ssh_dev="ssh -i ~/dev/pems/api-gateway-dev.pem"
 alias ssh_dmz="ssh -i ~/dev/pems/api-gateway-dmz.pem"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 alias dotdrop="~/dotfiles/dotdrop.sh --cfg=~/dotfiles/config.yaml"
+alias dk="docker"
+alias dk_rm_all="docker rm \`docker ps -a -q\`"
+alias dk_rmi_all="docker rmi \`docker images -q\`"
+alias dk_rmi_dangling="docker rmi \`docker images -qa -f 'dangling=true'\`"
 # zprof
+load_slow() {
+  load_java_home
+  load_asdf
+}
+
+load_asdf() {
+  . $(brew --prefix asdf)/asdf.sh
+  . $(brew --prefix asdf)/etc/bash_completion.d/asdf.bash
+}
+

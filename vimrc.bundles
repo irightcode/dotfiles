@@ -19,7 +19,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-eunuch'
 Plug 'airblade/vim-gitgutter'
 Plug 'aymericbeaumet/symlink.vim'
-Plug 'wincent/ferret'
+Plug 'mileszs/ack.vim'
 "" Eye candy
 Plug 'ryanoasis/vim-devicons'
 
