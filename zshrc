@@ -3,7 +3,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/charlesr/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -71,26 +71,11 @@ plugins=(
   docker-compose
 )
 
-# JAVA
-java_locate() {
-  echo | /usr/libexec/java_home -v 1.8
-}
-
-load_java_home() {
-  export JAVA_HOME=$(java_locate)
-}
-
 export PATH="/usr/local/sbin:$PATH"
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-#export PATH="$PATH:$HOME/.rvm/bin"
 export PATH="/usr/local/bin:$PATH"
-export PATH="/Users/charlesr/dev/bin:$PATH"
-export PATH="/Users/charlesr/Library/Python/2.7/bin:$PATH"
 
 [ -f ~/.profile ] && source ~/.profile
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-# [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
+[ -f ~/.profile.local ] && source ~/.profile.local
 
 source $ZSH/oh-my-zsh.sh
 
@@ -102,11 +87,7 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
 export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -130,13 +111,3 @@ alias dk_rm_all="docker rm \`docker ps -a -q\`"
 alias dk_rmi_all="docker rmi \`docker images -q\`"
 alias dk_rmi_dangling="docker rmi \`docker images -qa -f 'dangling=true'\`"
 # zprof
-load_slow() {
-  load_java_home
-  load_asdf
-}
-
-load_asdf() {
-  . $(brew --prefix asdf)/asdf.sh
-  . $(brew --prefix asdf)/etc/bash_completion.d/asdf.bash
-}
-
