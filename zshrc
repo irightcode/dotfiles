@@ -102,10 +102,6 @@ export EDITOR='vim'
 #
 # Example aliases
 # ALIASES
-alias ssh_dev="ssh -i ~/dev/pems/api-gateway-dev.pem"
-alias ssh_dmz="ssh -i ~/dev/pems/api-gateway-dmz.pem"
-alias ohmyzsh="vim ~/.oh-my-zsh"
-alias dotdrop="~/dotfiles/dotdrop.sh --cfg=~/dotfiles/config.yaml"
 alias dk="docker"
 alias dk_rm_all="docker rm \`docker ps -a -q\`"
 alias dk_rmi_all="docker rmi \`docker images -q\`"
