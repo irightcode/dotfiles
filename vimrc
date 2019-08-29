@@ -1,8 +1,6 @@
 set nocompatible
 filetype off
 
-set rtp+=/usr/local/opt/fzf
-
 if filereadable(expand("~/.vimrc.bundles"))
   source ~/.vimrc.bundles
 endif
@@ -16,7 +14,6 @@ set cursorline
 set expandtab
 set modelines=0
 set shiftwidth=2
-set synmaxcol=128
 set ttyscroll=10
 set guioptions-=m
 set guioptions-=T
@@ -92,6 +89,16 @@ nnoremap <leader><leader> <C-^>
 " Goto File
 nnoremap <leader>gv :vsplit $MYVIMRC<cr>
 
+nmap <leader>y "*y
+vmap <leader>y "*y
+nmap <leader>p "*p
+vmap <leader>p "*p
+
+" Ag.vim to use ripgrep
+if executable('rg')
+  let g:ackprg = 'rg --vimgrep --no-heading'
+end
+
 " Airline
 let g:airline_powerline_fonts = 1
 
@@ -101,7 +108,8 @@ let NERDTreeHighlightCursorline=1
 let NERDTreeHijackNetrw = 0
 let NERDTreeIgnore = ['tmp', '.yardoc', 'pkg']
 
-nnoremap <leader>f :FZF<cr>
+nnoremap <leader>ff :FZF<cr>
+nnoremap <leader>fb :Buffers<cr>
 
 " Vim Dispatch
 nmap <leader>d :Dispatch<cr>
