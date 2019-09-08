@@ -20,3 +20,9 @@
 	conflictstyle = diff3
 [mergetool]
 	prompt = false
+[rebase]
+	autosquash = true
+[rerere]
+	enabled = true
+[log]
+	decorate = short
