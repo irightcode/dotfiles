@@ -69,6 +69,7 @@ plugins=(
   autojump
   zsh-autosuggestions
   docker-compose
+  alias-tips
 )
 
 export PATH="/usr/local/sbin:$PATH"
@@ -89,6 +90,8 @@ source $ZSH/oh-my-zsh.sh
 # Preferred editor for local and remote sessions
 export EDITOR='vim'
 
+# colour ls listings
+export CLICOLOR=true
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -106,6 +109,38 @@ alias dk="docker"
 alias dk_rm_all="docker rm \`docker ps -a -q\`"
 alias dk_rmi_all="docker rmi \`docker images -q\`"
 alias dk_rmi_dangling="docker rmi \`docker images -qa -f 'dangling=true'\`"
-# zprof
+alias vim="nvim"
+alias ....='cd ../..'
+alias cd..='cd ..'
+alias :e=vim
+alias :qa=exit
+alias :wq=exit
+alias :sp='test -n "$TMUX" && tmux split-window'
+alias :vs='test -n "$TMUX" && tmux split-window -h'
+alias s=ssh
+alias t=tmux
+alias v=vim
+alias e=exit
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+export ZSH_PLUGINS_ALIAS_TIPS_TEXT="🔥 tip: "
+
+tm() {
+  [[ -n "$TMUX" ]] && change="switch-client" || change="attach-session"
+  if [ $1 ]; then
+     tmux $change -t "$1" 2>/dev/null || (tmux new-session -d -s $1 && tmux $change -t "$1"); return
+  fi
+  session=$(tmux list-sessions -F "#{session_name}" 2>/dev/null | fzf --exit-0) &&  tmux $change -t "$session" || echo "No sessions found."
+}
+
+# in() {(
+#   if [[ $(shtuff has $1 2>&1) =~ 'was found' ]]; then
+#     eval shtuff into $1 \"${@:2}\"
+#   else
+#     j $1
+#     eval ${@:2}
+#   fi
+# )}
