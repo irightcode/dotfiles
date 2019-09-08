@@ -14,11 +14,11 @@ set cursorline
 set expandtab
 set modelines=0
 set shiftwidth=2
-set ttyscroll=10
+" set ttyscroll=10
+" set ttymouse=xterm2
 set guioptions-=m
 set guioptions-=T
 set mouse=a
-set ttymouse=xterm2
 set encoding=utf-8
 set completeopt-=preview
 set tabstop=2
@@ -37,12 +37,6 @@ set t_Co=256
 set guifont=Consolas:h10:cANSI:qDRAFT
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-
-if has("mouse_sgr")
-  set ttymouse=sgr
-else
-  set ttymouse=xterm2
-end
 
 " For conceal markers.
 if has('conceal')
@@ -83,6 +77,7 @@ nmap <leader>s<right>  :rightbelow vnew<cr>
 nmap <leader>s<up>     :leftabove  new<cr>
 nmap <leader>s<down>   :rightbelow new<cr>
 
+nmap <silent> <Leader>jk :nohlsearch<CR>
 " Switch between last two buffers
 nnoremap <leader><leader> <C-^>
 
@@ -102,15 +97,33 @@ end
 " Airline
 let g:airline_powerline_fonts = 1
 
+" Git Gutter
+let g:gitgutter_map_keys = 0
+nmap [c <Plug>GitGutterPrevHunk
+nmap ]c <Plug>GitGutterNextHunk
+
 " NERDTree
 nmap <leader>n :NERDTreeToggle<CR>
 let NERDTreeHighlightCursorline=1
 let NERDTreeHijackNetrw = 0
 let NERDTreeIgnore = ['tmp', '.yardoc', 'pkg']
 
-nnoremap <leader>ff :FZF<cr>
+" Fuzzy Find stuff
+nnoremap <leader>ff :GFiles<cr>
+nnoremap <leader>fF :Files<cr>
 nnoremap <leader>fb :Buffers<cr>
-
+nnoremap <Leader>fl :BLines<CR>
+nnoremap <Leader>fL :Lines<CR>
+nnoremap <Leader>ft :BTags<CR>
+nnoremap <Leader>fT :Tags<CR>
+nnoremap <Leader>fh :History<CR>
+nnoremap <Leader>f: :History:<CR>
+nnoremap <Leader>fM :Maps<CR>
+nnoremap <Leader>fC :Commands<CR>
+nnoremap <Leader>f' :Marks<CR>
+nnoremap <Leader>fs :Filetypes<CR>
+nnoremap <Leader>fS :Snippets<CR>
+"
 " Vim Dispatch
 nmap <leader>d :Dispatch<cr>
 
