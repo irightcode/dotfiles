@@ -195,6 +195,14 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
+function! s:delete_trailing_whitespace()
+    exe "normal mz"
+    %s/\s\+$//ge
+    exe "normal `z"
+endfunc
+
+noremap <leader>w :<C-u>call <SID>delete_trailing_whitespace()<CR>
+
 " Vim wiki
 " let g:vimwiki_list = [{'path': '~/dev/vimwiki/',
 "                       \ 'syntax': 'markdown', 'ext': '.md'}]

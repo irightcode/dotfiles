@@ -128,12 +128,27 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 export ZSH_PLUGINS_ALIAS_TIPS_TEXT="🔥 tip: "
 
+export REPO_PATH='/Users/charlesr/dev/work/repos'
+
 tm() {
   [[ -n "$TMUX" ]] && change="switch-client" || change="attach-session"
   if [ $1 ]; then
      tmux $change -t "$1" 2>/dev/null || (tmux new-session -d -s $1 && tmux $change -t "$1"); return
   fi
   session=$(tmux list-sessions -F "#{session_name}" 2>/dev/null | fzf --exit-0) &&  tmux $change -t "$session" || echo "No sessions found."
+}
+
+cdp() {
+  if [ "$#" -eq 0 ]; then
+    repo=$(ls $REPO_PATH | fzf --exit-0) && cd $REPO_PATH/$repo && tat
+    return
+  fi
+
+  if [ -d "$REPO_PATH/$1" ]; then
+    cd "$REPO_PATH/$1"
+  else
+    j $1
+  fi
 }
 
 # in() {(
