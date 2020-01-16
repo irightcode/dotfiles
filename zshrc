@@ -139,16 +139,14 @@ tm() {
 }
 
 cdp() {
-  if [ "$#" -eq 0 ]; then
-    repo=$(ls $REPO_PATH | fzf --exit-0) && cd $REPO_PATH/$repo && tat
-    return
-  fi
+  cd $REPO_PATH/$(ls $REPO_PATH | fzf --exit-0 -1 -q "$1")
+}
 
-  if [ -d "$REPO_PATH/$1" ]; then
-    cd "$REPO_PATH/$1"
-  else
-    j $1
-  fi
+playground() {
+  name='playground'
+  local start_dir="$(autojump $name)"
+  [[ -n "$TMUX" ]] && change="switch-client" || change="attach-session"
+  tmux $change -t "$name" 2>/dev/null || (tmux new-session -d -s $name -c $start_dir && tmux $change -t "$1"); return
 }
 
 # in() {(
