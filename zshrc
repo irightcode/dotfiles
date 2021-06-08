@@ -1,7 +1,6 @@
 # zmodload zsh/zprof
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -70,6 +69,7 @@ plugins=(
   zsh-autosuggestions
   docker-compose
   alias-tips
+  kubectl
 )
 
 export PATH="/usr/local/sbin:$PATH"
@@ -109,6 +109,7 @@ alias dk="docker"
 alias dk_rm_all="docker rm \`docker ps -a -q\`"
 alias dk_rmi_all="docker rmi \`docker images -q\`"
 alias dk_rmi_dangling="docker rmi \`docker images -qa -f 'dangling=true'\`"
+alias gbclean='git branch | egrep -v "(master|\*)" | xargs git branch -D'
 alias vim="nvim"
 alias ....='cd ../..'
 alias cd..='cd ..'
@@ -117,10 +118,12 @@ alias :qa=exit
 alias :wq=exit
 alias :sp='test -n "$TMUX" && tmux split-window'
 alias :vs='test -n "$TMUX" && tmux split-window -h'
+alias k="kubectl"
 alias s=ssh
 alias t=tmux
 alias v=vim
 alias e=exit
+alias retry='until fc -e "#"; do sleep 2; done'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
@@ -129,6 +132,7 @@ export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 export ZSH_PLUGINS_ALIAS_TIPS_TEXT="🔥 tip: "
 
 export REPO_PATH='/Users/charlesr/dev/work/repos'
+export ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX=YES
 
 tm() {
   [[ -n "$TMUX" ]] && change="switch-client" || change="attach-session"
@@ -142,18 +146,24 @@ cdp() {
   cd $REPO_PATH/$(ls $REPO_PATH | fzf --exit-0 -1 -q "$1")
 }
 
+pclone() {
+  name=$(basename "$1" .git)
+  git clone "$1" "$REPO_PATH/$name" && cd "$REPO_PATH/$name"
+}
+
+function each() {
+    while read line; do
+        for f in "$@"; do
+            $f $line
+        done
+    done
+}
+
 playground() {
   name='playground'
   local start_dir="$(autojump $name)"
   [[ -n "$TMUX" ]] && change="switch-client" || change="attach-session"
-  tmux $change -t "$name" 2>/dev/null || (tmux new-session -d -s $name -c $start_dir && tmux $change -t "$1"); return
+  tmux $change -t "$name" 2>/dev/null || (tmux new-session -d -s $name -c $start_dir && tmux $change -t "$name"); return
 }
 
-# in() {(
-#   if [[ $(shtuff has $1 2>&1) =~ 'was found' ]]; then
-#     eval shtuff into $1 \"${@:2}\"
-#   else
-#     j $1
-#     eval ${@:2}
-#   fi
-# )}
+QRK_AC_ZSH_SETUP_PATH=/Users/charlesr/Library/Caches/@quark/cli/autocomplete/zsh_setup && test -f $QRK_AC_ZSH_SETUP_PATH && source $QRK_AC_ZSH_SETUP_PATH; # qrk autocomplete setup

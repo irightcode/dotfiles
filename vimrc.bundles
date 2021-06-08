@@ -31,6 +31,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'justinmk/vim-dirvish'
 Plug 'kristijanhusak/vim-dirvish-git'
 
+"" Tmux
+Plug 'benmills/vimux'
 "" Undo Tree
 Plug 'simnalamburt/vim-mundo'
 
@@ -48,6 +50,9 @@ Plug 'leafgarland/typescript-vim'
 Plug 'fatih/vim-go'
 Plug 'PProvost/vim-ps1'
 Plug 'StanAngeloff/php.vim'
+
+"" Experimental
+Plug 'bfrg/vim-jqplay'
 
 call plug#end()
 

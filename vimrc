@@ -55,10 +55,14 @@ autocmd VimEnter * set nosc
 " Mappings
 let mapleader=" "
 
-map <Left>  <nop>
-map <Right> <nop>
-map <Down>  <nop>
-map <Up>    <nop>
+map  <Left>  <nop>
+map  <Right> <nop>
+map  <Down>  <nop>
+map  <Up>    <nop>
+imap <Left>  <nop>
+imap <Right> <nop>
+imap <Down>  <nop>
+imap <Up>    <nop>
 
 " Jump to the next row on long lines
 nnoremap j gj
@@ -86,21 +90,28 @@ nnoremap <leader>gv :vsplit $MYVIMRC<cr>
 
 nmap <leader>y "*y
 vmap <leader>y "*y
+nmap <leader>Y "*Y
+vmap <leader>Y "*Y
 nmap <leader>p "*p
 vmap <leader>p "*p
+nmap <leader>P "*P
+vmap <leader>P "*P
 
 " Ag.vim to use ripgrep
 if executable('rg')
   let g:ackprg = 'rg --vimgrep --no-heading'
 end
 
+nnoremap <Leader>/ :Ack<Space>
+
+
 " Airline
 let g:airline_powerline_fonts = 1
 
 " Git Gutter
 let g:gitgutter_map_keys = 0
-nmap [c <Plug>GitGutterPrevHunk
-nmap ]c <Plug>GitGutterNextHunk
+nmap [c <Plug>(GitGutterPrevHunk)
+nmap ]c <Plug>(GitGutterNextHunk)
 
 " NERDTree
 nmap <leader>n :NERDTreeToggle<CR>
@@ -206,4 +217,20 @@ noremap <leader>w :<C-u>call <SID>delete_trailing_whitespace()<CR>
 " Vim wiki
 " let g:vimwiki_list = [{'path': '~/dev/vimwiki/',
 "                       \ 'syntax': 'markdown', 'ext': '.md'}]
+function! VimuxSlime()
+  call VimuxSendText(@v)
+  call VimuxSendKeys("Enter")
+endfunction
 
+noremap <leader>to :call VimuxOpenRunner()<CR>
+
+" If text is selected, save it in the v buffer and send that buffer it to tmux
+vmap <leader>ts "vy :call VimuxSlime()<CR>
+
+ " Select current paragraph and send it to tmux
+nmap <leader>ts vip<LocalLeader>vs<CR>
+
+nmap <silent> [W <Plug>(ale_first)
+nmap <silent> [w <Plug>(ale_previous)
+nmap <silent> ]w <Plug>(ale_next)
+nmap <silent> ]W <Plug>(ale_last)
