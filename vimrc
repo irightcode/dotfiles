@@ -141,96 +141,11 @@ nmap <leader>d :Dispatch<cr>
 " Quit with :Q
 command! -nargs=0 Quit :qa!
 
-" Golang Mappings
-let g:go_fmt_command = "goimports"
-let g:go_list_type = "quickfix"
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_types = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
-
-" run :GoBuild or :GoTestCompile based on the go file
-function! s:build_go_files()
-  let l:file = expand('%')
-  if l:file =~# '^\f\+_test\.go$'
-    call go#cmd#Test(0, 1)
-  elseif l:file =~# '^\f\+\.go$'
-    call go#cmd#Build(0)
-  endif
-endfunction
-
-autocmd FileType go set autowrite
-autocmd FileType go nmap <leader>r <Plug>(go-run)
-autocmd FileType go nmap <leader>t <Plug>(go-test)
-autocmd FileType go nmap <leader>c <Plug>(go-coverage)
-autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
-
-let g:tagbar_type_go = {
-    \ 'ctagstype' : 'go',
-    \ 'kinds'     : [
-        \ 'p:package',
-        \ 'i:imports:1',
-        \ 'c:constants',
-        \ 'v:variables',
-        \ 't:types',
-        \ 'n:interfaces',
-        \ 'w:fields',
-        \ 'e:embedded',
-        \ 'm:methods',
-        \ 'r:constructor',
-        \ 'f:functions'
-    \ ],
-    \ 'sro' : '.',
-    \ 'kind2scope' : {
-        \ 't' : 'ctype',
-        \ 'n' : 'ntype'
-    \ },
-    \ 'scope2kind' : {
-        \ 'ctype' : 't',
-        \ 'ntype' : 'n'
-    \ },
-    \ 'ctagsbin'  : 'gotags',
-    \ 'ctagsargs' : '-sort -silent'
-\ }
-
-"Terraform
-let g:terraform_align=1
-autocmd FileType terraform setlocal commentstring=#%s
-
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-function! s:delete_trailing_whitespace()
-    exe "normal mz"
-    %s/\s\+$//ge
-    exe "normal `z"
-endfunc
-
-noremap <leader>w :<C-u>call <SID>delete_trailing_whitespace()<CR>
-
-" Vim wiki
-" let g:vimwiki_list = [{'path': '~/dev/vimwiki/',
-"                       \ 'syntax': 'markdown', 'ext': '.md'}]
-function! VimuxSlime()
-  call VimuxSendText(@v)
-  call VimuxSendKeys("Enter")
-endfunction
-
-noremap <leader>to :call VimuxOpenRunner()<CR>
-
-" If text is selected, save it in the v buffer and send that buffer it to tmux
-vmap <leader>ts "vy :call VimuxSlime()<CR>
-
- " Select current paragraph and send it to tmux
-nmap <leader>ts vip<LocalLeader>vs<CR>
-
 nmap <silent> [W <Plug>(ale_first)
 nmap <silent> [w <Plug>(ale_previous)
 nmap <silent> ]w <Plug>(ale_next)
 nmap <silent> ]W <Plug>(ale_last)
+
+" Vimwiki and Vinegar conflicts
+nmap <Nop> <Plug>VimwikiRemoveHeaderLevel
+
