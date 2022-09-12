@@ -8,7 +8,7 @@ brew "jesseduffield/lazygit/lazygit"
 
 brew "charmbracelet/tap/gum"
 
-brew "autojump"
+brew "zoxide"
 
 brew "gh"
 brew "git"
@@ -38,11 +38,15 @@ brew "gron"
 brew "yq"
 brew "jq"
 
+brew "shellcheck"
+brew "up"
+
 brew "mike-engel/jwt-cli/jwt-cli"
 
 
-cask "alfred"
+# cask "alfred"
 cask "docker"
+cask "raycast"
 cask "font-hack-nerd-font"
 cask "intellij-idea"
 cask "iterm2"

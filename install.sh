@@ -14,15 +14,3 @@ function install_other()  {
   install_tmux_plugins
 }
 
-# Need a pacmanFile, simliar to bundler File
-function install_linux() {
-  sudo pacman -S autojump
-  yay -S rcm
-}
-
-function install_macos() {
-  brew install rcm
-  brew bundle
-}
-
-env RCRC=./rcrc rcup
