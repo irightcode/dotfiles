@@ -1,9 +1,7 @@
-[user]
-	name = Charles Russell
 [core]
   editor = vim
-	pager = less -F -X
-	excludesfile = ~/.gitingore
+  pager = less -F -X
+  excludesfile = ~/.gitignore
 [alias]
   pr = pull --rebase
   fp = fetch --prune
@@ -12,27 +10,24 @@
 	create-pull-request = !sh -c 'stash pull-request $0 $@'
 	root = rev-parse --show-toplevel
 [diff]
-	tool = vimdiff
+  tool = vimdiff
 [difftool]
-	prompt = false
+  prompt = false
 [include]
   path = ~/.gitconfig.local
 [merge]
-	tool = vimdiff
-	conflictstyle = diff3
+  tool = vimdiff
+  conflictstyle = diff3
 [mergetool]
-	prompt = false
+  prompt = false
 [rebase]
-	autosquash = true
+  autosquash = true
 [rerere]
-	enabled = true
+  enabled = true
 [log]
-	decorate = short
+  decorate = short
 [difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+  path = 
 [pull]
-	ff = only
+  ff = only
