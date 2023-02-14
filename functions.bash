@@ -247,14 +247,16 @@ function output_error {
 function create_config_tmux_session() {
   SESSION_NAME="config"
 
-  tmux list-sessions | grep $SESSION_NAME || (tmux new-session -d -s $SESSION_NAME -c ~/dev/dotfiles -n 'dotfiles')
+  tmux list-sessions | grep $SESSION_NAME || (
+    tmux new-session -d -s $SESSION_NAME -c ~/dev/dotfiles -n 'dotfiles'
+    tmux send-keys -t "$SESSION_NAME:1" 'gst' Enter
+  )
 
   WINDOW_NAME="notes"
   tmux list-windows | grep "$WINDOW_NAME" || (
-    tmux new-window -t $SESSION_NAME -n "$WINDOW_NAME"
+    tmux new-window -n "$WINDOW_NAME"
     tmux send-keys -t "$SESSION_NAME" 'cd ~/dev/docs/notes' Enter
-    tmux send-keys -t "$SESSION_NAME" "clear" Enter
-    tmux send-keys -t "$SESSION_NAME" "find_files" Enter
+    tmux send-keys -t "$SESSION_NAME" "$EDITOR " Enter
   )
 
   tmux select-window -t $SESSION_NAME:1
