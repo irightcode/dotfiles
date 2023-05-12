@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
-REPO_DIR=$HOME/dev/repos
+REPO_DIR=$HOME/repos
 BUILD_DIR=$REPO_DIR/gei/forge-build-plans-ist
+edit () {
+  $EDITOR $(which $1)
+}
 #
 ### ARCHIVE EXTRACTION
 # usage: ex <file>
@@ -83,9 +86,12 @@ list_repo_git() {
 choose_build() {
     INITIAL_QUERY="$1"
     UPDATE_BUILD_CMD="git -C '$BUILD_DIR' pull > /dev/null"
-    fzf --bind "ctrl-r:execute:$UPDATE_BUILD_CMD || true" \
+    fzf --bind "ctrl-r:execute($UPDATE_BUILD_CMD || true)" \
+	--bind "ctrl-o:execute(build.sh open {})+abort" \
+	--bind "ctrl-p:execute(build.sh pr {})+abort" \
         --query "$INITIAL_QUERY" \
-        --height=50%
+        --height=50% \
+	--header='CTRL-R reload-list | CTRL-O open web | CTRL-P open pull requests'
 }
 
 pclone() {
@@ -243,8 +249,8 @@ function output_error {
 }
 
 
+function tm_create_default_session() {
 # Tmux section
-function create_config_tmux_session() {
   SESSION_NAME="config"
 
   tmux list-sessions | grep $SESSION_NAME || (
@@ -252,14 +258,15 @@ function create_config_tmux_session() {
     tmux send-keys -t "$SESSION_NAME:1" 'gst' Enter
   )
 
-  WINDOW_NAME="notes"
-  tmux list-windows | grep "$WINDOW_NAME" || (
-    tmux new-window -n "$WINDOW_NAME"
-    tmux send-keys -t "$SESSION_NAME" 'cd ~/dev/docs/notes' Enter
-    tmux send-keys -t "$SESSION_NAME" "$EDITOR " Enter
-  )
+  # WINDOW_NAME="notes"
+  # tmux list-windows | grep "$WINDOW_NAME" || (
+  #   tmux new-window -n "$WINDOW_NAME"
+  #   tmux send-keys -t "$SESSION_NAME" 'cd ~/dev/docs/notes' Enter
+  #   tmux send-keys -t "$SESSION_NAME" "$EDITOR " Enter
+  # )
 
-  tmux select-window -t $SESSION_NAME:1
+  tmux select-window -t "$SESSION_NAME:1"
+
 }
 
 # tmux session creation/loading with FZF
@@ -278,8 +285,22 @@ function tm() {
   if [[ -n "$session" ]]; then 
     tmux "$change" -t "$session" 
   else
-    create_config_tmux_session
+    tm_create_default_session
+    tmux "$change" -t "$session" 
   fi
+}
+
+function tm_create_notes() {
+    SESSION_NAME=$(tm_session_name)
+    WINDOW_NAME="notes"
+    tmux list-windows | grep "$WINDOW_NAME" || (
+        tmux new-window -n "$WINDOW_NAME" "$EDITOR ~/dev/docs/issues/$SESSION_NAME/notes.md" 
+        # tmux send-keys -t "$WINDOW_NAME" "$EDITOR ~/dev/docs/issues/$SESSION_NAME" Enter
+    )
+}
+
+function tm_session_name() {
+    [[ -n "${TMUX+set}" ]] && tmux display-message -p "#S"
 }
 
 function notify() {
