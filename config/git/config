@@ -1,33 +1,69 @@
-[core]
-  editor = vim
-  pager = less -F -X
-  excludesfile = ~/.gitignore
+[include]
+  path = ~/.gitconfig.local
+[color]
+  # Enable colors in color-supporting terminals
+  ui = auto
 [alias]
+  # List available aliases
+  aliases = !git config --get-regexp alias | sed -re 's/alias\\.(\\S*)\\s(.*)$/\\1 = \\2/g'
   pr = pull --rebase
   fp = fetch --prune
   hist = log --pretty=format:'%C(yellow)[%ad]%C(reset) %C(green)[%h]%C(reset) | %C(red)%s %C(bold red){{%an}}%C(reset) %C(blue)%d%C(reset)' --graph --date=short
   co = checkout
-	create-pull-request = !sh -c 'stash pull-request $0 $@'
 	root = rev-parse --show-toplevel
-[diff]
-  tool = vimdiff
-[difftool]
-  prompt = false
-[include]
-  path = ~/.gitconfig.local
-[merge]
-  tool = vimdiff
-  conflictstyle = diff3
-[mergetool]
-  prompt = false
-[rebase]
-  autosquash = true
+[fetch]
+	prune = true
+[pull]
+	rebase = true
 [rerere]
   enabled = true
+[interactive]
+    diffFilter = delta --color-only
+[pack]
+  window = 0
 [log]
-  decorate = short
-[difftool "sourcetree"]
-  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-  path = 
+  date = relative
+[format]
+  pretty = format:%h %Cblue%ad%Creset %ae %Cgreen%s%Creset
+[core]
+	pager = delta
+	editor = nvim
+	excludesfile = /Users/charles.russell/.config/git/gitignore_global
+[credential]
+	helper = cache
+[diff]
+	algorithm = patience
+	compactionHeuristic = true
+	tool = nvimdiff
+[difftool "nvimdiff"]
+	cmd = nvim -d \"$LOCAL\" \"$REMOTE\" -c \"wincmd w\" -c \"wincmd L\"
+[merge]
+	tool = nvimdiff4
+	prompt = false
+[mergetool "nvimdiff4"]
+	cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+[commit]
+	template = /Users/charles.russell/.config/git/commit_template
+	verbose = true
 [pull]
-  ff = only
+	rebase = false
+[gpg]
+	program = /opt/homebrew/bin/gpg
+[tag]
+	gpgSign = true
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	features = side-by-side line-numbers decorations
+	navigate = true
+	whitespace-error-style = 22 reverse
+[delta "decorations"]
+	commit-decoration-style = bold yellow box ul
+	file-style = bold yellow ul
+	file-decoration-style = none
+[mergetool]
+	keepBackup = false
+[push]
+	autoSetupRemote = true
+[init]
+	defaultBranch = main
