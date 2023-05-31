@@ -2,8 +2,35 @@
 
 REPO_DIR=$HOME/repos
 BUILD_DIR=$REPO_DIR/gei/forge-build-plans-ist
+
+FZF_ALIAS_OPTS=${FZF_ALIAS_OPTS:-"--preview-window up:3:hidden:wrap"}
+
+function alias_fzf() {
+    local selection
+    # use sed with column to work around MacOS/BSD column not having a -l option
+    if selection=$(alias |
+                       sed 's/=/\t/' |
+                       column -s '	' -t |
+                       FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS $FZF_ALIAS_OPTS" fzf --preview "echo {2..}" --query="$BUFFER" |
+                       awk '{ print $1 }'); then
+        BUFFER=$selection
+    fi
+    echo $BUFFER
+    # zle redisplay
+}
+
+# Copy w/ progress
+cp_p () {
+  rsync -WavP --human-readable --progress $1 $2
+}
+
+# cd into whatever is the forefront Finder window.
+cd_f() {  # short for cdfinder
+  cd "`osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)'`"
+}
+
 edit () {
-  $EDITOR $(which $1)
+  $EDITOR $(which "$1")
 }
 #
 ### ARCHIVE EXTRACTION
@@ -33,7 +60,7 @@ ex () {
 }
 
 pods() {
-  FZF_DEFAULT_COMMAND="kubectl get pods --all-namespaces" \
+  FZF_DEFAULT_COMMAND="kubectl get pods" \
     fzf --info=inline --layout=reverse --header-lines=1 \
         --prompt "$(kubectl config current-context | sed 's/-context$//')> " \
         --header $'╱ Enter (kubectl exec) ╱ CTRL-O (open log in editor) ╱ CTRL-R (reload) ╱\n\n' \
@@ -44,6 +71,26 @@ pods() {
         --preview-window up:follow \
         --preview 'kubectl logs --follow --all-containers --tail=10000 --namespace {1} {2}' "$@"
 }
+
+# git commit browser. needs fzf. ctrl-m to view commit.
+log() {
+  git log --graph --color=always \
+      --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
+  fzf --ansi --no-sort --reverse --tiebreak=index \
+      --bind 'ctrl-m:execute:
+                echo "{}" | grep -o "[a-f0-9]\{7\}" | head -1 | \
+                xargs -I % sh -c "git show --color=always % | less -R"'
+}
+
+function git-delete-branches() {
+  git branch |
+    grep --invert-match '\*' |
+    cut -c 3- |
+    fzf --multi --preview="git log {} --" |
+    xargs --no-run-if-empty git branch --delete --force
+}
+
+
 
 # A better way to do git clone
 clone() {
