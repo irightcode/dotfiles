@@ -1,0 +1,52 @@
+# open ~/.zshrc in using the default editor specified in $EDITOR
+alias ev="$EDITOR $HOME/.zshrc"
+alias evf="$EDITOR $HOME/dev/config/.functions.bash"
+alias eva="$EDITOR $HOME/dev/config/.aliases"
+
+# source ~/.zshrc
+alias sv="source $HOME/.zshrc"
+
+alias vim='lvim'
+alias x='exit'
+alias p='pclone'
+alias v='fd --type f --hidden --exclude .git | fzf-tmux --multi -p --reverse | xargs $EDITOR'
+
+alias path='echo -e ${PATH//:/\\n}'
+alias my-ip='curl ipinfo.io/ip 2> /dev/null'
+
+# general use
+alias ls='exa'                                                         # ls
+alias l='exa -lbF --git'                                               # list, size, type, git
+alias ll='exa -lh --git'                                               # long list
+alias llm='exa -lh --git --sort=modified'                              # long list, modified date sort
+alias la='exa -lbhHigUmuSa --time-style=long-iso --git --color-scale'  # all list
+alias lx='exa -lbhHigUmuSa@ --time-style=long-iso --git --color-scale' # all + extended list
+
+alias af='alias | fzf -q '
+
+# speciality views
+alias lS='exa -1'			                               # one column, just names
+alias lt='exa --tree --level=2'                                        # tree
+
+alias k='kubectl'
+alias kx='f() { [ "$1" ] && kubectl config use-context $1 || kubectl config current-context ; } ; f'
+alias kn='f() { [ "$1" ] && kubectl config set-context --current --namespace $1 || kubectl config view --minify | grep namespace | cut -d" " -f6 ; } ; f'
+alias kl='kubectl logs'
+alias ke='kubectl exec'
+alias kgd='kubectl get deployments'
+alias kgp='kubectl get pods'
+alias kgs='kubectl get secret'
+alias kpf='kubectl port-forward'
+
+alias k-ist='kubectl --context=dlas-ist'
+alias k-mule='kubectl --context=dlas-mule'
+
+alias :q="exit"
+alias view="preview_files"
+alias cat=bat
+
+# shortcuts
+alias dev='cd ~/dev'
+alias play='cd ~/playground/'
+alias repos='cd ~/repos'
+alias todo="${EDITOR} ~/dev/notes/today.txt"
