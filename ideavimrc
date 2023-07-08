@@ -1,0 +1,215 @@
+let mapleader=' '
+""" Plugins  --------------------------------
+set surround
+set multiple-cursors
+set commentary
+set NERDTree
+
+set number
+set relativenumber
+set incsearch
+set ignorecase
+set smartcase
+set hlsearch
+set visualbell
+set noerrorbells
+set ideajoin
+set idearefactormode=keep
+set scrolloff=3
+set history=100000
+set clipboard=unnamed
+set which-key
+set notimeout
+let g:WhichKey_FontSize = 16
+" tab
+set expandtab
+set smarttab
+
+""" ------------------------------------------
+
+map [f <Action>(MethodUp)
+map ]f <Action>(MethodDown)
+
+vmap < <gv
+vmap > >gv
+
+" (Tab switch)
+map <S-Tab> <Action>(PreviousTab)
+map <Tab> <Action>(NextTab)
+
+map <C-\> <Action>(SplitVertically)
+map <C--> <Action>(SplitHorizontally)
+map <C-BS> <Action>(Unsplit)
+
+map <M-k> <Action>(MoveLineUp)
+map <M-j> <Action>(MoveLineDown)
+
+" clear the highlighted search result
+nnoremap <Leader>sc :nohlsearch<CR>
+nnoremap <BS><BS> :noh<CR>
+
+
+nnoremap <C-C> <Esc>
+
+nnoremap <Leader>? :action GotoAction<CR>
+
+" project search
+nnoremap <Leader>ps :action SearchEverywhere<CR>
+nnoremap <Leader>pf :action GotoFile<CR>
+
+" Quit normal mode
+nnoremap <Leader>q  :q<CR>
+nnoremap <Leader>Q  :qa!<CR>
+
+" Move half page faster
+nnoremap <Leader>d  <C-d>
+nnoremap <Leader>u  <C-u>
+
+" Quit visual mode
+vnoremap v <Esc>
+
+" Move to the start of line
+nnoremap H ^
+
+" Move to the end of line
+nnoremap L $
+
+" Redo
+nnoremap U <C-r>
+
+" Yank to the end of line
+nnoremap Y y$
+
+" quit ==> close current window
+nnoremap <Leader>q <C-W>w
+nnoremap <Leader>x :action CloseEditor<CR>
+
+" Window operation
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+
+nnoremap <Leader>ww <C-W>w
+nnoremap <Leader>wd <C-W>c
+nnoremap <Leader>wj <C-W>j
+nnoremap <Leader>wk <C-W>k
+nnoremap <Leader>wh <C-W>h
+nnoremap <Leader>wl <C-W>l
+nnoremap <Leader>ws <C-W>s
+nnoremap <Leader>w- <C-W>s
+nnoremap <Leader>wv <C-W>v
+nnoremap <Leader>w\| <C-W>v
+
+" ==================================================
+" Show all the provided actions via `:actionlist`
+" ==================================================
+
+" built in search looks better
+nnoremap / :action Find<CR>
+" but preserve ideavim search
+nnoremap <Leader>/ /
+nnoremap <Leader>cs :source ~/.ideavimrc<CR>
+nnoremap <Leader>ce :edit ~/.ideavimrc<CR>
+nnoremap <Leader><C-e> :edit ~/.ideavimrc<CR>
+
+nnoremap <Leader>;; :action CommentByLineComment<CR>
+
+nnoremap <Leader>bb :action ToggleLineBreakpoint<CR>
+nnoremap <Leader>br :action ViewBreakpoints<CR>
+
+
+nnoremap <Leader>dc :action ChooseDebugConfiguration<CR>
+nnoremap <Leader>di :action StepInto<CR>
+nnoremap <Leader>do :action StepOut<CR>
+
+nnoremap ga :action GotoAction<CR>
+nnoremap gc :action GotoClass<CR>
+nnoremap gd :action GotoDeclaration<CR>
+nnoremap gf :action GotoFile<CR>
+nnoremap gi :action GotoImplementation<CR>
+nnoremap gs :action GotoSymbol<CR>
+
+" Goto
+map gu <Action>(GotoSuperMethod)
+map gi <Action>(GotoImplementation)
+map gd <Action>(GotoDeclaration)
+map gt <Action>(GotoTest)
+map gh <Action>(QuickJavaDoc)
+map gH <Action>(QuickActions)
+map gr <Action>(RefactoringMenu)
+map ga <Action>(ShowIntentionActions)
+map gA <Action>(GotoAction)
+map gf <Action>(ShowUsages)
+map gF <Action>(FindUsages)
+
+nmap ]e <action>(GotoNextError)
+nmap [e <action>(GotoPreviousError)
+
+nnoremap g; :action JumpToLastChange<Enter>
+nnoremap g, :action JumpToNextChange<Enter>
+
+nmap <leader>fe :action RecentLocations<CR>
+nmap <leader>fr :action RecentFiles<CR>
+nmap <leader>fx :action CloseEditor<CR>
+nmap <leader>fw :action Switcher<CR>
+nmap <leader>fd :action NewScratchBuffer<CR>
+nmap <leader>fs :action SaveDocument<CR>
+nmap <leader>fa :action SelectInProjectView<CR>
+nmap <leader>fX :action CloseAllEditorsButActive<CR>
+
+nnoremap <leader>= <Action>(ReformatCode)<Action>(OptimizeImports)
+vnoremap <leader>= <Action>(ReformatCode)
+
+nnoremap <Leader>ic :action InspectCode<CR>
+
+nnoremap <Leader>mv :action ActivateMavenProjectsToolWindow<CR>
+
+nnoremap <Leader>oi :action OptimizeImports<CR>
+
+nnoremap <Leader>pm :action ShowPopupMenu<CR>
+
+nnoremap <Leader>rc :action RunToCursor<CR>
+nnoremap <Leader>rC :action ChooseRunConfiguration<CR>
+nnoremap <Leader>re :action RenameElement<CR>
+nnoremap <Leader>rf :action RenameFile<CR>
+nnoremap <Leader>rr :action Rerun<CR>
+
+nnoremap <Leader>tl Vy<CR>:action ActivateTerminalToolWindow<CR>
+vnoremap <Leader>tl y<CR>:action ActivateTerminalToolWindow<CR>
+
+"" Zen mode
+nnoremap <leader>zz :action ToggleDistractionFreeMode<CR>
+" View mode
+map <leader>vf <Action>(ToggleFullScreen)
+map <Leader>vc <Action>(ChangeView)
+map <leader>vv <Action>(ToggleDistractionFreeMode)
+map <leader>vp <Action>(TogglePresentationMode)
+" vcs
+nmap <leader>gb :action Annotate<CR>
+
+" Plugins screen
+let g:WhichKeyDesc_Applications_Plugins = "<leader>ak plugins"
+nnoremap <leader>ak    :action WelcomeScreen.Plugins<CR>
+vnoremap <leader>ak    :action WelcomeScreen.Plugins<CR>
+
+" Show TODOs
+let g:WhichKeyDesc_Applications_Org = "<leader>ao +org"
+let g:WhichKeyDesc_Applications_Org_Todo = "<leader>aot todo"
+nnoremap <leader>aot    :action ActivateTODOToolWindow<CR>
+vnoremap <leader>aot    :action ActivateTODOToolWindow<CR>
+
+" Show cpu usage
+let g:WhichKeyDesc_Applications_ActivityMonitor = "<leader>aP activity-monitor"
+nnoremap <leader>aP    :action Performance.ActivityMonitor<CR>
+vnoremap <leader>aP    :action Performance.ActivityMonitor<CR>
+
+" List processes
+let g:WhichKeyDesc_Applications_Processes = "<leader>ap processes"
+nnoremap <leader>ap    :action ShowProcessWindow<CR>
+vnoremap <leader>ap    :action ShowProcessWindow<CR>
+
+" Open a new terminal window
+let g:WhichKeyDesc_Applications_Shell = "<leader>as shell"
+nnoremap <leader>as    :action Terminal.OpenInTerminal<CR>
+vnoremap <leader>as    :action Terminal.OpenInTerminal<CR>
