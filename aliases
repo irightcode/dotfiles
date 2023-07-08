@@ -1,7 +1,7 @@
 # open ~/.zshrc in using the default editor specified in $EDITOR
 alias ev="$EDITOR $HOME/.zshrc"
-alias evf="$EDITOR $HOME/dev/config/.functions.bash"
 alias eva="$EDITOR $HOME/dev/config/.aliases"
+# alias evf="$EDITOR $HOME/dev/config/.functions.bash"
 
 # source ~/.zshrc
 alias sv="source $HOME/.zshrc"
@@ -34,14 +34,16 @@ alias kn='f() { [ "$1" ] && kubectl config set-context --current --namespace $1 
 alias kl='kubectl logs'
 alias ke='kubectl exec'
 alias kgd='kubectl get deployments'
+alias kgj='kubectl get jobs'
 alias kgp='kubectl get pods'
+# alias kgpg='kubectl get pods | rg'
 alias kgs='kubectl get secret'
 alias kpf='kubectl port-forward'
 
 alias k-ist='kubectl --context=dlas-ist'
 alias k-mule='kubectl --context=dlas-mule'
 
-alias :q="exit"
+# # alias :q="exit"
 alias view="preview_files"
 alias cat=bat
 
