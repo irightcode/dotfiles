@@ -2,6 +2,7 @@
 
 REPO_DIR=$HOME/repos
 BUILD_DIR=$REPO_DIR/gei/forge-build-plans-ist
+MULE_BUILD_DIR=$REPO_DIR/gei/forge-build-plans-ist-mulesoft
 
 FZF_ALIAS_OPTS=${FZF_ALIAS_OPTS:-"--preview-window up:3:hidden:wrap"}
 
@@ -74,8 +75,9 @@ pods() {
 
 # git commit browser. needs fzf. ctrl-m to view commit.
 log() {
+# format:%h %Cblue%ad%Creset %ae %Cgreen%s%Creset
   git log --graph --color=always \
-      --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
+    --format="%h %Cblue%ad%Creset %ae %Cgreen%s%Creset" "$@" |
   fzf --ansi --no-sort --reverse --tiebreak=index \
       --bind 'ctrl-m:execute:
                 echo "{}" | grep -o "[a-f0-9]\{7\}" | head -1 | \
@@ -118,12 +120,13 @@ clone() {
 }
 
 list_projects_git() {
-  list_build_git; 
+  list_build_git "$MULE_BUILD_DIR" 
+  list_build_git "$BUILD_DIR" 
   list_repo_git;
 }
 
 list_build_git() {
-   rg ssh://\.\* "$BUILD_DIR" -o --no-filename | tr -d "'" 
+   rg ssh://\.\* "$1" -o --no-filename | tr -d "'" 
 }
 
 list_repo_git() {
