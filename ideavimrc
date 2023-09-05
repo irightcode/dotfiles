@@ -81,7 +81,6 @@ nnoremap U <C-r>
 nnoremap Y y$
 
 " quit ==> close current window
-nnoremap <Leader>q <C-W>w
 nnoremap <Leader>x :action CloseEditor<CR>
 
 " Window operation
@@ -107,21 +106,42 @@ nnoremap <Leader>w\| <C-W>v
 
 " built in search looks better
 nnoremap / :action Find<CR>
+
+nnoremap <leader>* viw:action FindInPath<CR>
+
 " but preserve ideavim search
 nnoremap <Leader>/ /
 nnoremap <Leader>cs :source ~/.ideavimrc<CR>
 nnoremap <Leader>ce :edit ~/.ideavimrc<CR>
+nnoremap <leader>cc :action SilentCodeCleanup<CR>:action ReformatCode<CR>:action OptimizeImports<CR>
+nnoremap <leader>cf :action ReformatCode<CR>
+nnoremap <leader>co :action OptimizeImports<CR>
+
+
 nnoremap <Leader><C-e> :edit ~/.ideavimrc<CR>
 
 nnoremap <Leader>;; :action CommentByLineComment<CR>
 
+nnoremap <Leader>hc :action CallHierarchy<CR>
+
+nnoremap <leader>is    :action InsertLiveTemplate<CR>a
+vnoremap <leader>is    <esc>:action insertlivetemplate<cr>a
+
+
 nnoremap <Leader>bb :action ToggleLineBreakpoint<CR>
 nnoremap <Leader>br :action ViewBreakpoints<CR>
 
+nnoremap <Leader>mm :action MainMenu<CR>
 
-nnoremap <Leader>dc :action ChooseDebugConfiguration<CR>
+
+nnoremap <Leader>dd :action Debug<CR>
+nnoremap <Leader>dt :action DebugClass<CR>
+nnoremap <Leader>dq :action Stop<CR>
+nnoremap <Leader>dc :action ChooseConfiguration<CR>
 nnoremap <Leader>di :action StepInto<CR>
-nnoremap <Leader>do :action StepOut<CR>
+nnoremap <Leader>do :action StepOver<CR>
+nnoremap <Leader>dO :action StepOut<CR>
+nnoremap <Leader>dr :action Resume<CR>
 
 nnoremap ga :action GotoAction<CR>
 nnoremap gc :action GotoClass<CR>
@@ -134,7 +154,8 @@ nnoremap gs :action GotoSymbol<CR>
 map gu <Action>(GotoSuperMethod)
 map gi <Action>(GotoImplementation)
 map gd <Action>(GotoDeclaration)
-map gt <Action>(GotoTest)
+map gtt <Action>(GotoTest)
+map gtd <Action>(GotoTypeDeclaration)
 map gh <Action>(QuickJavaDoc)
 map gH <Action>(QuickActions)
 map gr <Action>(RefactoringMenu)
@@ -169,11 +190,14 @@ nnoremap <Leader>oi :action OptimizeImports<CR>
 
 nnoremap <Leader>pm :action ShowPopupMenu<CR>
 
-nnoremap <Leader>rc :action RunToCursor<CR>
-nnoremap <Leader>rC :action ChooseRunConfiguration<CR>
 nnoremap <Leader>re :action RenameElement<CR>
 nnoremap <Leader>rf :action RenameFile<CR>
+
+nnoremap <Leader>rc :action RunToCursor<CR>
+nnoremap <Leader>rC :action ChooseRunConfiguration<CR>
 nnoremap <Leader>rr :action Rerun<CR>
+nnoremap <Leader>rt :action RunClass<CR>
+nnoremap <Leader>rq :action Stop<CR>
 
 nnoremap <Leader>tl Vy<CR>:action ActivateTerminalToolWindow<CR>
 vnoremap <Leader>tl y<CR>:action ActivateTerminalToolWindow<CR>

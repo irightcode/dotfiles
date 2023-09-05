@@ -18,6 +18,12 @@ export PATH=$HOME/go/bin:$PATH
 export PATH=$HOME/.strat:$PATH
 export PATH=$HOME/ukg/local/bin:$PATH
 export PATH=$HOME/repos/bdes/handy-scripts:$PATH
+export PATH="/opt/homebrew/opt/influxdb@1/bin:$PATH"
+
+# ~/.tmux/plugins
+export PATH=$HOME/.tmux/plugins/t-smart-tmux-session-manager/bin:$PATH
+# ~/.config/tmux/plugins
+export PATH=$HOME/.config/tmux/plugins/t-smart-tmux-session-manager/bin:$PATH
 
 export NVM_DIR=$HOME/.nvm
 export CONFIG_DIR=$HOME/dev/config
@@ -27,6 +33,8 @@ export MANPAGER="less -X"
 source_if_exists "$CONFIG_DIR/.aliases"
 source_if_exists "$CONFIG_DIR/.functions.bash"
 source_if_exists "$HOME/.fzf.zsh"
+source_if_exists "$HOME/.docker_aliases"
+
 # source_if_exists "/opt/homebrew/opt/nvm/nvm.sh"
 # source_if_exists "$HOME/.jabba/jabba.sh"
 source_if_exists "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
@@ -64,6 +72,7 @@ source $ZPLUG_HOME/init.zsh
 
 zplug "reegnz/jq-zsh-plugin"
 zplug "plugins/git", from:oh-my-zsh
+zplug "djui/alias-tips"
 
 # export NVM_LAZY_LOAD=true
 # zplug "lukechilds/zsh-nvm"

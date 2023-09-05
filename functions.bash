@@ -136,7 +136,7 @@ list_repo_git() {
 choose_build() {
     INITIAL_QUERY="$1"
     UPDATE_BUILD_CMD="git -C '$BUILD_DIR' pull > /dev/null"
-    fzf --bind "ctrl-r:execute($UPDATE_BUILD_CMD || true)" \
+    fzf --select-1 --bind "ctrl-r:execute($UPDATE_BUILD_CMD || true)" \
 	--bind "ctrl-o:execute(build.sh open {})+abort" \
 	--bind "ctrl-p:execute(build.sh pr {})+abort" \
         --query "$INITIAL_QUERY" \
@@ -329,7 +329,7 @@ function tm() {
 
   session=$( \
     tmux list-sessions -F "#{session_name}" 2>/dev/null \
-    | fzf --select-1 --exit-0 \
+    | fzf-tmux -p --select-1 --exit-0 \
   )
 
   if [[ -n "$session" ]]; then 
