@@ -4,6 +4,10 @@ source_if_exists () {
 	fi
 }
 
+load_nvm() {
+  source_if_exists "/opt/homebrew/opt/nvm/nvm.sh"
+}
+
 HISTSIZE=100000
 SAVEHIST=100000
 HISTFILE=~/.zsh_history
@@ -35,15 +39,9 @@ source_if_exists "$CONFIG_DIR/.functions.bash"
 source_if_exists "$HOME/.fzf.zsh"
 source_if_exists "$HOME/.docker_aliases"
 
-# source_if_exists "/opt/homebrew/opt/nvm/nvm.sh"
-# source_if_exists "$HOME/.jabba/jabba.sh"
 source_if_exists "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
-# source_if_exists "$HOME/.docker/init-zsh.sh" 
-# source_if_exists "$HOME/.iterm2_shell_integration.zsh" 
+source_if_exists "$HOME/.iterm2_shell_integration.zsh" 
 
-load_nvm() {
-  source_if_exists "/opt/homebrew/opt/nvm/nvm.sh"
-}
 
 ## --------
 ## bindkeys
@@ -63,15 +61,7 @@ eval "$(zoxide init zsh)"
 eval "$(starship init zsh)" 
 
 # Add ssh
-ssh-add --apple-use-keychain
-
-## ZPLUG
-# export ZPLUG_HOME=$HOMEBREW_PREFIX/opt/zplug
-# source $ZPLUG_HOME/init.zsh
-
-
-# zplug "plugins/git", from:oh-my-zsh
-# zplug "djui/alias-tips"
+ssh-add --apple-load-keychain
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
@@ -85,7 +75,6 @@ fi
 source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
-
 # Load a few important annexes, without Turbo
 # (this is currently required for annexes)
 zinit light-mode for \
@@ -95,9 +84,9 @@ zinit light-mode for \
     zdharma-continuum/zinit-annex-rust
 
 ### End of Zinit's installer chunk
-zi load "reegnz/jq-zsh-plugin"
 zinit ice from'gh-r' as'program'
 zinit light sei40kr/fast-alias-tips-bin
 zinit light sei40kr/zsh-fast-alias-tips
+# zinit light reegnz/jq-zsh-plugin
 zinit snippet OMZ::plugins/git/git.plugin.zsh
 zinit snippet OMZ::plugins/tmux/tmux.plugin.zsh
