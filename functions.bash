@@ -165,6 +165,16 @@ treee() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
 
+# $ retry ping google.com
+function retry() {
+  echo Retrying "$@"
+  $@
+  sleep 1
+  retry $@
+}
+
+
+
 # mkdir and cd
 mkcd() {
 	mkdir -p -- "$1" && cd -P -- "$1" || exit

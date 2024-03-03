@@ -1,33 +1,33 @@
 # open ~/.zshrc in using the default editor specified in $EDITOR
-alias ev="$EDITOR $HOME/.zshrc"
-alias eva="$EDITOR $HOME/dev/config/.aliases"
-alias evf="$EDITOR $HOME/dev/config/.functions.bash"
+alias ez="$EDITOR $HOME/.zshrc"
+alias ea="$EDITOR $HOME/dev/config/.aliases"
+alias ef="$EDITOR $HOME/dev/config/.functions.bash"
 
 # source ~/.zshrc
 alias sv="source $HOME/.zshrc"
 
-alias vim='lvim'
+alias vim='nvim'
 alias x='exit'
 alias p='pclone'
 alias v='fd --type f --hidden --exclude .git | fzf-tmux --multi -p --reverse | xargs $EDITOR'
 
 alias path='echo -e ${PATH//:/\\n}'
 alias my-ip='curl ipinfo.io/ip 2> /dev/null'
+alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"   
 
 # general use
-alias ls='exa'                                                         # ls
-alias l='exa -lbF --git'                                               # list, size, type, git
-alias ll='exa -lh --git'                                               # long list
-alias llm='exa -lh --git --sort=modified'                              # long list, modified date sort
-alias la='exa -lbhHigUmuSa --time-style=long-iso --git --color-scale'  # all list
-alias lx='exa -lbhHigUmuSa@ --time-style=long-iso --git --color-scale' # all + extended list
-
-alias af='alias | fzf -q '
+alias ls='exa'                                                   # ls
+alias l='exa -lbF'                                               # list, size, type, git
+alias ll='exa -lh'                                               # long list
+alias llm='exa -lh --sort=modified'                              # long list, modified date sort
+alias la='exa -lbhHigUmuSa --time-style=long-iso --color-scale'  # all list
+alias lx='exa -lbhHigUmuSa@ --time-style=long-iso --color-scale' # all + extended list
 
 # speciality views
-alias lS='exa -1'			                               # one column, just names
-alias lt='exa --tree --level=2'                                        # tree
+alias lS='exa -1'			                         # one column, just names
+alias lt='exa --tree --level=2'                                  # tree
 
+# Kubectl
 alias k='kubectl'
 alias kx='f() { [ "$1" ] && kubectl config use-context $1 || kubectl config current-context ; } ; f'
 alias kn='f() { [ "$1" ] && kubectl config set-context --current --namespace $1 || kubectl config view --minify | grep namespace | cut -d" " -f6 ; } ; f'
@@ -40,16 +40,16 @@ alias kgpg='kubectl get pods | rg'
 alias kgs='kubectl get secret'
 alias kpf='kubectl port-forward'
 
-alias k-ist='kubectl --context=dlas-ist'
-alias k-mule='kubectl --context=dlas-mule'
-
-# # alias :q="exit"
+alias :q="exit"
 alias view="preview_files"
 alias cat=bat
+alias map="xargs -n1"
+alias reload="exec $SHELL -l"
 
 # shortcuts
 alias dev='cd ~/dev'
 alias play='cd ~/playground/'
+alias personal='cd ~/personal/'
 alias repos='cd ~/repos'
 alias todo="${EDITOR} ~/dev/notes/today.txt"
 
@@ -58,3 +58,6 @@ alias java-11='export JAVA_HOME=`/usr/libexec/java_home -v 11`; java -version'
 alias java-17='export JAVA_HOME=`/usr/libexec/java_home -v 17`; java -version'
 
 alias ci='build.sh'
+
+# Recursively delete `.DS_Store` files
+alias cleanup_dsstore="find . -name '*.DS_Store' -type f -ls -delete"

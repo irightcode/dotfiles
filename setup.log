@@ -1,0 +1,8 @@
+* create dev folder
+* install:
+	* github cli
+	* zsh:
+		* configuration:
+			* command -v zsh | sudo tee -a /etc/shells
+			* sudo chsh -s $(which zsh) $USER
+	* neovim
