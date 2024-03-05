@@ -1,0 +1,9 @@
+# Please do not add personal files
+
+# Logs
+*.log
+
+# Notes
+*.notes
+
+config/tmux/plugins
