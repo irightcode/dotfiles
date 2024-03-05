@@ -6,3 +6,12 @@
 			* command -v zsh | sudo tee -a /etc/shells
 			* sudo chsh -s $(which zsh) $USER
 	* neovim
+    - had to install the unstable verison
+  * cargo 
+  * rustc
+  * install nerd fonts
+    - download repo but i could be more efficient
+  * tried installing starship but not working
+  * installed:
+    - lazygit
+    - ripgrep
