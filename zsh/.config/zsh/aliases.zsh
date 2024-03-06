@@ -1,4 +1,7 @@
 # open ~/.zshrc in using the default editor specified in $EDITOR
+alias e="$EDITOR"
+alias se="sudo $EDITOR"
+
 alias ez="$EDITOR $HOME/.zshrc"
 alias ea="$EDITOR $HOME/dev/config/.aliases"
 alias ef="$EDITOR $HOME/dev/config/.functions.bash"
@@ -77,6 +80,7 @@ alias gcb='git checkout -b'
 alias gco='git checkout'
 alias gcom='git switch "$(git config init.defaultBranch)"'
 alias gd='git diff'
+alias gD='git difftool'
 alias gp='git push'
 alias gpl='git pull'
 alias gst='git status'
