@@ -7,3 +7,4 @@
 *.notes
 
 tmux/.config/tmux/plugins
+config/tmux/plugins
