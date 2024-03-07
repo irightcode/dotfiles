@@ -1,18 +1,28 @@
-source_if_exists () {
-	if test -r "$1"; then
-		source "$1"
-	fi
+_source_if_exists () {
+    if test -r "$1"; then
+	source "$1"
+    fi
 }
 
-load_nvm() {
-  source_if_exists "/opt/homebrew/opt/nvm/nvm.sh"
-}
-
-HISTSIZE=100000
+## --------
+## History
+## --------
+HISTSIZE=130000
 SAVEHIST=100000
 HISTFILE=~/.zsh_history
+setopt append_history
+setopt extended_history
+setopt hist_ignore_all_dups
+setopt share_history
+setopt hist_expire_dups_first
+setopt hist_ignore_dups
+setopt hist_ignore_all_dups
+setopt hist_find_no_dups
+setopt hist_ignore_space
+setopt hist_save_no_dups
+setopt hist_reduce_blanks
 
-export EDITOR=lvim
+export EDITOR=nvim
 export FZF_DEFAULT_COMMAND='fd'
 export FZF_CTRL_T_COMMAND='fd'
 export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always {} 2>/dev/null || tree -C {}'"
@@ -24,24 +34,23 @@ export PATH=$HOME/ukg/local/bin:$PATH
 export PATH=$HOME/repos/bdes/handy-scripts:$PATH
 export PATH="/opt/homebrew/opt/influxdb@1/bin:$PATH"
 
-# ~/.tmux/plugins
-export PATH=$HOME/.tmux/plugins/t-smart-tmux-session-manager/bin:$PATH
-# ~/.config/tmux/plugins
-export PATH=$HOME/.config/tmux/plugins/t-smart-tmux-session-manager/bin:$PATH
-
 export NVM_DIR=$HOME/.nvm
 export CONFIG_DIR=$HOME/dev/config
 # Don’t clear the screen after quitting a manual page
 export MANPAGER="less -X"	
 
-source_if_exists "$CONFIG_DIR/.aliases"
-source_if_exists "$CONFIG_DIR/.functions.bash"
-source_if_exists "$HOME/.fzf.zsh"
-source_if_exists "$HOME/.docker_aliases"
+_source_if_exists "$CONFIG_DIR/.aliases"
+_source_if_exists "$CONFIG_DIR/.functions.bash"
+_source_if_exists "$HOME/.fzf.zsh"
+_source_if_exists "$HOME/.docker_aliases"
 
-source_if_exists "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
-source_if_exists "$HOME/.iterm2_shell_integration.zsh" 
+_source_if_exists "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+_source_if_exists "$HOME/.iterm2_shell_integration.zsh" 
 
+
+load_nvm() {
+  _source_if_exists "/opt/homebrew/opt/nvm/nvm.sh"
+}
 
 ## --------
 ## bindkeys
