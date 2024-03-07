@@ -153,19 +153,12 @@ require('lazy').setup({
     end
   },
 
-  {
-    "folke/todo-comments.nvim",
-    dependencies = "nvim-lua/plenary.nvim",
-    lazy = false,
-    config = function()
-      require("todo-comments").setup {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
-      }
-    end
+  { 
+    'folke/todo-comments.nvim', 
+    event = 'VimEnter', 
+    dependencies = { 'nvim-lua/plenary.nvim' }, 
+    opts = { signs = false } 
   },
-
   {
     "rcarriga/nvim-notify",
     config = function()
@@ -178,6 +171,7 @@ require('lazy').setup({
 
   {
     "folke/noice.nvim",
+    event = "VeryLazy",
     config = function()
       require("noice").setup({
         -- add any options here
@@ -210,10 +204,10 @@ require('lazy').setup({
 
   'ray-x/go.nvim',
   'ray-x/guihua.lua',
-  { "catppuccin/nvim", as = "catppuccin" },
   {
     "windwp/nvim-autopairs",
-      config = function() require("nvim-autopairs").setup {} end
+    event = "InsertEnter",
+    config = true
   },
 
 
@@ -225,12 +219,19 @@ require('lazy').setup({
       'williamboman/mason-lspconfig.nvim',
 
       -- Useful status updates for LSP
-      'j-hui/fidget.nvim',
+      {'j-hui/fidget.nvim', opts = {} },
     }
   },
   { -- Autocompletion
     'hrsh7th/nvim-cmp',
-    dependencies = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
+    event = 'InsertEnter',
+    dependencies = { 
+      'hrsh7th/cmp-nvim-lsp', 
+      'L3MON4D3/LuaSnip',
+      'saadparwaiz1/cmp_luasnip',
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-path',
+    },
   },
 
   { -- Highlight, edit, and navigate code
@@ -258,8 +259,19 @@ require('lazy').setup({
   'numToStr/Comment.nvim', -- "gc" to comment visual regions/lines 
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
   -- Fuzzy Finder (files, lsp, etc)
-  { 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
-  'nvim-telescope/telescope-symbols.nvim',
+  { 
+    'nvim-telescope/telescope.nvim', 
+    event = 'VimEnter',
+    branch = '0.1.x', 
+    dependencies = { 
+      'nvim-lua/plenary.nvim', 
+      { -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
+        'nvim-telescope/telescope-fzf-native.nvim', build = 'make', cond = vim.fn.executable 'make' == 1 
+      },
+      { 'nvim-telescope/telescope-ui-select.nvim' },
+      { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+    } 
+  },
   'ThePrimeagen/harpoon',
   {
     "christoomey/vim-tmux-navigator",
@@ -278,9 +290,7 @@ require('lazy').setup({
       { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
     },
   },
-
-  -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
-  { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make', cond = vim.fn.executable 'make' == 1 },
+  { "catppuccin/nvim", as = "catppuccin" },
   {
     "folke/twilight.nvim",
     opts = {
@@ -289,12 +299,28 @@ require('lazy').setup({
       -- refer to the configuration section below
     }
   },
-}
--- {
---   defaults = {
---     lazy = true,
---   }
--- }
-)
+
+}, {
+  ui = {
+    -- If you have a Nerd Font, set icons to an empty table which will use the
+    -- default lazy.nvim defined Nerd Font icons otherwise define a unicode icons table
+    icons = vim.g.have_nerd_font and {} or {
+      cmd = '⌘',
+      config = '🛠',
+      event = '📅',
+      ft = '📂',
+      init = '⚙',
+      keys = '🗝',
+      plugin = '🔌',
+      runtime = '💻',
+      require = '🌙',
+      source = '📄',
+      start = '🚀',
+      task = '📌',
+      lazy = '💤 ',
+    },
+  },
+})
 
 
+-- vim: ts=2 sts=2 sw=2 et
