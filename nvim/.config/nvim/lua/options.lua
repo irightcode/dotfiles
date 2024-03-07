@@ -6,7 +6,7 @@ vim.wo.number = true
 vim.o.relativenumber = true
 
 -- Disable mouse mode
--- vim.o.mouse = ''
+vim.o.mouse = 'a'
 
 -- Enable break indent
 vim.o.breakindent = true
@@ -29,6 +29,9 @@ vim.cmd.colorscheme "catppuccin"
 --vim.cmd()
 vim.opt.clipboard = 'unnamedplus'
 
+vim.opt.list = true
+vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
 
@@ -42,3 +45,4 @@ vim.o.conceallevel=2
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+vim.g.have_nerd_font = true

@@ -6,7 +6,7 @@ require("obsidian").setup({
     -- },
     {
       name = "Notes",
-      path = "/Users/omerxx/Obsidian/Notes",
+      path = "$HOME/Obsidian/Notes",
     },
   },
   completion = {

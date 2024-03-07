@@ -10,15 +10,13 @@ vim.api.nvim_set_keymap("n", "td", ":bdelete<enter>", {noremap=false})
 -- files
 vim.api.nvim_set_keymap("n", "QQ", ":q!<enter>", {noremap=false})
 vim.api.nvim_set_keymap("n", "WW", ":w!<enter>", {noremap=false})
-vim.api.nvim_set_keymap("n", "E", "$", {noremap=false})
-vim.api.nvim_set_keymap("n", "B", "^", {noremap=false})
 vim.api.nvim_set_keymap("n", "TT", ":TransparentToggle<CR>", {noremap=true})
 vim.api.nvim_set_keymap("n", "st", ":TodoTelescope<CR>", {noremap=true})
-vim.api.nvim_set_keymap("n", "ss", ":noh<CR>", {noremap=true})
 -- splits
 vim.api.nvim_set_keymap("n", "<C-W>,", ":vertical resize -10<CR>", {noremap=true})
 vim.api.nvim_set_keymap("n", "<C-W>.", ":vertical resize +10<CR>", {noremap=true})
-vim.keymap.set('n', '<space><space>', "<cmd>set nohlsearch<CR>")
+
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 
 -- Keymaps for better default experience
