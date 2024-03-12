@@ -1,25 +1,26 @@
 -- Set highlight on search
-vim.o.hlsearch = true
+vim.opt.hlsearch = true
 
 -- Make line numbers default
 vim.wo.number = true
-vim.o.relativenumber = true
+vim.opt.relativenumber = true
 
 -- Disable mouse mode
-vim.o.mouse = 'a'
+vim.opt.mouse = 'a'
 
 -- Enable break indent
-vim.o.breakindent = true
+vim.opt.breakindent = true
 
 -- Save undo history
-vim.o.undofile = true
+vim.opt.undofile = true
 
 -- Case insensitive searching UNLESS /C or capital in search
-vim.o.ignorecase = true
-vim.o.smartcase = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 -- Decrease update time
-vim.o.updatetime = 250
+vim.opt.updatetime = 250
+vim.opt.timeoutlen = 300
 vim.wo.signcolumn = 'yes'
 
 -- Set colorscheme
@@ -33,10 +34,14 @@ vim.opt.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 -- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
+vim.opt.completeopt = 'menuone,noselect'
 
 -- Concealer for Neorg
-vim.o.conceallevel=2
+vim.opt.conceallevel=2
+
+-- Configure how new splits should be opened
+vim.opt.splitright = true
+vim.opt.splitbelow = true
 
 -- [[ Basic Keymaps ]]
 -- Set <space> as the leader key
