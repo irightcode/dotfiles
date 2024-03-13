@@ -3,15 +3,14 @@ alias e="$EDITOR"
 alias se="sudo $EDITOR"
 
 alias ez="$EDITOR $HOME/.zshrc"
-alias ea="$EDITOR $HOME/dev/config/.aliases"
-alias ef="$EDITOR $HOME/dev/config/.functions.bash"
+alias ea="$EDITOR $HOME/.config/zsh/aliases.zsh"
+alias ef="$EDITOR $HOME/.config/zsh/functions.zsh"
 
 # source ~/.zshrc
 alias sv="source $HOME/.zshrc"
 
 alias vim='nvim'
 # alias vim='lvim'
-alias e=edit
 
 alias x='exit'
 alias p='pclone'
