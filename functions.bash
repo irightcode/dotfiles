@@ -369,4 +369,28 @@ function notify() {
     osascript -e "display notification '$MSG' with title '$TITLE'"
 }
 
+# Backup files
+# copy file to file.bak
+backup_files() {
+    for file in "$@"; do
+        cp "$file" "$file".bak
+    done
+}
 
+# Generate a password - default 20 characters
+pass() {
+    local size=${1:-20}
+    cat /dev/random | tr -dc '[:graph:]' | head -c$size
+}
+cheat() {
+    curl cheat.sh/$1
+}
+
+
+duckduckgo() {
+    lynx -vikeys -accept_all_cookies "https://lite.duckduckgo.com/lite/?q=$@"
+}
+
+wikipedia() {
+    lynx -vikeys -accept_all_cookies "https://en.wikipedia.org/wiki?search=$@"
+}
