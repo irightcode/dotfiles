@@ -32,6 +32,10 @@ alias lx='exa -lbhHigUmuSa@ --time-style=long-iso --color-scale' # all + extende
 alias lS='exa -1'			                         # one column, just names
 alias lt='exa --tree --level=2'                                  # tree
 
+# clipboard
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
+
 # Kubectl
 alias k='kubectl'
 alias kx='f() { [ "$1" ] && kubectl config use-context $1 || kubectl config current-context ; } ; f'

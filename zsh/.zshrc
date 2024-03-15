@@ -12,17 +12,33 @@ autoload -Uz compinit
 compinit
 
 source ~/.config/zsh/aliases.zsh
+source ~/.config/zsh/functions.zsh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+## --------
+## bindkeys
+## --------
+autoload -Uz edit-command-line
+zle -N edit-command-line
+
+bindkey -s '^f' 'find_files\n'
+bindkey -s '^n' 'ranger\n'
+bindkey -s '^s' 'search '
+
+bindkey -M vicmd 'vv' edit-command-line
+bindkey '^X^e' edit-command-line
+
+## --------
+eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
+eval "$(dircolors -b)"
 
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' format 'Completing %d'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' menu select=2
-eval "$(dircolors -b)"
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
