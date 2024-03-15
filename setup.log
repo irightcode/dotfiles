@@ -11,7 +11,13 @@
   * rustc
   * install nerd fonts
     - download repo but i could be more efficient
-  * tried installing starship but not working
+  * remap keys to remap caps lock to escape
+	  *  Run this by typing "tweak tool" in to the GNOME launcher or Ubuntu Dash, go to the Typing tab and select "Make Caps Lock an additional ESC" under the Caps Lock key behaviour dropdown
   * installed:
     - lazygit
     - ripgrep
+    - lazydocker
+    - exa
+    - bat
+    - fd
+
