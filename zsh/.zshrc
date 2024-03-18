@@ -23,7 +23,7 @@ autoload -Uz edit-command-line
 zle -N edit-command-line
 
 bindkey -s '^f' 'find_files\n'
-bindkey -s '^n' 'ranger\n'
+# bindkey -s '^n' 'ranger\n'
 bindkey -s '^s' 'search '
 
 bindkey -M vicmd 'vv' edit-command-line
