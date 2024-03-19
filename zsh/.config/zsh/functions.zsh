@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-REPO_DIR=$HOME/repos
+REPO_DIR=$HOME/git
 BUILD_DIR=$REPO_DIR/gei/forge-build-plans-ist
 MULE_BUILD_DIR=$REPO_DIR/gei/forge-build-plans-ist-mulesoft
 
