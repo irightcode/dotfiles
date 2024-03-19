@@ -1,3 +1,2 @@
-require('config.lazy')
-
--- vim: ts=8 sts=2 sw=2 et
+-- bootstrap lazy.nvim, LazyVim and your plugins
+require("config.lazy")
