@@ -21,13 +21,13 @@ alias my-ip='curl ipinfo.io/ip 2> /dev/null'
 alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"   
 
 # general use
-alias ls='exa'                                                   # ls
-alias l='exa -lbF'                                               # list, size, type, git
-alias ll='exa -lh'                                               # long list
-alias llm='exa -lh --sort=modified'                              # long list, modified date sort
-alias la='exa -lbhHigUmuSa --time-style=long-iso --color-scale'  # all list
+alias l='exa -lbF --icons'                                               # list, size, type, git
+alias ls='exa --grid --color auto --icons --sort=type'
+alias ll='exa --long --color always --icons --sort=type'
+alias la='exa --grid --all --color auto --icons --sort=type'
 alias lx='exa -lbhHigUmuSa@ --time-style=long-iso --color-scale' # all + extended list
-
+alias lla='exa --long --all --color auto --icons --sort=type'
+alias llm='exa -lh --sort=modified'                              # long list, modified date sort
 # speciality views
 alias lS='exa -1'			                         # one column, just names
 alias lt='exa --tree --level=2'                                  # tree

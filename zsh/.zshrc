@@ -1,8 +1,7 @@
 _source_if_exists () {
     if test -r "$1"; then
       source "$1"
-    fi
-}
+    fi }
 
 ## --------
 ## History
@@ -25,16 +24,15 @@ setopt hist_reduce_blanks
 # Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e
 
-
 # Use modern completion system
 autoload -Uz compinit
 compinit
 
-export CONFIG_DIR=$HOME/.config/zsh
 
 _source_if_exists "$CONFIG_DIR/aliases.zsh"
 _source_if_exists "$CONFIG_DIR/docker_aliases.zsh"
 _source_if_exists "$CONFIG_DIR/functions.zsh"
+_source_if_exists "$CONFIG_DIR/os.zsh"
 _source_if_exists "$HOME/.fzf.zsh"
 
 ## --------
@@ -44,7 +42,7 @@ autoload -Uz edit-command-line
 zle -N edit-command-line
 
 bindkey -s '^f' 'find_files\n'
-bindkey -s '^n' 'ranger\n'
+# bindkey -s '^n' 'ranger\n'
 bindkey -s '^s' 'search '
 
 bindkey -M vicmd 'vv' edit-command-line

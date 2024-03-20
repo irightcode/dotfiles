@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-REPO_DIR=$HOME/git
+REPO_DIR=$HOME/repos/
 BUILD_DIR=$REPO_DIR/gei/forge-build-plans-ist
 MULE_BUILD_DIR=$REPO_DIR/gei/forge-build-plans-ist-mulesoft
 
@@ -23,11 +23,6 @@ alias_fzf() {
 # Copy w/ progress
 cp_p () {
   rsync -WavP --human-readable --progress $1 $2
-}
-
-# cd into whatever is the forefront Finder window.
-cd_f() {  # short for cdfinder
-  cd "`osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)'`"
 }
 
 ### ARCHIVE EXTRACTION
@@ -116,8 +111,8 @@ clone() {
 }
 
 list_projects_git() {
-  # list_build_git "$MULE_BUILD_DIR" 
-  # list_build_git "$BUILD_DIR" 
+  list_build_git "$MULE_BUILD_DIR"
+  list_build_git "$BUILD_DIR"
   list_repo_git;
 }
 
@@ -344,11 +339,6 @@ pass() {
     local size=${1:-20}
     cat /dev/random | tr -dc '[:graph:]' | head -c$size
 }
-
-cheat() {
-    curl cheat.sh/$1
-}
-
 
 duckduckgo() {
     lynx -vikeys -accept_all_cookies "https://lite.duckduckgo.com/lite/?q=$@"
