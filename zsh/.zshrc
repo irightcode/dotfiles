@@ -1,20 +1,41 @@
-# Set up the prompt
+_source_if_exists () {
+    if test -r "$1"; then
+      source "$1"
+    fi
+}
 
-setopt histignorealldups sharehistory
-
+## --------
+## History
+## --------
+HISTSIZE=130000
+SAVEHIST=100000
+HISTFILE=~/.zsh_history
+setopt append_history
+setopt extended_history
+setopt hist_ignore_all_dups
+setopt share_history
+setopt hist_expire_dups_first
+setopt hist_ignore_dups
+setopt hist_ignore_all_dups
+setopt hist_find_no_dups
+setopt hist_ignore_space
+setopt hist_save_no_dups
+setopt hist_reduce_blanks
 
 # Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e
-# Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
+
 
 # Use modern completion system
 autoload -Uz compinit
 compinit
 
-source ~/.config/zsh/aliases.zsh
-source ~/.config/zsh/functions.zsh
+export CONFIG_DIR=$HOME/.config/zsh
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+_source_if_exists "$CONFIG_DIR/aliases.zsh"
+_source_if_exists "$CONFIG_DIR/docker_aliases.zsh"
+_source_if_exists "$CONFIG_DIR/functions.zsh"
+_source_if_exists "$HOME/.fzf.zsh"
 
 ## --------
 ## bindkeys
@@ -23,12 +44,14 @@ autoload -Uz edit-command-line
 zle -N edit-command-line
 
 bindkey -s '^f' 'find_files\n'
-# bindkey -s '^n' 'ranger\n'
+bindkey -s '^n' 'ranger\n'
 bindkey -s '^s' 'search '
 
 bindkey -M vicmd 'vv' edit-command-line
 bindkey '^X^e' edit-command-line
 
+## --------
+## Tools
 ## --------
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
