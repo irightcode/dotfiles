@@ -80,10 +80,26 @@ alias gba='git branch --all'
 alias gc!='git commit --ammend'
 alias gc='git commit'
 alias gcb='git checkout -b'
+alias gcl="git clone"
+alias gcm='(git show-ref --verify --quiet refs/heads/main && git checkout main) || (git show-ref --verify --quiet refs/heads/master && git checkout master)'
 alias gco='git checkout'
 alias gcom='git switch "$(git config init.defaultBranch)"'
 alias gd='git diff'
 alias gD='git difftool'
+
+alias gf="git fetch"
 alias gp='git push'
+alias gpf="git push -f"
 alias gpl='git pull'
+
+alias grb="git rebase"
+alias grba="git rebase --abort"
+alias grbc="git rebase --continue"
+alias grbm="git rebase master"
+alias grbs="git rebase --skip"
+
+alias grewind="git reset HEAD^1"
+alias grhard="git fetch origin && git reset --hard"
+alias grhead="git reset HEAD"
+
 alias gst='git status'
