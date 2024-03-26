@@ -81,6 +81,7 @@ alias gc!='git commit --ammend'
 alias gc='git commit'
 alias gcb='git checkout -b'
 alias gcl="git clone"
+alias gclean='git clean --interactive -d'
 alias gcm='(git show-ref --verify --quiet refs/heads/main && git checkout main) || (git show-ref --verify --quiet refs/heads/master && git checkout master)'
 alias gco='git checkout'
 alias gcom='git switch "$(git config init.defaultBranch)"'
@@ -91,6 +92,7 @@ alias gf="git fetch"
 alias gp='git push'
 alias gpf="git push -f"
 alias gpl='git pull'
+alias gpsup='git push --set-upstream origin $(git symbolic-ref --short HEAD)'
 
 alias grb="git rebase"
 alias grba="git rebase --abort"
