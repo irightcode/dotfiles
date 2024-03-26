@@ -98,6 +98,8 @@ alias grbc="git rebase --continue"
 alias grbm="git rebase master"
 alias grbs="git rebase --skip"
 
+alias grt='cd $(git rev-parse --show-toplevel || echo ".")'
+
 alias grewind="git reset HEAD^1"
 alias grhard="git fetch origin && git reset --hard"
 alias grhead="git reset HEAD"
