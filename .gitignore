@@ -8,3 +8,5 @@
 
 tmux/.config/tmux/plugins
 config/tmux/plugins
+zsh/.config/zsh/config.yml
+zsh/.config/zsh/state.yml
