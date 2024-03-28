@@ -1,0 +1,136 @@
+#!/usr/bin/env bash
+
+set -o nounset -o pipefail
+
+# These commands are halfway between keybind and `oneliners.bash` material.  Plus, there's
+# only so many keys on a keyboard.
+readarray -t fzf_output < <(
+   fzf --prompt='$ ' --color='dark,hl:green:regular,fg+:white:regular,hl+:green:regular:reverse,query:white:regular,info:gray:regular,prompt:white:regular,pointer:green:bold' \
+       --with-nth -1 -d :: --print-query --expect=ctrl-e,alt-enter <<'EOF'
+lock
+dates
+background::~/dotfiles/misc/keybind-scripts/wifail::wifail
+background::~/dotfiles/misc/keybind-scripts/ethinfo::ethinfo
+browse::https://meribold.org::meribold.org
+browse::https://staging.meribold.org::staging.meribold.org
+browse::https://testing.meribold.org::testing.meribold.org
+browse::snapcraft.io/muccadoro/metrics
+browse::https://www.fastmail.com::fastmail.com
+browse::https://www.fastmail.com/contacts::fastmail.com/contacts
+browse::file:///usr/share/doc/neomutt/manual.html
+browse::file:///usr/share/doc/arch-wiki/html/en/Network_configuration.html
+browse::moz-extension://bbd71618-3b7d-474d-94c7-2e062c6a5870/onetab.html::OneTab
+browse::wiki.meribold.org
+browse::wiki.meribold.org/Lists
+browse::wiki.meribold.org/rec/Words
+browse::wiki.meribold.org/edit/rec/Words
+browse::github.com/meribold
+browse::github.com/meribold/dotfiles
+browse::github.com/meribold/dotfiles/commits
+browse::https://play.google.com/apps/publish::Google Play Console
+browse::youtube.com/feed/history
+browse::youtube.com/playlist?list=WL
+browse::detectportal.firefox.com
+browse::https://www.computerbase.de::ComputerBase
+browse::https://meribold.goatcounter.com::GoatCounter
+evalbrowse::wiki.meribold.org/$(date -I)
+background::exec dosbox -conf ~/.dosbox/jill.conf::Jill of the Jungle
+background::NetHack
+background::exec gimp::GIMP
+background::exec emacs::Emacs
+background::exec inkscape::Inkscape
+background::exec anki::Anki
+background::exec screenkey::screenkey
+background::exec qutebrowser::qutebrowser
+background::exec chromium::Chromium
+background::exec $FIREFOX::Firefox
+background::exec $FIREFOX --ProfileManager::Firefox (profile manager)
+background::exec firefox-developer-edition::Firefox Developer Edition
+background::exec firefox-developer-edition --ProfileManager::Firefox Developer Edition (profile manager)
+background::exec signal-desktop --force-device-scale-factor=1.84::Signal Desktop
+background::exec gcolor2::gcolor2
+background::exec gcolor3::gcolor3
+xterm::ssh bamfurlong
+xterm::ssh -t bamfurlong screen -S default -DR
+xterm::ssh -t buckland screen -S minecraft -DR
+xterm::ssh -t athrad screen -UDR
+xterm::ssh shirebourn # Ubiquiti UniFi AP
+xterm::ssh baranduin # Ubiquiti EdgeRouter X
+xterm::less /var/log/pacman.log
+xterm::less ~/.xinit.log
+xterm::tail -F ~/.xinit.log
+background::exec xterm -e dash -c 'cd ~/dotfiles && bash'::~/dotfiles
+background::exec xterm -name 'floating xterm' -geometry 100x25 -e dash -c 'cd ~/dotfiles && bash'::~/dotfiles (floating xterm)
+background::exec xterm -name 'floating xterm' -geometry 125x38 -hold -e 'curl --silent --fail wttr.in | head -n -2'::curl wttr.in
+background::gpg --export --export-options export-minimal --armor '3A1A48ABF4BD4C6D60133CC3C4FDE68734E7F155!' | while dd bs=512 count=1 status=none | qrencode --size=9 -o - | feh -; do :; done
+gpg --export-secret-subkeys --export-options export-minimal --armor '3A1A48ABF4BD4C6D60133CC3C4FDE68734E7F155!' | while dd bs=512 count=1 status=none | qrencode --size=9 -o - 2>/dev/null | feh - 2>/dev/null; do :; done
+EOF
+) || exit $?
+
+echo -a $fzf_output
+
+key=${fzf_output[1]}
+
+if [[ $key == alt-enter || ${#fzf_output[@]} == 2 ]]; then
+   # Alt+Enter was used or there is no match.  We'll run the query.
+   selection=${fzf_output[0]}
+else
+   selection=${fzf_output[2]}
+fi
+
+[[ $selection ]] || exit $?
+
+if [[ $selection != *::* ]]; then
+   command_type=
+   selected_command=$selection
+else
+   command_type=${selection%%::*}
+   selected_command=${selection#*::}
+   selected_command=${selected_command%::*}
+fi
+
+if [[ $key == ctrl-e ]]; then
+   read -rep '$ ' -i "$selected_command" selected_command
+fi
+
+if [[ $command_type == background ]]; then
+   # I also tried using `disown` and `nohup`, but neither prevents programs from being
+   # killed immediately when XBindKeys launches this script with `xterm -e`.
+   trap '' SIGHUP
+   eval "$selected_command" &
+elif [[ $command_type == daemon ]]; then
+   trap '' SIGHUP
+   output=$(eval "$selected_command" 2>&1)
+elif [[ $command_type == '' ]]; then
+   output=$(eval "$selected_command" 2>&1)
+elif [[ $command_type == browse ]]; then
+   trap '' SIGHUP
+   $BROWSER "$selected_command" &
+   i3-msg '[class="^firefox$"] focus'
+elif [[ $command_type == evalbrowse ]]; then
+   trap '' SIGHUP
+   eval '$BROWSER' "$selected_command" &
+   i3-msg '[class="^firefox$"] focus'
+elif [[ $command_type == xterm ]]; then
+   trap '' SIGHUP
+   eval 'exec xterm -e' "$selected_command" &
+elif [[ $command_type == man ]]; then
+   trap '' SIGHUP
+   # shellcheck disable=SC2086
+   xterm -sl 0 -name 'floating man' -geometry 100x58 -e man --nj --nh $selected_command &
+elif [[ $command_type == nostdout ]]; then
+   output=$(eval "$selected_command" 2>&1 1>/dev/null)
+fi
+
+if [[ $output ]]; then
+   if (( $(wc -l <<< "$output") >= 14 )); then
+      printf '$ %s\n%s' "$selected_command" "$output" | less -R
+   else
+      tput civis
+      if [[ $key != ctrl-e ]]; then
+         printf '$ %s\n' "$selected_command"
+      fi
+      printf '%s' "$output"
+      read -rn1
+   fi
+fi
