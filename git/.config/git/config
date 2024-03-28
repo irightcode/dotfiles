@@ -27,6 +27,7 @@
   pager = delta
   editor = nvim
   excludesfile = $HOME/.config/git/gitignore_global
+  autocrlf = input
 [credential]
   helper = cache
 [diff]
@@ -46,6 +47,8 @@
   verbose = true
 [pull]
   rebase = false
+[interactive]
+  diffFilter = delta --color-only
 [delta]
   features = side-by-side line-numbers decorations
   navigate = true
