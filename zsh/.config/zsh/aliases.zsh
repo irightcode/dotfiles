@@ -10,6 +10,7 @@ alias ef="$EDITOR $HOME/.config/zsh/functions.zsh"
 alias sv="source $HOME/.zshrc"
 
 alias vim='nvim'
+alias rr='ranger'
 # alias vim='lvim'
 
 alias x='exit'
@@ -107,3 +108,11 @@ alias grhard="git fetch origin && git reset --hard"
 alias grhead="git reset HEAD"
 
 alias gst='git status'
+
+
+# Docker
+alias dco="docker compose"
+alias dps="docker ps"
+alias dpa="docker ps -a"
+alias dl="docker ps -l -q"
+alias dx="docker exec -it"

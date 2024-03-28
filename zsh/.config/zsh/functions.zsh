@@ -84,7 +84,6 @@ git-delete-branches() {
 }
 
 
-
 # A better way to do git clone
 clone() {
    url=$1;

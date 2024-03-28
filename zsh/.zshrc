@@ -41,7 +41,8 @@ _source_if_exists "$HOME/.fzf.zsh"
 autoload -Uz edit-command-line
 zle -N edit-command-line
 
-bindkey -s '^f' 'find_files\n'
+bindkey -s ^f "tmux-sessionizer\n"
+# bindkey -s '^f' 'find_files\n'
 # bindkey -s '^n' 'ranger\n'
 bindkey -s '^s' 'search '
 
