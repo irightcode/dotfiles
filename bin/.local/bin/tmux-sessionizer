@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 
+set -x
+
 if [[ $# -eq 1 ]]; then
 	selected=$1
 else
-	selected=$(find ~/repos -mindepth 2 -maxdepth 2 -type d | sort | fzf)
+	selected=$(fd . -L ~/repos ~/dotfiles --maxdepth 2 --type d | sort | fzf)
 fi
 
 if [[ -z $selected ]]; then

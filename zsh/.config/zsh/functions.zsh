@@ -97,7 +97,7 @@ clone() {
        return 1;
    fi
 
-   reponame=$(echo "$url" | awk -F/ '{print $(NF-1)"/"$NF}' | sed -e 's/.git$//' | sed -e 's/.*://'); 
+   reponame=$(echo "$url" | awk -F/ '{print $(NF-1)"/"$NF}' | sed -e 's/.git$//' | sed -e 's/.*://');
    destination="$REPO_DIR/$reponame"
    if [ ! -d "$destination" ]; then
       if [[ "$url" =~ 'github' ]]; then

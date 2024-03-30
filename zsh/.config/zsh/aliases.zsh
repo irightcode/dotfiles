@@ -2,16 +2,14 @@
 alias e="$EDITOR"
 alias se="sudo $EDITOR"
 
-alias ez="$EDITOR $HOME/.zshrc"
-alias ea="$EDITOR $HOME/.config/zsh/aliases.zsh"
-alias ef="$EDITOR $HOME/.config/zsh/functions.zsh"
-
-# source ~/.zshrc
-alias sv="source $HOME/.zshrc"
+alias cfg-alias="$EDITOR $HOME/.config/zsh/aliases.zsh"
+alias cfg-dotfiles="$EDITOR $DOTFILES"
+alias cfg-functions="$EDITOR $HOME/.config/zsh/functions.zsh"
+alias cfg-tmux="$EDITOR $HOME/.tmux.conf"
+alias cfg-zsh="$EDITOR $HOME/.zshrc $HOME/.zshenv"
 
 alias vim='nvim'
 alias rr='ranger'
-# alias vim='lvim'
 
 alias x='exit'
 alias p='pclone'
@@ -29,13 +27,10 @@ alias la='exa --grid --all --color auto --icons --sort=type'
 alias lx='exa -lbhHigUmuSa@ --time-style=long-iso --color-scale' # all + extended list
 alias lla='exa --long --all --color auto --icons --sort=type'
 alias llm='exa -lh --sort=modified'                              # long list, modified date sort
+
 # speciality views
 alias lS='exa -1'			                         # one column, just names
 alias lt='exa --tree --level=2'                                  # tree
-
-# clipboard
-alias pbcopy='xclip -selection clipboard'
-alias pbpaste='xclip -selection clipboard -o'
 
 # Kubectl
 alias k='kubectl'
@@ -108,7 +103,6 @@ alias grhard="git fetch origin && git reset --hard"
 alias grhead="git reset HEAD"
 
 alias gst='git status'
-
 
 # Docker
 alias dco="docker compose"
