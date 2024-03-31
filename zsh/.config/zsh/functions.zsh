@@ -163,8 +163,6 @@ function retry() {
   retry $@
 }
 
-
-
 # mkdir and cd
 mkcd() {
 	mkdir -p -- "$1" && cd -P -- "$1" || exit
@@ -209,10 +207,8 @@ search() {
 	[[ -n "$matching_files" ]] && ${EDITOR} "${matching_files}" -c/"${regex}"
 }
 
-
 # paginate help
 help() { "$@" --help | bat -l man -p ; }
-
 
 # preview files
 preview_files() {
