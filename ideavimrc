@@ -19,8 +19,13 @@ set scrolloff=3
 set history=100000
 set clipboard=unnamed
 set which-key
+set highlightedyank
 set notimeout
+" Plugins Config
 let g:WhichKey_FontSize = 16
+let g:highlightedyank_highlight_duration = "300"
+let g:highlightedyank_highlight_color = "rgba(160, 160, 160, 155)"
+
 " tab
 set expandtab
 set smarttab
