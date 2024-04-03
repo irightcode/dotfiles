@@ -26,7 +26,7 @@
 [core]
   pager = delta
   editor = nvim
-  excludesfile = $HOME/.config/git/gitignore_global
+  excludesfile = ~/.config/git/gitignore_global
   autocrlf = input
 [credential]
   helper = cache
@@ -43,7 +43,7 @@
   cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
   keepBackup = false
 [commit]
-  template = $HOME/.config/git/commit_template
+  template = ~/.config/git/commit_template
   verbose = true
 [pull]
   rebase = false
