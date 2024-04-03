@@ -1,3 +1,4 @@
+command_timeout = 150
 add_newline = false
 # A minimal left prompt
 format = """$directory$character"""
@@ -8,14 +9,53 @@ right_format = """$all"""
 [directory.substitutions]
 '~/tests/starship-custom' = 'work-project'
 
+[directory]
+truncate_to_repo = true
+format = '[$path/]($style)[$read_only]($read_only_style)'
+read_only = " "
+style = 'blue'
+truncation_length = 4
+truncation_symbol = "…/"
+
+[character]
+success_symbol = "[λ ](fg:#7dcfff)"
+error_symbol = "[ ](gray)"
+vicmd_symbol = "[ ](purple)"
+
+[git_state]
+disabled = false
+
+[git_branch]
+format = "on [$symbol$branch](bold purple) "
+
+[git_status]
+disabled = true
+format = '([$all_status]($style))'
+conflicted = "([⚠️ ${count}](bold red) )"
+ahead = "([⟫${count}])"
+behind = "([⟪${count}])"
+stashed = "([↪ ${count}](bold red)) "
+modified = "([柳${count}](bold yellow) )"
+staged = "([ ${count}](bold green) )"
+renamed = "([⇆ ${count}](vold blue) )"
+deleted = "([ ${count}](bold red) )"
+untracked ="([ ${count}](dimmed red) )"
+
+[package]
+disabled = true
+
+[gcloud]
+disabled = true
+
 [golang]
 format = '[ ](bold cyan)'
 
-[kubernetes]
-symbol = '☸ '
-disabled = false
-detect_files = ['Dockerfile']
-format = '[$context(\[$namespace\])]($style) '
+[jobs]
+symbol = ''
+format = '[$symbol $number ]($style)'
+symbol_threshold = 1
+number_threshold = 1
+style = 'bold blue'
 
 [docker_context]
 disabled = true

@@ -16,6 +16,8 @@ export CONFIG_DIR=$HOME/.config/zsh
 export NVM_DIR=$HOME/.nvm
 export XDG_CONFIG_HOME=$HOME/.config 
 
+# starship
+export STARSHIP_CONFIG=$XDG_CONFIG_HOME/starship/starship.toml
 
 # FZF
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow'
