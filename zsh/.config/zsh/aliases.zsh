@@ -20,17 +20,16 @@ alias my-ip='curl ipinfo.io/ip 2> /dev/null'
 alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"   
 
 # general use
-alias l='exa -lbF --icons'                                               # list, size, type, git
-alias ls='exa --grid --color auto --icons --sort=type'
-alias ll='exa --long --color always --icons --sort=type'
-alias la='exa --grid --all --color auto --icons --sort=type'
-alias lx='exa -lbhHigUmuSa@ --time-style=long-iso --color-scale' # all + extended list
-alias lla='exa --long --all --color auto --icons --sort=type'
-alias llm='exa -lh --sort=modified'                              # long list, modified date sort
+alias l='eza -lbF --icons'
+alias ls='eza --icons'
+alias ll='eza -al --icons --group-directories-first'
+alias lld='eza -lD --icons'                              # long list, directory only
+alias llf='eza -lf --color=always --icons'               # long list, modified
+alias llh='eza -dl --icons .* --group-directories-first'
+alias llm='eza -al --icons --sort=modified'              # long list, modified
 
 # speciality views
-alias lS='exa -1'			                         # one column, just names
-alias lt='exa --tree --level=2'                                  # tree
+alias lt='eza --tree --level=2'                                  # tree
 
 # Kubectl
 alias k='kubectl'
