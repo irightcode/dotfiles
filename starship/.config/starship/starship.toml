@@ -29,7 +29,7 @@ disabled = false
 format = "on [$symbol$branch](bold purple) "
 
 [git_status]
-disabled = true
+disabled = false
 format = '([$all_status]($style))'
 conflicted = "([⚠️ ${count}](bold red) )"
 ahead = "([⟫${count}])"
@@ -37,7 +37,7 @@ behind = "([⟪${count}])"
 stashed = "([↪ ${count}](bold red)) "
 modified = "([柳${count}](bold yellow) )"
 staged = "([ ${count}](bold green) )"
-renamed = "([⇆ ${count}](vold blue) )"
+renamed = "([⇆ ${count}](bold blue) )"
 deleted = "([ ${count}](bold red) )"
 untracked ="([ ${count}](dimmed red) )"
 
