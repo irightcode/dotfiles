@@ -2,12 +2,6 @@
 alias e="$EDITOR"
 alias se="sudo $EDITOR"
 
-alias cfg-alias="$EDITOR $HOME/.config/zsh/aliases.zsh"
-alias cfg-dotfiles="$EDITOR $DOTFILES"
-alias cfg-functions="$EDITOR $HOME/.config/zsh/functions.zsh"
-alias cfg-tmux="$EDITOR $HOME/.tmux.conf"
-alias cfg-zsh="$EDITOR $HOME/.zshrc $HOME/.zshenv"
-
 alias vim='nvim'
 alias rr='ranger'
 

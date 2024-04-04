@@ -6,6 +6,22 @@ MULE_BUILD_DIR=$REPO_DIR/gei/forge-build-plans-ist-mulesoft
 
 FZF_ALIAS_OPTS=${FZF_ALIAS_OPTS:-"--preview-window up:3:hidden:wrap"}
 
+#-------- Configurations {{{
+#------------------------------------------------------
+cfg-alias() { $EDITOR $HOME/.config/zsh/aliases.zsh ;}
+cfg-dotfiles() { $EDITOR $DOTFILES ;}
+cfg-functions() { $EDITOR $HOME/.config/zsh/functions.zsh ;}
+cfg-newsboat() { $EDITOR ~/.newsboat/config ;}
+cfg-newsboat-queue() { $EDITOR ~/.newsboat/queue ;}
+cfg-newsboat-urls() { $EDITOR ~/.newsboat/urls ;}
+cfg-nvim() { $EDITOR ~/.config/nvim/init.vim ;}
+cfg-ranger() { $EDITOR ~/.config/ranger/rc.conf ;}
+cfg-ranger-rifle() { $EDITOR ~/.config/ranger/rifle.conf ;}
+cfg-ranger-commands() { $EDITOR ~/.config/ranger/commands.py ;}
+cfg-tmux() { $EDITOR $HOME/.tmux.conf ;}
+cfg-zsh() { $EDITOR $HOME/.zshrc ;}
+# }}}
+
 alias_fzf() {
     local selection
     # use sed with column to work around MacOS/BSD column not having a -l option
