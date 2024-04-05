@@ -207,17 +207,24 @@ list_env() {
 
 # search regex in current directory
 search() {
+  set -x
+
 	[[ $# -eq 0 ]] && { echo "provide regex argument"; return; }
 	local matching_files
+  local fzf_bin=(fzf)
+
+  if [[ $TERM_PROGRAM == "tmux" ]] ; then
+    fzf_bin=(fzf-tmux -p 70%,70%)
+  fi
 	case $1 in
 		-h)
 			shift
 			regex=$1
-			matching_files=$(rg -l --hidden "${regex}" | fzf --exit-0 --preview="rg --color=always -n '${regex}' {} ")
+			matching_files=$(rg -l --hidden "${regex}" | ${=fzf_bin} --exit-0 --preview="rg --color=always -n '${regex}' {} ")
 			;;
 		*)
 			regex=$1
-			matching_files=$(rg -l -- "${regex}" | fzf --exit-0 --preview="rg --color=always -n -- '${regex}' {} ")
+			matching_files=$(rg -l -- "${regex}" | ${=fzf_bin} --exit-0 --preview="rg --color=always -n -- '${regex}' {} ")
 			;;
 	esac
 	[[ -n "$matching_files" ]] && ${EDITOR} "${matching_files}" -c/"${regex}"

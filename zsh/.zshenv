@@ -15,6 +15,7 @@ export HISTFILE=~/.zsh_history
 export CONFIG_DIR=$HOME/.config/zsh
 export NVM_DIR=$HOME/.nvm
 export XDG_CONFIG_HOME=$HOME/.config 
+export XDG_DATA_HOME=$HOME/.local/share
 
 # starship
 export STARSHIP_CONFIG=$XDG_CONFIG_HOME/starship/starship.toml
