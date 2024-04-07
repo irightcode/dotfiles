@@ -18,9 +18,9 @@ truncation_length = 4
 truncation_symbol = "…/"
 
 [character]
-success_symbol = "[λ ](fg:#7dcfff)"
-error_symbol = "[ ](gray)"
-vicmd_symbol = "[ ](purple)"
+success_symbol = ""
+vicmd_symbol = ""
+error_symbol = "󰩈"
 
 [git_state]
 disabled = false
