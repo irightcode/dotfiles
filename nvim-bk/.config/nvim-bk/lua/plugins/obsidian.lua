@@ -1,5 +1,8 @@
 return {
   "epwalsh/obsidian.nvim",
+  version = "*",
+  enabled = false,
+  lazy = false,
   dependencies = {
     "nvim-lua/plenary.nvim",
     "hrsh7th/nvim-cmp",
@@ -7,11 +10,11 @@ return {
     "nvim-treesitter/nvim-treesitter",
     -- "preservim/vim-markdown",
   },
-  -- event = {
-  --   "BufReadPre " .. vim.fn.expand("~") .. "/c/second-brain/**.md",
-  --   "BufNewFile " .. vim.fn.expand("~") .. "/c/second-brain/**.md",
-  -- },
-  cmd = {
+  event = {
+    "BufReadPre " .. vim.fn.expand("~") .. "/c/second-brain/**.md",
+    "BufNewFile " .. vim.fn.expand("~") .. "/c/second-brain/**.md",
+  },
+  commands = {
     "ObsidianOpen",
     "ObsidianNew",
     "ObsidianQuickSwitch",
@@ -26,8 +29,17 @@ return {
   },
 
   opts = {
-    dir = "~/c/second-brain", -- no need to call 'vim.fn.expand' here
     completion = { nvim_cmp = true },
+    workspaces = {
+      {
+        name = "personal",
+        path = "~/git/personal/vaults",
+      },
+      {
+        name = "work",
+        path = "~/git/work/vaults",
+      },
+    },
 
     daily_notes = {
       folder = "Periodic 🌄/Days 🌄",
@@ -113,6 +125,14 @@ return {
 
   config = function(_, opts)
     require("obsidian").setup(opts)
+    -- obsidian
+    vim.keymap.set("n", "<leader>oo", "<cmd>ObsidianBacklinks<cr>", { desc = "Obsidian Backlinks" })
+    vim.keymap.set("n", "<leader>of", "<cmd>ObsidianFollowLink<cr>", { desc = "Obsidian Follow Link" })
+    vim.keymap.set("n", "<leader>on", "<cmd>ObsidianNew<cr>", { desc = "Obsidian New Note" })
+    vim.keymap.set("n", "<leader>ot", "<cmd>ObsidianToday<cr>", { desc = "Obsidian Today" })
+    vim.keymap.set("n", "<leader>oy", "<cmd>ObsidianYesterday<cr>", { desc = "Obsidian Yesterday" })
+    vim.keymap.set("n", "<leader>or", "<cmd>ObsidianTomorrow<cr>", { desc = "Obsidian Tomorrow" })
+
     vim.keymap.set("n", "gd", function()
       if require("obsidian").util.cursor_on_markdown_link() then
         return "<cmd>ObsidianFollowLink<CR>"
