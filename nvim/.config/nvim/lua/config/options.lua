@@ -4,7 +4,7 @@ vim.g.octo_viewer = "joshmedeski"
 
 -- cSpell:disable
 -- Options are automatically loaded before lazy.nvim sartup
--- Default options that are always set: https://github.com/azyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
+-- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
@@ -58,7 +58,6 @@ vim.opt.spell = false
 vim.opt.spelllang = { "en_us" }
 
 -- misc
-vim.opt.guicursor = ""
 vim.opt.isfname:append("@-@")
 vim.opt.signcolumn = "yes"
 vim.opt.updatetime = 50
