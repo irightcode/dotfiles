@@ -19,7 +19,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- clipboard
-vim.opt.clipboard = ""
+vim.opt.clipboard = "unnamedplus"
 
 -- default position
 vim.opt.scrolloff = 8 -- scroll page when cursor is 8 lines from top/bottom
