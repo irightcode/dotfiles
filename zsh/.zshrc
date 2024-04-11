@@ -34,6 +34,7 @@ _source_if_exists "$CONFIG_DIR/docker_aliases.zsh"
 _source_if_exists "$CONFIG_DIR/functions.zsh"
 _source_if_exists "$CONFIG_DIR/os.zsh"
 _source_if_exists "$HOME/.fzf.zsh"
+_source_if_exists "$HOME/work/setup.zsh"
 
 ## --------
 ## bindkeys
