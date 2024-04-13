@@ -28,7 +28,6 @@ bindkey -e
 autoload -Uz compinit
 compinit
 
-
 _source_if_exists "$CONFIG_DIR/aliases.zsh"
 _source_if_exists "$CONFIG_DIR/docker_aliases.zsh"
 _source_if_exists "$CONFIG_DIR/functions.zsh"
