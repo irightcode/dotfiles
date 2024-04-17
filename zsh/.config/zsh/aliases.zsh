@@ -83,6 +83,9 @@ alias gpf="git push -f"
 alias gpl='git pull'
 alias gpsup='git push --set-upstream origin $(git symbolic-ref --short HEAD)'
 
+alias grs="git restore"
+alias grss="git restore --staged"
+
 alias grb="git rebase"
 alias grba="git rebase --abort"
 alias grbc="git rebase --continue"
