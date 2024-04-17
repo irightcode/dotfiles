@@ -63,6 +63,9 @@ map <C-BS> <Action>(Unsplit)
 nmap <C-C> <Esc>
 map <C-s> <Action>(ReformatCode) \| <Action>(SaveAll)
 
+nmap <C-i>    <Action>(Forward)
+nmap <C-o>    <Action>(Back)
+
 map <M-k> <Action>(MoveLineUp)
 map <M-j> <Action>(MoveLineDown)
 
