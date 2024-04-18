@@ -14,7 +14,7 @@ cfg-functions() { $EDITOR $HOME/.config/zsh/functions.zsh ;}
 cfg-newsboat() { $EDITOR ~/.newsboat/config ;}
 cfg-newsboat-queue() { $EDITOR ~/.newsboat/queue ;}
 cfg-newsboat-urls() { $EDITOR ~/.newsboat/urls ;}
-cfg-nvim() { $EDITOR ~/.config/nvim/init.vim ;}
+cfg-nvim() { $EDITOR ~/.config/nvim/init.lua ;}
 cfg-starship() { $EDITOR ~/.config/starship/starship.toml ;}
 cfg-ranger() { $EDITOR ~/.config/ranger/rc.conf ;}
 cfg-ranger-rifle() { $EDITOR ~/.config/ranger/rifle.conf ;}
