@@ -1,4 +1,4 @@
-command_timeout = 170
+command_timeout = 200
 add_newline = false
 # A minimal left prompt
 format = """$directory$character"""
