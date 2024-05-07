@@ -95,8 +95,9 @@ alias grbs="git rebase --skip"
 alias grt='cd $(git rev-parse --show-toplevel || echo ".")'
 
 alias grewind="git reset HEAD^1"
+alias grh="git reset HEAD"
 alias grhard="git fetch origin && git reset --hard"
-alias grhead="git reset HEAD"
+alias grhh="git reset --head HEAD"
 
 alias gst='git status'
 
