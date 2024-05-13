@@ -74,11 +74,11 @@ pods() {
         --prompt "$(kubectl config current-context | sed 's/-context$//')> " \
         --header $'╱ Enter (kubectl exec) ╱ CTRL-O (open log in editor) ╱ CTRL-R (reload) ╱\n\n' \
         --bind 'ctrl-/:change-preview-window(80%,border-bottom|hidden|)' \
-        --bind 'enter:execute:kubectl exec -it --namespace {1} {2} -- bash > /dev/tty' \
-        --bind 'ctrl-o:execute:${EDITOR:-vim} <(kubectl logs --all-containers --namespace {1} {2}) > /dev/tty' \
+        --bind 'enter:execute:kubectl exec -it {1} -c $(echo {1} | rev | cut -d '-' -f3- | rev) -- ash > /dev/tty' \
+        --bind 'ctrl-o:execute:${EDITOR:-vim} =(kubectl logs {1} ) > /dev/tty' \
         --bind 'ctrl-r:reload:$FZF_DEFAULT_COMMAND' \
         --preview-window up:follow \
-        --preview 'kubectl logs --follow --all-containers --tail=10000 --namespace {1} {2}' "$@"
+        --preview 'kubectl logs --follow --tail=10000 {1} -c $(echo {1} | rev | cut -d '-' -f3- | rev)' "$@"
 }
 
 # git commit browser. needs fzf. ctrl-m to view commit.

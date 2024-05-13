@@ -27,6 +27,7 @@ alias lt='eza --tree --level=2'                                  # tree
 
 # Kubectl
 alias k='kubectl'
+alias kaf='kubectl apply -f'
 alias kx='f() { [ "$1" ] && kubectl config use-context $1 || kubectl config current-context ; } ; f'
 alias kn='f() { [ "$1" ] && kubectl config set-context --current --namespace $1 || kubectl config view --minify | grep namespace | cut -d" " -f6 ; } ; f'
 alias kl='kubectl logs'
@@ -66,7 +67,7 @@ alias gaa='git add --all'
 alias gap='git add --patch'
 alias gb='git branch'
 alias gba='git branch --all'
-alias gc!='git commit --ammend'
+alias gc!='git commit --amend'
 alias gc='git commit'
 alias gcb='git checkout -b'
 alias gcl="git clone"
@@ -75,7 +76,9 @@ alias gcm='(git show-ref --verify --quiet refs/heads/main && git checkout main) 
 alias gco='git checkout'
 alias gcom='git switch "$(git config init.defaultBranch)"'
 alias gd='git diff'
+alias gdc='git diff --cached'
 alias gD='git difftool'
+alias gDc='git difftool --cached'
 
 alias gf="git fetch"
 alias gp='git push'
@@ -89,7 +92,7 @@ alias grss="git restore --staged"
 alias grb="git rebase"
 alias grba="git rebase --abort"
 alias grbc="git rebase --continue"
-alias grbm="git rebase master"
+alias grbm='git rebase $(git show-ref -q --verify refs/heads/main && echo main || echo master)'
 alias grbs="git rebase --skip"
 
 alias grt='cd $(git rev-parse --show-toplevel || echo ".")'
