@@ -100,7 +100,7 @@ alias grt='cd $(git rev-parse --show-toplevel || echo ".")'
 alias grewind="git reset HEAD^1"
 alias grh="git reset HEAD"
 alias grhard="git fetch origin && git reset --hard"
-alias grhh="git reset --head HEAD"
+alias grhh="git reset --hard HEAD"
 
 alias gst='git status'
 
