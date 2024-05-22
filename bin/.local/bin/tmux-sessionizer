@@ -5,7 +5,7 @@
 if [[ $# -eq 1 ]]; then
 	selected=$1
 else
-	selected=$(fd . -L ~/repos --min-depth 1 --max-depth 2 --type d --follow | sort | fzf)
+	selected=$(fd . -L ~/repos ~/dev/docs/ --min-depth 1 --max-depth 2 --type d --follow | sort | fzf)
 fi
 
 if [[ -z $selected ]]; then
