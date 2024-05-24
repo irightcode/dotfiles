@@ -27,17 +27,20 @@ alias lt='eza --tree --level=2'                                  # tree
 
 # Kubectl
 alias k='kubectl'
+
 alias kaf='kubectl apply -f'
-alias kx='f() { [ "$1" ] && kubectl config use-context $1 || kubectl config current-context ; } ; f'
-alias kn='f() { [ "$1" ] && kubectl config set-context --current --namespace $1 || kubectl config view --minify | grep namespace | cut -d" " -f6 ; } ; f'
-alias kl='kubectl logs'
-alias ke='kubectl exec'
+alias kd='kubectl describe'
+alias kexec='f() { kubectl exec -it "$@" -- bash; }; f'
+alias kg='kubectl get'
 alias kgd='kubectl get deployments'
 alias kgj='kubectl get jobs'
 alias kgp='kubectl get pods'
 alias kgpg='kubectl get pods | rg'
 alias kgs='kubectl get secret'
+alias kl='kubectl logs'
+alias kn='f() { [ "$1" ] && kubectl config set-context --current --namespace $1 || kubectl config view --minify | grep namespace | cut -d" " -f6 ; } ; f'
 alias kpf='kubectl port-forward'
+alias kx='f() { [ "$1" ] && kubectl config use-context $1 || kubectl config current-context ; } ; f'
 
 alias :q="exit"
 alias view="preview_files"

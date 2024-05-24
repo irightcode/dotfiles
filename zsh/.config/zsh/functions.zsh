@@ -20,6 +20,7 @@ cfg-ranger() { $EDITOR ~/.config/ranger/rc.conf ;}
 cfg-ranger-rifle() { $EDITOR ~/.config/ranger/rifle.conf ;}
 cfg-ranger-commands() { $EDITOR ~/.config/ranger/commands.py ;}
 cfg-tmux() { $EDITOR $HOME/.tmux.conf ;}
+cfg-work-setup() { $EDITOR $HOME/work/setup.zsh ;}
 cfg-zsh() { $EDITOR $HOME/.zshrc ;}
 # }}}
 
