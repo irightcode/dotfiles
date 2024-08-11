@@ -19,7 +19,7 @@ cfg-starship() { $EDITOR ~/.config/starship/starship.toml ;}
 cfg-ranger() { $EDITOR ~/.config/ranger/rc.conf ;}
 cfg-ranger-rifle() { $EDITOR ~/.config/ranger/rifle.conf ;}
 cfg-ranger-commands() { $EDITOR ~/.config/ranger/commands.py ;}
-cfg-tmux() { $EDITOR $HOME/.tmux.conf ;}
+cfg-tmux() { $EDITOR ~/.config/tmux/tmux.conf ;}
 cfg-work-setup() { $EDITOR $HOME/work/setup.zsh ;}
 cfg-zsh() { $EDITOR $HOME/.zshrc ;}
 # }}}
@@ -29,7 +29,7 @@ alias_fzf() {
     # use sed with column to work around MacOS/BSD column not having a -l option
     if selection=$(alias |
                        sed 's/=/\t/' |
-                       column -s '	' -t |
+                       column -s '      ' -t |
                        FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS $FZF_ALIAS_OPTS" fzf --preview "echo {2..}" --query="$BUFFER" |
                        awk '{ print $1 }'); then
         BUFFER=$selection
@@ -41,6 +41,14 @@ alias_fzf() {
 # Copy w/ progress
 cp_p () {
   rsync -WavP --human-readable --progress $1 $2
+}
+
+edit-script () {
+  set -x
+  script=$(which "$1")
+  if [ -f "$script" ]; then 
+    $EDITOR "$script"
+  fi
 }
 
 ### ARCHIVE EXTRACTION
@@ -145,11 +153,11 @@ choose_build() {
     INITIAL_QUERY="$1"
     UPDATE_BUILD_CMD="git -C '$BUILD_DIR' pull > /dev/null"
     fzf --select-1 --bind "ctrl-r:execute($UPDATE_BUILD_CMD || true)" \
-	--bind "ctrl-o:execute(build.sh open {})+abort" \
-	--bind "ctrl-p:execute(build.sh pr {})+abort" \
+        --bind "ctrl-o:execute(build.sh open {})+abort" \
+        --bind "ctrl-p:execute(build.sh pr {})+abort" \
         --query "$INITIAL_QUERY" \
         --height=50% \
-	--header='CTRL-R reload-list | CTRL-O open web | CTRL-P open pull requests'
+        --header='CTRL-R reload-list | CTRL-O open web | CTRL-P open pull requests'
 }
 
 pclone() {
@@ -170,7 +178,7 @@ trim() {
 }
 
 treee() {
-	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
+        tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
 
 # $ retry ping google.com
@@ -183,53 +191,53 @@ function retry() {
 
 # mkdir and cd
 mkcd() {
-	mkdir -p -- "$1" && cd -P -- "$1" || exit
+        mkdir -p -- "$1" && cd -P -- "$1" || exit
 }
 
 # fzf browse files
 find_files() {
-	IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0 --prompt 'files:'))
-	[[ -n "$files" ]] && ${EDITOR} "${files[@]}"
+        IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0 --prompt 'files:'))
+        [[ -n "$files" ]] && ${EDITOR} "${files[@]}"
 }
 
 # fzf browse directories and cd into them
 find_dir() {
-	local dir
-	dir=$(fd -IH -t d 2> /dev/null | fzf --prompt 'folders:' +m --preview-window='right:50%:nohidden:wrap' --preview='exa --tree --level=2 {}') && 
+        local dir
+        dir=$(fd -IH -t d 2> /dev/null | fzf --prompt 'folders:' +m --preview-window='right:50%:nohidden:wrap' --preview='exa --tree --level=2 {}') && 
         cd "$dir" || return
 }
 
 # list env variables
 list_env() {
-	local var
-	var=$(printenv | cut -d= -f1 | fzf --prompt 'env:' --preview='printenv {}') \
-		&& echo "$var=$(printenv "$var")" \
-		&& unset var
+        local var
+        var=$(printenv | cut -d= -f1 | fzf --prompt 'env:' --preview='printenv {}') \
+                && echo "$var=$(printenv "$var")" \
+                && unset var
 }
 
 # search regex in current directory
 search() {
   set -x
 
-	[[ $# -eq 0 ]] && { echo "provide regex argument"; return; }
-	local matching_files
+        [[ $# -eq 0 ]] && { echo "provide regex argument"; return; }
+        local matching_files
   local fzf_bin=(fzf)
 
   if [[ $TERM_PROGRAM == "tmux" ]] ; then
     fzf_bin=(fzf-tmux -p 70%,70%)
   fi
-	case $1 in
-		-h)
-			shift
-			regex=$1
-			matching_files=$(rg -l --hidden "${regex}" | ${=fzf_bin} --exit-0 --preview="rg --color=always -n '${regex}' {} ")
-			;;
-		*)
-			regex=$1
-			matching_files=$(rg -l -- "${regex}" | ${=fzf_bin} --exit-0 --preview="rg --color=always -n -- '${regex}' {} ")
-			;;
-	esac
-	[[ -n "$matching_files" ]] && ${EDITOR} "${matching_files}" -c/"${regex}"
+        case $1 in
+                -h)
+                        shift
+                        regex=$1
+                        matching_files=$(rg -l --hidden "${regex}" | ${=fzf_bin} --exit-0 --preview="rg --color=always -n '${regex}' {} ")
+                        ;;
+                *)
+                        regex=$1
+                        matching_files=$(rg -l -- "${regex}" | ${=fzf_bin} --exit-0 --preview="rg --color=always -n -- '${regex}' {} ")
+                        ;;
+        esac
+        [[ -n "$matching_files" ]] && ${EDITOR} "${matching_files}" -c/"${regex}"
 }
 
 # paginate help
@@ -237,38 +245,38 @@ help() { "$@" --help | bat -l man -p ; }
 
 # preview files
 preview_files() {
-	local selection
-	if [[ -z "$1" ]]; then
-		selection="$(fd -H -t f -E '.git/' | fzf)" && preview_files "$selection"
-		return 0
-	fi
+        local selection
+        if [[ -z "$1" ]]; then
+                selection="$(fd -H -t f -E '.git/' | fzf)" && preview_files "$selection"
+                return 0
+        fi
 
-	case $1 in
-		-e)
-			shift
-			selection="$(fd -H -t f -E '.git/' -e "$1" | fzf --exit-0)" && preview_files "$selection"
-			shift
-			;;
-		*.md)
-			glow -p "$1";;
-		*.json)
-			jq '.' -C "$1" | less;;
-		*.pdf)
-			open "$1";;
-		*)
-			bat --theme='Solarized (dark)' --style='header,grid' "$1";;
-	esac
+        case $1 in
+                -e)
+                        shift
+                        selection="$(fd -H -t f -E '.git/' -e "$1" | fzf --exit-0)" && preview_files "$selection"
+                        shift
+                        ;;
+                *.md)
+                        glow -p "$1";;
+                *.json)
+                        jq '.' -C "$1" | less;;
+                *.pdf)
+                        open "$1";;
+                *)
+                        bat --theme='Solarized (dark)' --style='header,grid' "$1";;
+        esac
 }
 
 
 # json_diff
 json_diff() {
-	[[ $# != 2 ]] && { echo "expected two arguments"; return; }
-	[[ ( $1 != *.json ) || ( $2 != *.json ) ]] && { echo "arguments must be both json files"; return;}
-	[[ ! -f $1 ]] && { echo "cannot find $1"; return;}
-	[[ ! -f $2 ]] && { echo "cannot find $2"; return;}
+        [[ $# != 2 ]] && { echo "expected two arguments"; return; }
+        [[ ( $1 != *.json ) || ( $2 != *.json ) ]] && { echo "arguments must be both json files"; return;}
+        [[ ! -f $1 ]] && { echo "cannot find $1"; return;}
+        [[ ! -f $2 ]] && { echo "cannot find $2"; return;}
 
-	delta <(jq -S . "$1") <(jq -S . "$2")
+        delta <(jq -S . "$1") <(jq -S . "$2")
 }
 
 cheatsh() {
