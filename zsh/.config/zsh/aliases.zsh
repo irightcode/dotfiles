@@ -30,7 +30,10 @@ alias k='kubectl'
 
 alias kaf='kubectl apply -f'
 alias kd='kubectl describe'
-alias kexec='f() { kubectl exec -it "$@" -- bash; }; f'
+alias kex='kubectl exec -i -t'
+alias kex-ash='f() { kubectl exec -it "$@" -- /bin/ash; }; f'
+alias kex-bash='f() { kubectl exec -it "$@" -- /bin/bash; }; f'
+alias kex-sh='f() { kubectl exec -it "$@" -- /bin/sh; }; f'
 alias kg='kubectl get'
 alias kgd='kubectl get deployments'
 alias kgj='kubectl get jobs'
@@ -112,4 +115,3 @@ alias dco="docker compose"
 alias dps="docker ps"
 alias dpa="docker ps -a"
 alias dl="docker ps -l -q"
-alias dx="docker exec -it"

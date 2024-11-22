@@ -374,6 +374,8 @@ let g:WhichKeyDesc_language_change_signature = "<leader>lc Change Signature"
 map <leader>lv <Action>(IntroduceVariable)
 let g:WhichKeyDesc_language_introduce_variable = "<leader>lv Introduce Variable"
 map <leader>li <Action>(Inline)
+let g:WhichKeyDesc_language_extract_method = "<leader>lx Extract Method"
+map <leader>lx <Action>(ExtractMethod)
 let g:WhichKeyDesc_language_inline = "<leader>li Inline"
 map <leader>lf <Action>(ReformatCode)<Action>(SilentCodeCleanup)
 let g:WhichKeyDesc_language_reformat = "<leader>lf Format"
