@@ -34,5 +34,12 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 		vim.highlight.on_yank()
 	end,
 })
-
+vim.api.nvim_create_autocmd("BufWritePost", {
+	pattern = { "aerospace.toml" },
+	command = "execute 'silent !aerospace reload-config'",
+})
+vim.api.nvim_create_autocmd("BufWritePost", {
+	pattern = { "sketchybarrc" },
+	command = "execute 'silent !brew services restart sketchybar'",
+})
 -- vim: ts=2 sts=2 sw=2 et

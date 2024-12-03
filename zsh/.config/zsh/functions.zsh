@@ -8,6 +8,7 @@ FZF_ALIAS_OPTS=${FZF_ALIAS_OPTS:-"--preview-window up:3:hidden:wrap"}
 
 #-------- Configurations {{{
 #------------------------------------------------------
+cfg-aerospace() { $EDITOR ~/.config/aerospace/aerospace.toml ;}
 cfg-alias() { $EDITOR $HOME/.config/zsh/aliases.zsh ;}
 cfg-dotfiles() { $EDITOR $DOTFILES ;}
 cfg-functions() { $EDITOR $HOME/.config/zsh/functions.zsh ;}
@@ -19,6 +20,7 @@ cfg-starship() { $EDITOR ~/.config/starship/starship.toml ;}
 cfg-ranger() { $EDITOR ~/.config/ranger/rc.conf ;}
 cfg-ranger-rifle() { $EDITOR ~/.config/ranger/rifle.conf ;}
 cfg-ranger-commands() { $EDITOR ~/.config/ranger/commands.py ;}
+cfg-sketchybars() { $EDITOR ~/.config/sketchybar/sketchybarrc ;}
 cfg-tmux() { $EDITOR ~/.config/tmux/tmux.conf ;}
 cfg-work-setup() { $EDITOR $HOME/work/setup.zsh ;}
 cfg-zsh() { $EDITOR $HOME/.zshrc ;}

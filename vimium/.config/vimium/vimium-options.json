@@ -15,7 +15,7 @@
       "pattern": "https?://www.typerush.com/*"
     },
     {
-      "passKeys": "f",
+      "passKeys": "",
       "pattern": "https://www.youtube.com/watch*"
     }
   ]

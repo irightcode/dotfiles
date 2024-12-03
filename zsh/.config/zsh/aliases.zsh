@@ -115,3 +115,7 @@ alias dco="docker compose"
 alias dps="docker ps"
 alias dpa="docker ps -a"
 alias dl="docker ps -l -q"
+
+# Brew
+alias bri="brew install"
+alias brI="brew install --cask"
