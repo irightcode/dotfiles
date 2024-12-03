@@ -1,10 +1,30 @@
-#!/bin/sh
+#!/bin/bash
 
-if [[ -z "$FOCUSED_WORKSPACE" ]]; then
-    focused_space=$(aerospace list-workspaces --focused)
-    sketchybar --set space.$focused_space background.drawing=on label.color=0xff000000 label="$focused_space [$(aerospace list-windows --workspace focused | wc -l | grep -Eo '\d')]"
-elif [[ "$1" = "$FOCUSED_WORKSPACE" ]]; then
-    sketchybar --set $NAME background.drawing=on label.color=0xff000000 label="$1 [$(aerospace list-windows --focused | awk -F '|' '{print $2}' | xargs)]"
-else
-    sketchybar --set $NAME background.drawing=off label.color=0x44ffffff label="$(echo $NAME | grep -Eo '[0-9]{1,4}')"
+source "$CONFIG_DIR/colors.sh"
+
+COLOR=$BACKGROUND_2
+
+if [ "$1" = "$FOCUSED_WORKSPACE" ]; then
+  COLOR=$GREY
 fi
+
+sketchybar --set $NAME icon.highlight=$FOCUSED_WORKSPACE \
+                       label.highlight=$FOCUSED_WORKSPACE \
+                       background.border_color=$COLOR
+
+apps=$(aerospace list-windows --workspace $1 --format %{app-name} | sort | uniq)
+
+args=(--animate sin 10)
+
+icon_strip=" "
+if [ "${apps}" != "" ]; then
+  while read -r app
+  do
+    icon_strip+=" $($CONFIG_DIR/plugins/icon_map.sh "$app")"
+  done <<< "${apps}"
+else
+  icon_strip=" —"
+fi
+args+=(--set space.$1 label="$icon_strip")
+
+sketchybar -m "${args[@]}"

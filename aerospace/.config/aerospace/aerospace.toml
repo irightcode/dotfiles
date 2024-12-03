@@ -228,12 +228,12 @@ run = "move-node-to-workspace 2"
 if.app-id = 'com.github.wez.wezterm'
 run = "move-node-to-workspace 2"
 
-
 ## 3 - Browser
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
 run = "move-node-to-workspace 3"
 
+## 4 - Communication
 [[on-window-detected]]
 if.app-id = 'com.microsoft.teams2'
 run = "move-node-to-workspace 4"

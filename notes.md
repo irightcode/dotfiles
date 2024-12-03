@@ -28,3 +28,6 @@ vim:
 other:
 * music workspace (Apple Music)??
 
+workflows:
+ - add notes
+- edit config
