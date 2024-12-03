@@ -14,6 +14,10 @@ FONT_STYLE="Regular"
 FONT="Hack Nerd Font" # Needs to have Regular, Bold, Semibold, Heavy and Black variants
 PADDINGS=3 # All paddings use this value (icon, label, background)
 
+CORNER_RADIUS=15
+BORDER_WIDTH=2
+
+SHADOW=on
 ##### Bar Appearance #####
 # Configuring the general appearance of the bar.
 # These are only some of the options available. For all options see:
@@ -31,9 +35,9 @@ default=(
   padding_left=$PADDINGS
   padding_right=$PADDINGS
   icon.font="$FONT:$FONT_STYLE:14.0"
-  icon.color=0xffffffff
+  icon.color=$WHITE
   label.font="$FONT:$FONT_STYLE:14.0"
-  label.color=0xffffffff
+  label.color=$WHITE
   icon.padding_left=$PADDINGS
   icon.padding_right=$PADDINGS
   label.padding_left=$PADDINGS

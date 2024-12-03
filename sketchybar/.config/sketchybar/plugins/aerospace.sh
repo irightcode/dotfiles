@@ -3,14 +3,14 @@
 source "$CONFIG_DIR/colors.sh"
 
 COLOR=$BACKGROUND_2
+SELECTED="false"
 
-if [ "$1" = "$FOCUSED_WORKSPACE" ]; then
+if [ "$NAME" = "space.$FOCUSED_WORKSPACE" ]; then
   COLOR=$GREY
+  SELECTED="true"
 fi
 
-sketchybar --set $NAME icon.highlight=$FOCUSED_WORKSPACE \
-                       label.highlight=$FOCUSED_WORKSPACE \
-                       background.border_color=$COLOR
+sketchybar --set $NAME icon.highlight="$SELECTED" label.highlight="$SELECTED" 
 
 apps=$(aerospace list-windows --workspace $1 --format %{app-name} | sort | uniq)
 

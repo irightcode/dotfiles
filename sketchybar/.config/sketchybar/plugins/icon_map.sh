@@ -720,4 +720,3 @@ function __icon_map() {
 
 __icon_map "$1"
 echo "$icon_result"
-echo "testing"

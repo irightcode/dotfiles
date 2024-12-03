@@ -23,6 +23,7 @@ cfg-ranger-commands() { $EDITOR ~/.config/ranger/commands.py ;}
 cfg-sketchybars() { $EDITOR ~/.config/sketchybar/sketchybarrc ;}
 cfg-tmux() { $EDITOR ~/.config/tmux/tmux.conf ;}
 cfg-work-setup() { $EDITOR $HOME/work/setup.zsh ;}
+cfg-wezterm() { $EDITOR $HOME/.config/wezterm/wezterm.lua ;}
 cfg-zsh() { $EDITOR $HOME/.zshrc ;}
 # }}}
 
