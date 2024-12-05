@@ -24,8 +24,8 @@ sketchybar   --add item       separator left                          \
                               background.padding_left=15              \
                               background.padding_right=15             \
                               label.drawing=off                       \
-                              associated_display=active               \
                               icon.color=$WHITE
+                              # associated_display=active               \
 
 # sketchybar --add bracket spaces '/space\..*/'               \
 #            --set         spaces background.color=0xffff6a00 \

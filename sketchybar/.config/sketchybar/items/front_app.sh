@@ -3,7 +3,7 @@
 export COLOR=$WHITE
 
 sketchybar \
-	--add item front_app left \
+	--add item front_app e \
 	--set front_app script="$PLUGIN_DIR/front_app.sh" \
           click_script="open -a 'Mission Control'" \
           icon.drawing=off \

@@ -1,4 +1,4 @@
-command_timeout = 200
+command_timeout = 900
 add_newline = false
 # A minimal left prompt
 format = """$directory$character"""
@@ -16,6 +16,9 @@ read_only = " "
 style = 'blue'
 truncation_length = 4
 truncation_symbol = "…/"
+
+[nodejs]
+disabled = true
 
 [character]
 success_symbol = ""
