@@ -272,7 +272,9 @@ let g:WhichKeyDesc_run = "<leader>r Run"
 map <leader>rn <Action>(RunClass)
 let g:WhichKeyDesc_run_class = "<leader>rn Run Class"
 map <leader>rc <Action>(ChooseRunConfiguration)
-let g:WhichKeyDesc_run_choose_configuration = "<leader>rc Run Configuration"
+let g:WhichKeyDesc_run_choose_run_configuration = "<leader>rc Run Configuration"
+map <leader>rC <Action>(ChooseDebugConfiguration)
+let g:WhichKeyDesc_run_choose_debug_configuration = "<leader>rC Debug Configuration"
 map <leader>rs <Action>(Stop)
 let g:WhichKeyDesc_run_stop = "<leader>rs Stop"
 map <leader>rq <Action>(Stop)

@@ -53,6 +53,30 @@ automatically-unhide-macos-hidden-apps = false
 # if.during-aerospace-startup = true
 # check-further-callbacks = true
 # run = ['layout floating', 'move-node-to-workspace S']  # The callback itself
+# Floating
+[[on-window-detected]]
+if.app-id = 'com.apple.finder'
+run = ['layout floating']
+
+## 1 - Notes
+[[on-window-detected]]
+if.app-id = 'md.obsidian'
+run = ['layout tiling', 'move-node-to-workspace 1']
+
+## 2 - Terminal
+[[on-window-detected]]
+if.app-id = 'net.kovidgoyal.kitty'
+run = "move-node-to-workspace 2"
+
+[[on-window-detected]]
+if.app-id = 'com.github.wez.wezterm'
+run = "move-node-to-workspace 2"
+
+## 3 - Browser
+[[on-window-detected]]
+if.app-id = 'com.google.Chrome'
+run = "move-node-to-workspace 3"
+
 [[on-window-detected]]
 if.app-id = 'com.apple.Safari'
 run = 'move-node-to-workspace 3'
@@ -65,13 +89,12 @@ run = 'move-node-to-workspace 3'
 if.app-id = 'com.mozilla.firefox'
 run = 'move-node-to-workspace 3'
 
+## 5 - Code
 [[on-window-detected]]
-if.app-id = 'md.obsidian'
-run = ['layout tiling', 'move-node-to-workspace 1']
+if.app-id = 'com.jetbrains.intellij'
+run = 'move-node-to-workspace 5'
 
-[[on-window-detected]]
-if.app-id = 'com.apple.finder'
-run = ['layout floating']
+## Communication 7-8
 
 [[on-window-detected]]
 if.app-id = 'com.microsoft.teams2'
@@ -84,8 +107,6 @@ run = ['move-node-to-workspace 8']
 [[on-window-detected]]
 if.app-id = 'com.spotify.client'
 run = ['move-node-to-workspace 9']
-
-
 
 # Possible values: (qwerty|dvorak)
 # See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
@@ -213,27 +234,3 @@ backspace = ['close-all-windows-but-current', 'mode main']
 [mode.apps.binding]
 alt-w = ['exec-and-forget open -a /Applications/WezTerm.app', 'mode main']
 
-## 1 - Notes
-
-[[on-window-detected]]
-if.app-id = 'md.obsidian'
-run = 'move-node-to-workspace 1'
-
-## 2 - Terminal
-[[on-window-detected]]
-if.app-id = 'net.kovidgoyal.kitty'
-run = "move-node-to-workspace 2"
-
-[[on-window-detected]]
-if.app-id = 'com.github.wez.wezterm'
-run = "move-node-to-workspace 2"
-
-## 3 - Browser
-[[on-window-detected]]
-if.app-id = 'com.google.Chrome'
-run = "move-node-to-workspace 3"
-
-## 4 - Communication
-[[on-window-detected]]
-if.app-id = 'com.microsoft.teams2'
-run = "move-node-to-workspace 4"
