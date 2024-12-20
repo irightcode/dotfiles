@@ -54,6 +54,7 @@ bindkey '^X^e' edit-command-line
 ## --------
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
+eval "$(/opt/homebrew/bin/brew shellenv)"
 # eval "$(dircolors -b)"
 
 zstyle ':completion:*' auto-description 'specify: %d'

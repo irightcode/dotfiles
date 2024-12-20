@@ -9,6 +9,7 @@ FZF_ALIAS_OPTS=${FZF_ALIAS_OPTS:-"--preview-window up:3:hidden:wrap"}
 #-------- Configurations {{{
 #------------------------------------------------------
 cfg-aerospace() { $EDITOR ~/.config/aerospace/aerospace.toml ;}
+cfg-alacritty() { $EDITOR $HOME/.config/alacritty/alacritty.toml ;}
 cfg-alias() { $EDITOR $HOME/.config/zsh/aliases.zsh ;}
 cfg-dotfiles() { $EDITOR $DOTFILES ;}
 cfg-functions() { $EDITOR $HOME/.config/zsh/functions.zsh ;}
@@ -44,6 +45,20 @@ alias_fzf() {
 # Copy w/ progress
 cp_p () {
   rsync -WavP --human-readable --progress $1 $2
+}
+
+cds() {
+  session=$(tmux display-message -p '#{session_path}')
+  cd "$session"
+}
+
+# PROJECT: git-log
+function logg() {
+    git lg | fzf --ansi --no-sort \
+        --preview 'echo {} | grep -o "[a-f0-9]\{7\}" | head -1 | xargs -I % git show % --color=always' \
+        --preview-window=right:50%:wrap --height 100% \
+        --bind 'enter:execute(echo {} | grep -o "[a-f0-9]\{7\}" | head -1 | xargs -I % sh -c "git show % | nvim -c \"setlocal buftype=nofile bufhidden=wipe noswapfile nowrap\" -c \"nnoremap <buffer> q :q!<CR>\" -")' \
+        --bind 'ctrl-e:execute(echo {} | grep -o "[a-f0-9]\{7\}" | head -1 | xargs -I % sh -c "gh browse %")' \
 }
 
 edit-script () {
