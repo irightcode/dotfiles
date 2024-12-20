@@ -43,7 +43,12 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 # You can effectively turn off macOS "Hide application" (cmd-h) feature by toggling this flag
 # Useful if you don't use this macOS feature, but accidentally hit cmd-h or cmd-alt-h key
 # Also see: https://nikitabobko.github.io/AeroSpace/goodness#disable-hide-app
-automatically-unhide-macos-hidden-apps = false
+automatically-unhide-macos-hidden-apps = true
+
+[exec]
+inherit-env-vars = true
+[exec.env-vars]
+PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
 
 # [[on-window-detected]]
 # if.app-id = 'com.apple.systempreferences'
@@ -72,6 +77,10 @@ run = "move-node-to-workspace 2"
 if.app-id = 'com.github.wez.wezterm'
 run = "move-node-to-workspace 2"
 
+[[on-window-detected]]
+if.app-id = 'org.alacritty'
+run = "move-node-to-workspace 2"
+
 ## 3 - Browser
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
@@ -82,23 +91,29 @@ if.app-id = 'com.apple.Safari'
 run = 'move-node-to-workspace 3'
 
 [[on-window-detected]]
-if.app-id = 'com.google.Chrome'
-run = 'move-node-to-workspace 3'
-
-[[on-window-detected]]
 if.app-id = 'com.mozilla.firefox'
 run = 'move-node-to-workspace 3'
 
-## 5 - Code
+## 4 - Code
 [[on-window-detected]]
 if.app-id = 'com.jetbrains.intellij'
+run = 'move-node-to-workspace 4'
+
+## 5- Remote
+[[on-window-detected]]
+if.app-name-regex-substring = 'Citrix Viewer'
 run = 'move-node-to-workspace 5'
 
-## Communication 7-8
+## Communication 6-8
+[[on-window-detected]]
+if.app-id = 'com.microsoft.teams2'
+check-further-callbacks = true
+run = ['move-node-to-workspace 6']
 
 [[on-window-detected]]
 if.app-id = 'com.microsoft.teams2'
-run = ['move-node-to-workspace 7']
+if.window-title-regex-substring = '^(?!(Activity|Chat|Calendar|Copilot|Calls))'
+run = ['move-node-to-workspace 7 --focus-follows-window']
 
 [[on-window-detected]]
 if.app-id = 'com.microsoft.Outlook'
@@ -158,7 +173,9 @@ outer.right =      8
 # end tell'
 # '''
 
-alt-ctrl-shift-f = 'fullscreen'
+alt-shift-f = 'macos-native-fullscreen'
+alt-f = 'fullscreen'
+
 alt-ctrl-f = 'layout floating'
 
 alt-shift-left = 'join-with left'
@@ -211,16 +228,17 @@ alt-shift-9 = 'move-node-to-workspace 9 --focus-follows-window'
 alt-shift-0 = 'move-node-to-workspace 10 --focus-follows-window'
 
 alt-tab = 'workspace-back-and-forth'
-alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
+alt-shift-tab = 'move-node-to-monitor --wrap-around --focus-follows-window next'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
 alt-shift-semicolon = 'mode service'
 alt-shift-enter = 'mode apps'
 
-alt-x = 'exec-and-forget open -a /Applications/WezTerm.app'
-alt-t = 'exec-and-forget open -a /Applications/WezTerm.app'
+alt-x = 'exec-and-forget open -a /Applications/Alacritty.app'
+# alt-t = 'exec-and-forget open -a /Applications/WezTerm.app'
 alt-n = 'exec-and-forget open -a /Applications/Obsidian.app'
 alt-b = 'exec-and-forget open -a /Applications/Google\ Chrome.app'
+alt-m = 'exec-and-forget open -a /Applications/Microsoft\ Teams.app'
 
 
 # 'service' binding mode declaration.
@@ -233,4 +251,5 @@ backspace = ['close-all-windows-but-current', 'mode main']
 
 [mode.apps.binding]
 alt-w = ['exec-and-forget open -a /Applications/WezTerm.app', 'mode main']
-
+alt-a = ['exec-and-forget open -a /Applications/Alacritty.app', 'mode main']
+esc = ['mode main']
