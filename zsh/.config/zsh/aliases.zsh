@@ -11,7 +11,7 @@ alias v='fd --type f --hidden --exclude .git | fzf-tmux --multi -p --reverse | x
 
 alias path='echo -e ${PATH//:/\\n}'
 alias my-ip='curl ipinfo.io/ip 2> /dev/null'
-alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"   
+alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
 
 # general use
 alias l='eza -lbF --icons'
@@ -44,6 +44,8 @@ alias kl='kubectl logs'
 alias kn='f() { [ "$1" ] && kubectl config set-context --current --namespace $1 || kubectl config view --minify | grep namespace | cut -d" " -f6 ; } ; f'
 alias kpf='kubectl port-forward'
 alias kx='f() { [ "$1" ] && kubectl config use-context $1 || kubectl config current-context ; } ; f'
+alias kdebug='kubectl run -i --rm --tty debug --image=busybox --restart=Never -- sh'
+# alias kpf='kubectl port-forward'
 
 alias :q="exit"
 alias view="preview_files"
