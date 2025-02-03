@@ -1,6 +1,7 @@
 #!/usr/bin/env zsh
 
-REPO_DIR=$HOME/repos/
+REPO_DIR=$HOME/repos
+ORG=UKGEPIC
 BUILD_DIR=$REPO_DIR/gei/forge-build-plans-ist
 MULE_BUILD_DIR=$REPO_DIR/gei/forge-build-plans-ist-mulesoft
 
@@ -139,18 +140,24 @@ clone() {
 
    if [[ "$url" == "" ]]; then
        return 1;
+   elif ! [[ "$url" =~ '/' ]]; then
+       url="$ORG/$url"
    fi
 
-   reponame=$(echo "$url" | awk -F/ '{print $(NF-1)"/"$NF}' | sed -e 's/.git$//' | sed -e 's/.*://');
+   reponame=$(get_repo_name "$url")
    destination="$REPO_DIR/$reponame"
    if [ ! -d "$destination" ]; then
-      if [[ "$url" =~ 'github' ]]; then
+      # if [[ "$url" =~ 'github' ]]; then
           gh repo clone "$url" "$destination"
-      else
-          git clone "$url" "$destination"
-      fi
+      # else
+      #     git clone "$url" "$destination"
+      # fi
    fi
    cd "$destination" || return
+}
+
+get_repo_name() {
+  echo "$1" | awk -F/ '{print $(NF-1)"/"$NF}' | sed -e 's/.git$//' | sed -e 's/.*://'
 }
 
 list_projects_git() {

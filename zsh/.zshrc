@@ -26,7 +26,9 @@ bindkey -e
 
 # Use modern completion system
 autoload -Uz compinit
-compinit
+compinit -u
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 _source_if_exists "$CONFIG_DIR/aliases.zsh"
 _source_if_exists "$CONFIG_DIR/docker_aliases.zsh"
@@ -54,7 +56,6 @@ bindkey '^X^e' edit-command-line
 ## --------
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
-eval "$(/opt/homebrew/bin/brew shellenv)"
 # eval "$(dircolors -b)"
 
 zstyle ':completion:*' auto-description 'specify: %d'
