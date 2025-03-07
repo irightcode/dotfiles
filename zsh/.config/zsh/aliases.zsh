@@ -4,6 +4,7 @@ alias se="sudo $EDITOR"
 
 alias vim='nvim'
 alias rr='ranger'
+alias neobean='NVIM_APPNAME=linkarzu/dotfiles-latest/neovim/neobean nvim'
 
 alias x='exit'
 alias p='pclone'

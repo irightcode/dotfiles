@@ -3,11 +3,12 @@ return {
 	-- color_scheme = 'termnial.sexy',
 	color_scheme = "Catppuccin Mocha",
 	enable_tab_bar = false,
-	font_size = 16.0,
-	font = wezterm.font("JetBrains Mono"),
+	font_size = 14.0,
+	font = wezterm.font("JetBrainsMono Nerd Font", { weight = "Regular", italic = false }),
+	max_fps = 120,
+	window_close_confirmation = "NeverPrompt",
 	-- macos_window_background_blur = 40,
 	macos_window_background_blur = 30,
-	-- window_background_image = '/Users/omerhamerman/Downloads/3840x1080-Wallpaper-041.jpg',
 	-- window_background_image_hsb = {
 	-- 	brightness = 0.01,
 	-- 	hue = 1.0,
@@ -18,13 +19,6 @@ return {
 	-- window_background_opacity = 0.78,
 	-- window_background_opacity = 0.20,
 	window_decorations = "RESIZE",
-	keys = {
-		{
-			key = "'",
-			mods = "CTRL",
-			action = wezterm.action.ClearScrollback("ScrollbackAndViewport"),
-		},
-	},
 	mouse_bindings = {
 		-- Ctrl-click will open the link under the mouse cursor
 		{
