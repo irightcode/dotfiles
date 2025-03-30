@@ -151,7 +151,7 @@ inner.horizontal = 8
 inner.vertical =   8
 outer.left =       8
 outer.bottom =     8
-outer.top =        [{ monitor.'^built-in retina display$' = 8 }, 40]
+outer.top =        [{ monitor.'^built-in retina display$' = 8 }, 8]
 outer.right =      8
 
 # 'main' binding mode declaration
@@ -255,10 +255,10 @@ alt-shift-tab = 'move-node-to-monitor --wrap-around --focus-follows-window next'
 alt-shift-semicolon = 'mode service'
 alt-shift-enter = 'mode apps'
 
-alt-x = 'exec-and-forget open -a /Applications/WezTerm.app'
-alt-n = 'exec-and-forget open -a /Applications/Obsidian.app'
-alt-b = 'exec-and-forget open -a /Applications/Google\ Chrome.app'
-alt-m = 'exec-and-forget open -a /Applications/Microsoft\ Teams.app'
+# alt-x = 'exec-and-forget open -a /Applications/WezTerm.app'
+# alt-n = 'exec-and-forget open -a /Applications/Obsidian.app'
+# alt-b = 'exec-and-forget open -a /Applications/Google\ Chrome.app'
+# alt-m = 'exec-and-forget open -a /Applications/Microsoft\ Teams.app'
 
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -267,8 +267,3 @@ esc = ['reload-config', 'mode main']
 r = ['flatten-workspace-tree', 'mode main'] # reset layout
 f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
 backspace = ['close-all-windows-but-current', 'mode main']
-
-[mode.apps.binding]
-alt-w = ['exec-and-forget open -a /Applications/WezTerm.app', 'mode main']
-alt-a = ['exec-and-forget open -a /Applications/Alacritty.app', 'mode main']
-esc = ['mode main']
