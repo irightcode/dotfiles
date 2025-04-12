@@ -119,6 +119,8 @@ alias dps="docker ps"
 alias dpa="docker ps -a"
 alias dl="docker ps -l -q"
 alias dkill='docker stop $(docker ps -a -q)'
+alias dup='docker desktop start'
+alias ddown='docker desktop stop'
 
 # Brew
 alias bri="brew install"

@@ -184,8 +184,8 @@ outer.right =      8
 # end tell'
 # '''
 
-alt-shift-f = 'macos-native-fullscreen'
-alt-f = 'fullscreen'
+# alt-shift-f = 'macos-native-fullscreen'
+# alt-f = 'fullscreen'
 
 alt-ctrl-f = 'layout floating'
 

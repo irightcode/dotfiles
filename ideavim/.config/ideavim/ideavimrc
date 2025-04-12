@@ -87,6 +87,7 @@ nmap K <Action>(ShowHoverInfo)
 
 nmap <leader>? <Action>(GotoAction)
 
+
 " Visual indentation
 vnoremap < <gv
 vnoremap > >gv
@@ -137,6 +138,11 @@ nmap ]o <Action>(NextOccurence)
 nmap [u <Action>(GotoPrevElementUnderCaretUsage)
 nmap ]u <Action>(GotoNextElementUnderCaretUsage)
 
+" Previous Todo Comment
+nmap [t ?TODO<cr>
+" Next Todo Comment
+nmap ]t /TODO<cr>
+
 """ Window navigation  --------------------------------
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
@@ -160,6 +166,10 @@ nmap <leader>ch <Action>(CallHierarchy)
 nmap <leader>ci <Action>(InspectCode)
 nmap <leader>co <Action>(OptimizeImports)
 nmap <leader>cg <Action>(Generate)
+
+
+"" Maven
+nmap <leader>cmr <Action>(Maven.Reimport)
 
 """ Format --------------------------------
 nmap <leader>= <Action>(SilentCodeCleanup) \| <Action>(ReformatCode) \| <Action>(OptimizeImports)
@@ -212,6 +222,11 @@ map <leader>dm <Action>(XDebugger.MuteBreakpoints)
 let g:WhichKeyDesc_debugging_mute = "<leader>dm Mute"
 map <leader>dq <Action>(Stop)
 let g:WhichKeyDesc_debugging_stop = "<leader>dq Stop"
+
+let g:WhichKeyDesc_debugging_Shell = "<leader>dS JShell.Console"
+nmap <leader>dS <Action>(JShell.Console)
+
+
 
 """ Files --------------------------------
 let g:WhichKeyDesc_files = "<leader>f Files"
@@ -363,6 +378,12 @@ let g:WhichKeyDesc_search_projects = "<leader>sp Usages"
 map <leader>sR <Action>(ReplaceInPath)
 let g:WhichKeyDesc_search_replace = "<leader>sR Replace"
 
+" Registers
+nmap <leader>s" :registers<cr>
+
+" Jump to Mark
+nmap <leader>sm :marks<cr>
+
 """ Language --------------------------------
 let g:WhichKeyDesc_language = "<leader>l Language"
 map <leader>lm <Action>(Refactorings.QuickListPopupAction)
@@ -446,14 +467,13 @@ vnoremap <leader>uL    :set relativenumber!<CR>:set number<CR>
 
 """ Config  --------------------------------
 let g:WhichKeyDesc_config = "<leader>, Config"
-let g:WhichKeyDesc_config_vim = "<leader>,v Vim"
-map <leader>,va <Action>(VimFindActionIdAction)
-let g:WhichKeyDesc_config_vim_actions = "<leader>,va Vim Toggle Action Id's"
-map <leader>,vv <Action>(VimPluginToggle)
-let g:WhichKeyDesc_config_vim_toggle = "<leader>,vv Toggle Vim"
-map <leader>,ve :edit ~/.config/ideavim/ideavimrc<CR>
-let g:WhichKeyDesc_config_vim_edit = "<leader>,ve Config edit"
-map <leader>,vr <Action>(IdeaVim.ReloadVimRc.reload)
-let g:WhichKeyDesc_config_vim_reload = "<leader>,vr Config reload"
-map <leader>,cc <Action>(ChangeColorScheme)
-let g:WhichKeyDesc_config_change_color_scheme = "<leader>,cc Change Color Scheme"
+map <leader>,a <Action>(VimFindActionIdAction)
+let g:WhichKeyDesc_config_vim_actions = "<leader>,a Vim Toggle Action Id's"
+map <leader>,v <Action>(VimPluginToggle)
+let g:WhichKeyDesc_config_vim_toggle = "<leader>,v Toggle Vim"
+map <leader>,e :edit ~/.config/ideavim/ideavimrc<CR>
+let g:WhichKeyDesc_config_vim_edit = "<leader>,e Config edit"
+map <leader>,r <Action>(IdeaVim.ReloadVimRc.reload)
+let g:WhichKeyDesc_config_vim_reload = "<leader>,r Config reload"
+map <leader>,c <Action>(ChangeColorScheme)
+let g:WhichKeyDesc_config_change_color_scheme = "<leader>,c Change Color Scheme"
