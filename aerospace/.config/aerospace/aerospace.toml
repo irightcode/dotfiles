@@ -23,7 +23,7 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 # See: https://nikitabobko.github.io/AeroSpace/guide#layouts
 # The 'accordion-padding' specifies the size of accordion padding
 # You can set 0 to disable the padding feature
-accordion-padding = 20
+accordion-padding = 5
 
 # Possible values: tiles|accordion
 default-root-container-layout = 'accordion'
@@ -52,15 +52,7 @@ PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
 
 [workspace-to-monitor-force-assignment]
 1 = 'main'
-2 = 'main'
-3 = 'main'
-4 = 'main'
-5 = 'main'
-6 = ['built-in', 'secondary']
-7 = ['built-in', 'secondary']
-8 = ['built-in', 'secondary']
-9 = ['built-in', 'secondary']
-10 = ['built-in', 'secondary']
+2 = ['built-in', 'secondary']
 # [[on-window-detected]]
 # if.app-id = 'com.apple.systempreferences'
 # if.app-name-regex-substring = 'settings'
@@ -92,39 +84,34 @@ run = "move-node-to-workspace 2"
 if.app-id = 'org.alacritty'
 run = "move-node-to-workspace 2"
 
-## 3 - Browser
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
-run = "move-node-to-workspace 3"
+run = "move-node-to-workspace 2"
 
 [[on-window-detected]]
 if.app-id = 'com.apple.Safari'
-run = 'move-node-to-workspace 3'
+run = 'move-node-to-workspace 2'
 
 [[on-window-detected]]
 if.app-id = 'com.mozilla.firefox'
-run = 'move-node-to-workspace 3'
+run = 'move-node-to-workspace 2'
 
-## 4 - Code
 [[on-window-detected]]
 if.app-id = 'com.jetbrains.intellij'
-run = 'move-node-to-workspace 4'
+run = 'move-node-to-workspace 2'
 
-## 5- Remote
 [[on-window-detected]]
 if.app-name-regex-substring = 'Citrix Viewer'
-run = 'move-node-to-workspace 5'
+run = 'move-node-to-workspace 2'
 
-## Communication 6-8
 [[on-window-detected]]
 if.app-id = 'com.microsoft.teams2'
-check-further-callbacks = true
-run = ['move-node-to-workspace 6']
+run = ['move-node-to-workspace 2']
 
 [[on-window-detected]]
 if.app-id = 'com.microsoft.teams2'
 if.window-title-regex-substring = '^(?!(Activity|Chat|Calendar|Copilot|Calls))'
-run = ['move-node-to-workspace 7 --focus-follows-window']
+run = ['move-node-to-workspace 2 --focus-follows-window']
 
 [[on-window-detected]]
 if.app-id = 'com.microsoft.Outlook'
@@ -225,28 +212,12 @@ alt-shift-minus = 'resize smart -50'
 alt-shift-equal = 'resize smart +50'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
-alt-1 = 'workspace 1'
+alt0 = 'workspace 1'
 alt-2 = 'workspace 2'
-alt-3 = 'workspace 3'
-alt-4 = 'workspace 4'
-alt-5 = 'workspace 5'
-alt-6 = 'workspace 6'
-alt-7 = 'workspace 7'
-alt-8 = 'workspace 8'
-alt-9 = 'workspace 9'
-alt-0 = 'workspace 10'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-shift-1 = 'move-node-to-workspace 1 --focus-follows-window'
 alt-shift-2 = 'move-node-to-workspace 2 --focus-follows-window'
-alt-shift-3 = 'move-node-to-workspace 3 --focus-follows-window'
-alt-shift-4 = 'move-node-to-workspace 4 --focus-follows-window'
-alt-shift-5 = 'move-node-to-workspace 5 --focus-follows-window'
-alt-shift-6 = 'move-node-to-workspace 6 --focus-follows-window'
-alt-shift-7 = 'move-node-to-workspace 7 --focus-follows-window'
-alt-shift-8 = 'move-node-to-workspace 8 --focus-follows-window'
-alt-shift-9 = 'move-node-to-workspace 9 --focus-follows-window'
-alt-shift-0 = 'move-node-to-workspace 10 --focus-follows-window'
 
 alt-tab = 'workspace-back-and-forth'
 alt-shift-tab = 'move-node-to-monitor --wrap-around --focus-follows-window next'
