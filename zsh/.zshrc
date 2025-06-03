@@ -11,24 +11,24 @@ SAVEHIST=100000
 HISTFILE=~/.zsh_history
 setopt append_history
 setopt extended_history
-setopt hist_ignore_all_dups
 setopt share_history
 setopt hist_expire_dups_first
-setopt hist_ignore_dups
-setopt hist_ignore_all_dups
 setopt hist_find_no_dups
+setopt hist_ignore_all_dups
+setopt hist_ignore_dups
 setopt hist_ignore_space
-setopt hist_save_no_dups
 setopt hist_reduce_blanks
+setopt hist_save_no_dups
 
 # Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Use modern completion system
 autoload -Uz compinit
 compinit -u
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
 
 _source_if_exists "$CONFIG_DIR/aliases.zsh"
 _source_if_exists "$CONFIG_DIR/docker_aliases.zsh"
@@ -51,6 +51,11 @@ bindkey -s '^s' 'search '
 bindkey -M vicmd 'vv' edit-command-line
 bindkey '^X^e' edit-command-line
 
+
+zle     -N             sesh-sessions
+bindkey -M emacs '\es' sesh-sessions
+bindkey -M vicmd '\es' sesh-sessions
+bindkey -M viins '\es' sesh-sessions
 ## --------
 ## Tools
 ## --------
@@ -95,3 +100,7 @@ zle     -N             sesh-sessions
 bindkey -M emacs '\es' sesh-sessions
 bindkey -M vicmd '\es' sesh-sessions
 bindkey -M viins '\es' sesh-sessions
+
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)
