@@ -29,8 +29,8 @@ export FZF_DEFAULT_OPTS=" \
 --reverse --border=rounded --prompt ' λ '"
 
 # Path
+export PATH=$HOME/.cargo/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/dev/bin:$PATH
 export PATH=$HOME/go/bin:$PATH
 export PATH=$HOME/work/bin:$PATH
-export PATH=$HOME/dev/bin:$PATH
-export PATH=$HOME/.cargo/bin:$PATH

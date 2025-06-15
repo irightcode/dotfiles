@@ -1,0 +1,29 @@
+[[session]]
+name = "Downloads 📥"
+path = "~/Downloads"
+startup_command = "ls"
+
+[[session]]
+name = "tmux config"
+path = "~/dotfiles/tmux"
+startup_command = "v tmux.conf.sh"
+preview_command = "bat --color=always ~/dotfiles/tmux/tmux.conf.sh"
+
+[[session]]
+name = "sesh config"
+path = "~/dotfiles/sesh"
+startup_command = "v sesh.toml"
+preview_command = "bat --color=always ~/dotfiles/sesh/.config/sesh/sesh.toml"
+
+[[session]]
+name = "zshrc config"
+path = "~/dotfiles/zshrc"
+startup_command = "v zshrc-file.sh"
+preview_command = "bat --color=always ~/dotfiles/zshrc/.conf"
+
+[[session]]
+name = "neovim keymaps"
+path = "~/dotfiles/neovim/neobean/lua/config"
+startup_command = "v keymaps.lua"
+preview_command = "bat --color=always ~/dotfiles/neovim/neobean/lua/config/keymaps.lua"
+
