@@ -29,7 +29,6 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 autoload -Uz compinit
 compinit -u
 
-
 _source_if_exists "$CONFIG_DIR/aliases.zsh"
 _source_if_exists "$CONFIG_DIR/docker_aliases.zsh"
 _source_if_exists "$CONFIG_DIR/functions.zsh"
@@ -44,9 +43,6 @@ autoload -Uz edit-command-line
 zle -N edit-command-line
 
 bindkey -s ^f "tmux-sessionizer\n"
-# bindkey -s '^f' 'find_files\n'
-# bindkey -s '^n' 'ranger\n'
-bindkey -s '^s' 'search '
 
 bindkey -M vicmd 'vv' edit-command-line
 bindkey '^X^e' edit-command-line
@@ -66,17 +62,6 @@ eval "$(starship init zsh)"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-function sesh-sessions() {
-  {
-    exec </dev/tty
-    exec <&1
-    local session
-    session=$(sesh list -t -c | fzf --height 40% --reverse --border-label ' sesh ' --border --prompt '⚡  ')
-    [[ -z "$session" ]] && return
-    sesh connect $session
-  }
-}
 
 # Load Angular CLI autocompletion.
 source <(ng completion script)
