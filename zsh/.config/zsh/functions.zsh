@@ -436,3 +436,16 @@ function sesh-sessions() {
     sesh connect $session
   }
 }
+
+function tmux_sessionizer() {
+  zle -I
+  ~/.local/bin/tmux-sessionizer
+  zle reset-prompt
+}
+zle -N tmux_sessionizer
+
+# function to gauge zsh's startup time
+function time-zsh() {
+  shell=${1-$SHELL}
+  for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
+}
