@@ -57,6 +57,7 @@ zstyle ':zim:zmodule' use 'degit'
 zstyle ':zim:git' aliases-prefix 'G'
 
 # Append `../` to your input for each `.` you type after an initial `..`
+# eg ... into ../../
 zstyle ':zim:input' double-dot-expand yes
 
 # Disable automatic widget re-binding on each precmd
