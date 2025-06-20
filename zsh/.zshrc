@@ -46,19 +46,9 @@ SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
 # Remove path separator from WORDCHARS.
 WORDCHARS=${WORDCHARS//[\/]}
 
-# Use degit instead of git as the default tool to install and update modules.
-zstyle ':zim:zmodule' use 'degit'
-
 # --------------------
 # Module configuration
 # --------------------
-
-# Set a custom prefix for the generated aliases. The default prefix is 'G'.
-zstyle ':zim:git' aliases-prefix 'G'
-
-# Append `../` to your input for each `.` you type after an initial `..`
-# eg ... into ../../
-zstyle ':zim:input' double-dot-expand yes
 
 # Disable automatic widget re-binding on each precmd
 ZSH_AUTOSUGGEST_MANUAL_REBIND=1
@@ -76,40 +66,6 @@ VIM_MODE_NO_DEFAULT_BINDINGS=true
 MODE_CURSOR_VIINS="blinking bar"
 MODE_CURSOR_VISUAL="block"
 
-# ------------------
-# Initialize modules
-# ------------------
-
-ZIM_HOME=${ZDOTDIR:-${HOME}}/.zim
-# Download zimfw plugin manager if missing.
-if [[ ! -e ${ZIM_HOME}/zimfw.zsh ]]; then
-  if (( ${+commands[curl]} )); then
-    curl -fsSL --create-dirs -o ${ZIM_HOME}/zimfw.zsh \
-        https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
-  else
-    mkdir -p ${ZIM_HOME} && wget -nv -O ${ZIM_HOME}/zimfw.zsh \
-        https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
-  fi
-fi
-
-# Install missing modules, and update ${ZIM_HOME}/init.zsh if missing or outdated.
-if [[ ! ${ZIM_HOME}/init.zsh -nt ${ZDOTDIR:-${HOME}}/.zimrc ]]; then
-  source ${ZIM_HOME}/zimfw.zsh init -q
-fi
-
-# Initialize modules.
-source ${ZIM_HOME}/init.zsh
-
-# Initialize zsh-defer.
-source ${ZIM_HOME}/modules/zsh-defer/zsh-defer.plugin.zsh
-
-# Defer evals and cache the results on first run via the evalcache plugin (clear the cache w/ `_evalcache_clear`).
-zsh-defer _evalcache zoxide init zsh
-zsh-defer _evalcache direnv hook zsh
-zsh-defer _evalcache fnm env --use-on-cd --shell zsh
-zsh-defer _evalcache ng completion script
-zsh-defer _evalcache atuin init zsh
-
 # ------------------------------
 # Post-init module configuration
 # ------------------------------
@@ -118,36 +74,10 @@ _source_if_exists "$CONFIG_DIR/aliases.zsh"
 _source_if_exists "$CONFIG_DIR/docker_aliases.zsh"
 _source_if_exists "$CONFIG_DIR/functions.zsh"
 _source_if_exists "$CONFIG_DIR/os.zsh"
+_source_if_exists "$CONFIG_DIR/zim.zsh"
+_source_if_exists "$CONFIG_DIR/bindings.zsh"
 _source_if_exists "$HOME/.fzf.zsh"
 _source_if_exists "$HOME/work/setup.zsh"
-
-## --------
-## bindkeys
-## --------
-
-# zsh-history-substring-search
-zmodload -F zsh/terminfo +p:terminfo
-for key ('k') bindkey -M vicmd ${key} history-substring-search-up
-for key ('j') bindkey -M vicmd ${key} history-substring-search-down
-unset key
-
-# Restore standard keybinds in vi-mode
-bindkey '^a' beginning-of-line
-bindkey '^e' end-of-line
-bindkey '^?' backward-delete-char
-bindkey '^h' backward-delete-char
-bindkey '^w' backward-kill-word
-bindkey '^u' backward-kill-line
-bindkey -M vicmd '_' vi-first-non-blank
-
-bindkey -M viins '^f' tmux_sessionizer
-
-zle     -N             sesh-sessions
-bindkey -M emacs '\es' sesh-sessions
-bindkey -M vicmd '\es' sesh-sessions
-bindkey -M viins '\es' sesh-sessions
-
-bindkey '^Y' autosuggest-accept
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
