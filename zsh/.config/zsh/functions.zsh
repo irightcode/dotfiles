@@ -18,6 +18,7 @@ cfg-newsboat() { $EDITOR ~/.newsboat/config ;}
 cfg-newsboat-queue() { $EDITOR ~/.newsboat/queue ;}
 cfg-newsboat-urls() { $EDITOR ~/.newsboat/urls ;}
 cfg-nvim() { $EDITOR ~/.config/nvim/init.lua ;}
+cfg-ideavim() { $EDITOR ~/.config/ideavim/ideavimrc ;}
 cfg-starship() { $EDITOR ~/.config/starship/starship.toml ;}
 cfg-ranger() { $EDITOR ~/.config/ranger/rc.conf ;}
 cfg-ranger-rifle() { $EDITOR ~/.config/ranger/rifle.conf ;}
@@ -412,6 +413,30 @@ brews() {
   echo "${blue}==>${off} ${bold}Formulae${off}"
   echo "${formulae}" | sed "s/^\(.*\):\(.*\)$/\1${blue}\2${off}/"
   echo "\n${blue}==>${off} ${bold}Casks${off}\n${casks}"
+}
+
+brew-up() {
+  local blue="$(tput setaf 4)"
+  local bold="$(tput bold)"
+  local off="$(tput sgr0)"
+  local DATE=$(date '+%Y%m%d.%H%M')
+  local red=$(tput setaf 1)
+  local green=$(tput setaf 2)
+  local yellow=$(tput setaf 3)
+
+  echo "${blue}==>${off} ${bold}Brew Updating...${off}"
+  brew update
+  brew upgrade
+  echo -e "${green}==>${reset} Finished brew updates"
+
+  echo "${blue}==>${off} ${bold}Casks Updating...${off}"
+  brew --cask upgrade
+  echo -e "${green}==>${reset} Finished cask updates"
+
+  echo "${yellow}==>${off} ${bold} Brew Doctor ...${off}"
+  brew cleanup -s
+  brew doctor
+  echo -e "${green}==>${reset} Brew Doctor completes"
 }
 
   

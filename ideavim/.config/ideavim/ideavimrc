@@ -55,6 +55,7 @@ map <Tab> <Action>(NextTab)
 " Popup navigation
 map <c-j> <Action>(PopupMenu-selectnext)
 map <c-k> <Action>(PopupMenu-selectprev)
+imap <C-y> <Action>(EditorChooseLookupItem)
 
 map <C-\> <Action>(SplitVertically)
 map <C--> <Action>(SplitHorizontally)
