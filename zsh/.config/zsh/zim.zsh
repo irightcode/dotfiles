@@ -29,6 +29,10 @@ zstyle ':zim:zmodule' use 'degit'
 zstyle ':zim:git' aliases-prefix 'G'
 zstyle ':zim:input' double-dot-expand yes
 
+# Use menu selection for completion
+zstyle ':completion:*' menu select
+zmodload zsh/complist
+
 # Initialize zsh-defer.
 source ${ZIM_HOME}/modules/zsh-defer/zsh-defer.plugin.zsh
 

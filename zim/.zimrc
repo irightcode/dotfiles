@@ -48,3 +48,4 @@ zmodule zsh-users/zsh-autosuggestions
 zmodule romkatv/zsh-defer -d
 zmodule romkatv/powerlevel10k --use degit
 zmodule mroth/evalcache
+# zmodule jeffreytse/zsh-vi-mode

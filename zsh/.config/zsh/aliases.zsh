@@ -122,6 +122,10 @@ alias dl="docker ps -l -q"
 alias dkill='docker stop $(docker ps -a -q)'
 alias dup='docker desktop start'
 alias ddown='docker desktop stop'
+#
+# Dotfiles management
+alias dot="git --git-dir=$HOME/dotfiles/.git --work-tree=$HOME/dotfiles"
+alias ds="dot status -uall"
 
 # Brew
 alias bri="brew install"

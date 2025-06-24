@@ -28,6 +28,7 @@ cfg-tmux() { $EDITOR ~/.config/tmux/tmux.conf ;}
 cfg-work-setup() { $EDITOR $HOME/work/setup.zsh ;}
 cfg-wezterm() { $EDITOR $HOME/.config/wezterm/wezterm.lua ;}
 cfg-zsh() { $EDITOR $HOME/.zshrc ;}
+cfg-zim() { $EDITOR $HOME/.zimrc ;}
 # }}}
 
 alias_fzf() {
