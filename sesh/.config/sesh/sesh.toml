@@ -17,13 +17,13 @@ preview_command = "bat --color=always ~/dotfiles/sesh/.config/sesh/sesh.toml"
 
 [[session]]
 name = "zshrc config"
-path = "~/dotfiles/zshrc"
-startup_command = "v zshrc-file.sh"
-preview_command = "bat --color=always ~/dotfiles/zshrc/.conf"
+path = "~/dotfiles/zsh"
+startup_command = "v zshrc.sh"
+preview_command = "bat --color=always ~/dotfiles/zshrc/.config"
 
 [[session]]
 name = "neovim keymaps"
-path = "~/dotfiles/neovim/neobean/lua/config"
+path = "~/.config/nvim/lua/config/keymaps.lua"
 startup_command = "v keymaps.lua"
 preview_command = "bat --color=always ~/dotfiles/neovim/neobean/lua/config/keymaps.lua"
 

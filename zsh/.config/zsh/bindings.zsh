@@ -57,9 +57,6 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey '^P' up-history
 bindkey '^N' down-history
 
-bindkey -M viins '^f' tmux_sessionizer
-
-
 
 zle     -N             sesh-sessions
 bindkey -M emacs '\es' sesh-sessions

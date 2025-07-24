@@ -24,6 +24,7 @@ cfg-ranger() { $EDITOR ~/.config/ranger/rc.conf ;}
 cfg-ranger-rifle() { $EDITOR ~/.config/ranger/rifle.conf ;}
 cfg-ranger-commands() { $EDITOR ~/.config/ranger/commands.py ;}
 cfg-sketchybars() { $EDITOR ~/.config/sketchybar/sketchybarrc ;}
+cfg-sesh() { $EDITOR ~/.config/sesh/sesh.toml ;}
 cfg-tmux() { $EDITOR ~/.config/tmux/tmux.conf ;}
 cfg-work-setup() { $EDITOR $HOME/work/setup.zsh ;}
 cfg-wezterm() { $EDITOR $HOME/.config/wezterm/wezterm.lua ;}
@@ -395,6 +396,11 @@ generate_password() {
   openssl rand -base64 "$length" | head -c "$length"
 }
 
+
+multipull() {
+  find . -mindepth 1 -maxdepth 1 -type d -print -exec git -C {} pull \;
+}
+
 duckduckgo() {
     lynx -vikeys -accept_all_cookies "https://lite.duckduckgo.com/lite/?q=$@"
 }
@@ -462,13 +468,6 @@ function sesh-sessions() {
     sesh connect $session
   }
 }
-
-function tmux_sessionizer() {
-  zle -I
-  ~/.local/bin/tmux-sessionizer
-  zle reset-prompt
-}
-zle -N tmux_sessionizer
 
 # function to gauge zsh's startup time
 function time-zsh() {

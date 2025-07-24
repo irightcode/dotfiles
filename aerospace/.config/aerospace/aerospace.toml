@@ -224,7 +224,6 @@ alt-shift-tab = 'move-node-to-monitor --wrap-around --focus-follows-window next'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
 alt-shift-semicolon = 'mode service'
-alt-shift-enter = 'mode apps'
 
 # alt-x = 'exec-and-forget open -a /Applications/WezTerm.app'
 # alt-n = 'exec-and-forget open -a /Applications/Obsidian.app'
