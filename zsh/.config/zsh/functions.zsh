@@ -28,6 +28,7 @@ cfg-sesh() { $EDITOR ~/.config/sesh/sesh.toml ;}
 cfg-tmux() { $EDITOR ~/.config/tmux/tmux.conf ;}
 cfg-work-setup() { $EDITOR $HOME/work/setup.zsh ;}
 cfg-wezterm() { $EDITOR $HOME/.config/wezterm/wezterm.lua ;}
+cfg-yazi() { $EDITOR $HOME/.config/yazi/yazi.toml ;}
 cfg-zsh() { $EDITOR $HOME/.zshrc ;}
 cfg-zim() { $EDITOR $HOME/.zimrc ;}
 # }}}
@@ -210,7 +211,7 @@ treee() {
 }
 
 # $ retry ping google.com
-function retry() {
+retry() {
   echo Retrying "$@"
   $@
   sleep 1
@@ -437,7 +438,7 @@ brew-up() {
   echo -e "${green}==>${reset} Finished brew updates"
 
   echo "${blue}==>${off} ${bold}Casks Updating...${off}"
-  brew --cask upgrade
+  brew upgrade --cask
   echo -e "${green}==>${reset} Finished cask updates"
 
   echo "${yellow}==>${off} ${bold} Brew Doctor ...${off}"

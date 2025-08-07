@@ -51,10 +51,6 @@ dkstats() {
   fi
 }
 
-dke() {
-  docker exec -it $1 /bin/sh
-}
-
 dkexe() {
   docker exec -it $1 $2
 }

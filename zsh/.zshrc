@@ -60,8 +60,11 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 export LSCOLORS="Gxfxcxdxbxegedabagacad"
 export LS_COLORS="di=1;36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"
 
+# unset grep
+export GREP_COLOR='31;01'
+
 # Configure zsh-vim-mode
-KEYTIMEOUT=1
+KEYTIMEOUT=10
 VIM_MODE_NO_DEFAULT_BINDINGS=true
 MODE_CURSOR_VIINS="blinking bar"
 MODE_CURSOR_VISUAL="block"
@@ -76,8 +79,14 @@ _source_if_exists "$CONFIG_DIR/functions.zsh"
 _source_if_exists "$CONFIG_DIR/os.zsh"
 _source_if_exists "$CONFIG_DIR/zim.zsh"
 _source_if_exists "$CONFIG_DIR/bindings.zsh"
+_source_if_exists "$CONFIG_DIR/fzf-git.sh"
 _source_if_exists "$HOME/.fzf.zsh"
 _source_if_exists "$HOME/work/setup.zsh"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
