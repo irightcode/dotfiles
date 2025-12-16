@@ -4,14 +4,14 @@
 after-login-command = []
 
 after-startup-command = [
-  'exec-and-forget sketchybar',
+  # 'exec-and-forget sketchybar',
   'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0'
 ]
 # Notify Sketchybar about workspace change
   # 'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0'
-exec-on-workspace-change = ['/bin/bash', '-c',
-  'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
-]
+# exec-on-workspace-change = ['/bin/bash', '-c',
+#   'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
+# ]
 
 # Start AeroSpace at login
 start-at-login = true
@@ -23,7 +23,7 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 # See: https://nikitabobko.github.io/AeroSpace/guide#layouts
 # The 'accordion-padding' specifies the size of accordion padding
 # You can set 0 to disable the padding feature
-accordion-padding = 5
+accordion-padding = 0
 
 # Possible values: tiles|accordion
 default-root-container-layout = 'accordion'
@@ -39,6 +39,7 @@ default-root-container-orientation = 'auto'
 # See https://nikitabobko.github.io/AeroSpace/commands#move-mouse
 # Fallback value (if you omit the key): on-focused-monitor-changed = []
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+on-focus-changed = ['move-mouse monitor-lazy-center']
 
 # You can effectively turn off macOS "Hide application" (cmd-h) feature by toggling this flag
 # Useful if you don't use this macOS feature, but accidentally hit cmd-h or cmd-alt-h key
@@ -75,6 +76,12 @@ run = ['layout tiling', 'move-node-to-workspace 1']
 [[on-window-detected]]
 if.app-id = 'net.kovidgoyal.kitty'
 run = "move-node-to-workspace 2"
+
+## 2 - Terminal
+[[on-window-detected]]
+if.app-id = 'com.apple.Safari'
+run = "move-node-to-workspace 2"
+
 # Possible values: (qwerty|dvorak)
 # See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
 [key-mapping]
@@ -94,35 +101,6 @@ outer.left =       8
 outer.bottom =     8
 outer.top =        [{ monitor.'^built-in retina display$' = 8 }, 8]
 outer.right =      8
-
-# 'main' binding mode declaration
-# See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
-# 'main' binding mode must be always presented
-# Fallback value (if you omit the key): mode.main.binding = {}
-
-# All possible keys:
-# - Letters.        a, b, c, ..., z
-# - Numbers.        0, 1, 2, ..., 9
-# - Keypad numbers. keypad0, keypad1, keypad2, ..., keypad9
-# - F-keys.         f1, f2, ..., f20
-# - Special keys.   minus, equal, period, comma, slash, backslash, quote, semicolon, backtick,
-#                   leftSquareBracket, rightSquareBracket, space, enter, esc, backspace, tab
-# - Keypad special. keypadClear, keypadDecimalMark, keypadDivide, keypadEnter, keypadEqual,
-#                   keypadMinus, keypadMultiply, keypadPlus
-# - Arrows.         left, down, up, right
-
-# All possible modifiers: cmd, alt, ctrl, shift
-
-# All possible commands: https://nikitabobko.github.io/AeroSpace/commands
-
-# See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
-# You can uncomment the following lines to open up terminal with alt + enter shortcut (like in i3)
-# alt-enter = '''exec-and-forget osascript -e '
-# tell application "Terminal"
-#     do script
-#     activate
-# end tell'
-# '''
 
 # alt-shift-f = 'macos-native-fullscreen'
 # alt-f = 'fullscreen'
@@ -179,6 +157,7 @@ alt-shift-tab = 'move-node-to-monitor --wrap-around --focus-follows-window next'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
 alt-shift-semicolon = 'mode service'
+alt-shift-a = 'mode apps'
 
 # alt-x = 'exec-and-forget open -a /Applications/WezTerm.app'
 # alt-n = 'exec-and-forget open -a /Applications/Obsidian.app'
@@ -187,6 +166,15 @@ alt-shift-semicolon = 'mode service'
 
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
+[mode.apps.binding]
+b = ['exec-and-forget open -a /Applications/Google\ Chrome.app', 'mode main']
+m = ['exec-and-forget open -a /Applications/Microsoft\ Teams.app', 'mode main']
+n = ['exec-and-forget open -a /Applications/Obsidian.app', 'mode main']
+r = ['exec-and-forget open -a /Applications/Raycast.app', 'mode main']
+x = ['exec-and-forget open -a /Applications/WezTerm.app', 'mode main']
+z = ['exec-and-forget open -a /Applications/Slack.app', 'mode main']
+esc = ['reload-config', 'mode main']
+
 [mode.service.binding]
 esc = ['reload-config', 'mode main']
 r = ['flatten-workspace-tree', 'mode main'] # reset layout

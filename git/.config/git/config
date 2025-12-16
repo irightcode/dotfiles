@@ -28,6 +28,7 @@
   editor = nvim
   excludesfile = ~/.config/git/gitignore_global
   autocrlf = input
+	ignorecase = false
 [credential]
   helper = cache
 [diff]

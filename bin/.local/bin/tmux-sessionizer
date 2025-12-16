@@ -1,12 +1,41 @@
 #!/usr/bin/env zsh
 
-# set -x
+set -x
+
+
+select_repo() {
+  local -a extras
+  extras=("$@")
+
+  local tab out
+  tab=$'\t'
+
+  out="$(
+    {
+      if (( ${#extras} )); then
+        local item
+        for item in "${extras[@]}"; do
+          print -r -- "${item:t}${tab}${item}"
+        done
+      fi
+
+      fd -L --min-depth 2 --max-depth 2 --type d . "$HOME/repos" |
+        while IFS= read -r p; do
+          print -r -- "${p:t}${tab}${p}"
+        done
+    } | 
+      sort | 
+      fzf --delimiter="$tab" --with-nth=1 --bind 'enter:accept-non-empty'
+  )" || return 1
+
+  print -r -- "${out#*$tab}"
+}
+
 
 if [[ $# -eq 1 ]]; then
 	selected=$1
 else
-	selected=$(fd . -L ~/repos  --min-depth 1 --max-depth 2 --type d --follow | sort | fzf)
-fi
+  selected=$(select_repo "${append_dirs[@]}")
 
 if [[ -z $selected ]]; then
 	exit 0

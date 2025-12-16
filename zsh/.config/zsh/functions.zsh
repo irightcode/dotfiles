@@ -444,6 +444,7 @@ brew-up() {
   echo "${yellow}==>${off} ${bold} Brew Doctor ...${off}"
   brew cleanup -s
   brew doctor
+  brew missing
   echo -e "${green}==>${reset} Brew Doctor completes"
 }
 
