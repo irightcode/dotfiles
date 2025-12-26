@@ -14,23 +14,21 @@ cfg-alacritty() { $EDITOR $HOME/.config/alacritty/alacritty.toml ;}
 cfg-alias() { $EDITOR $HOME/.config/zsh/aliases.zsh ;}
 cfg-dotfiles() { $EDITOR $DOTFILES ;}
 cfg-functions() { $EDITOR $HOME/.config/zsh/functions.zsh ;}
+cfg-git() { $EDITOR $HOME/.config/git/config ;}
+cfg-ideavim() { $EDITOR ~/.config/ideavim/ideavimrc ;}
 cfg-newsboat() { $EDITOR ~/.newsboat/config ;}
 cfg-newsboat-queue() { $EDITOR ~/.newsboat/queue ;}
 cfg-newsboat-urls() { $EDITOR ~/.newsboat/urls ;}
 cfg-nvim() { $EDITOR ~/.config/nvim/init.lua ;}
-cfg-ideavim() { $EDITOR ~/.config/ideavim/ideavimrc ;}
-cfg-starship() { $EDITOR ~/.config/starship/starship.toml ;}
-cfg-ranger() { $EDITOR ~/.config/ranger/rc.conf ;}
-cfg-ranger-rifle() { $EDITOR ~/.config/ranger/rifle.conf ;}
-cfg-ranger-commands() { $EDITOR ~/.config/ranger/commands.py ;}
-cfg-sketchybars() { $EDITOR ~/.config/sketchybar/sketchybarrc ;}
 cfg-sesh() { $EDITOR ~/.config/sesh/sesh.toml ;}
+cfg-sketchybars() { $EDITOR ~/.config/sketchybar/sketchybarrc ;}
+cfg-starship() { $EDITOR ~/.config/starship/starship.toml ;}
 cfg-tmux() { $EDITOR ~/.config/tmux/tmux.conf ;}
-cfg-work-setup() { $EDITOR $HOME/work/setup.zsh ;}
 cfg-wezterm() { $EDITOR $HOME/.config/wezterm/wezterm.lua ;}
+cfg-work-setup() { $EDITOR $HOME/work/setup.zsh ;}
 cfg-yazi() { $EDITOR $HOME/.config/yazi/yazi.toml ;}
-cfg-zsh() { $EDITOR $HOME/.zshrc ;}
 cfg-zim() { $EDITOR $HOME/.zimrc ;}
+cfg-zsh() { $EDITOR $HOME/.zshrc ;}
 # }}}
 
 alias_fzf() {

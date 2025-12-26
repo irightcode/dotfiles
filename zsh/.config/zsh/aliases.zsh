@@ -3,6 +3,10 @@ alias e="$EDITOR"
 alias se="sudo $EDITOR"
 
 alias vim='nvim'
+
+alias cvim='NVIM_APPNAME="nvim-nvchad" nvim'
+alias avim='NVIM_APPNAME="nvim-astro" nvim'
+
 alias rr='ranger'
 alias neobean='NVIM_APPNAME=linkarzu/dotfiles-latest/neovim/neobean nvim'
 
