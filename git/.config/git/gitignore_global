@@ -4,7 +4,11 @@ tags
 # ignore IDE specific files
 .idea/
 .vscode/
+
+node_modules/
+
 *.sw*
 
 .DS_Store
-.claude/settings.local.json
+.claude/*.local.*
+CLAUDE.local.md
