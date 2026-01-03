@@ -93,3 +93,10 @@ eval "$(pyenv init - zsh)"
 
 # Added by Antigravity
 export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
+
+# bun completions
+[ -s "/Users/charles.russell/.bun/_bun" ] && source "/Users/charles.russell/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

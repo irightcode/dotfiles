@@ -1,4 +1,13 @@
 # open ~/.zshrc in using the default editor specified in $EDITOR
+# suffix
+
+alias -g H='| head'
+alias -g L='| less'
+alias -g G='| grep'
+alias -g W='| wc -l'
+alias -g J='| jq .'
+alias -g T="| tr -d '\n' "
+
 alias e="$EDITOR"
 alias se="sudo $EDITOR"
 
@@ -63,14 +72,12 @@ alias dev='cd ~/dev'
 alias play='cd ~/playground/'
 alias personal='cd ~/personal/'
 alias repos='cd ~/repos'
-alias todo="${EDITOR} ~/dev/notes/today.txt"
 
 alias java-8='export JAVA_HOME=`/usr/libexec/java_home -v 1.8`; java -version'
 alias java-11='export JAVA_HOME=`/usr/libexec/java_home -v 11`; java -version'
 alias java-17='export JAVA_HOME=`/usr/libexec/java_home -v 17`; java -version'
 alias java-21='export JAVA_HOME=`/usr/libexec/java_home -v 21`; java -version'
 
-alias ci='build.sh'
 # Recursively delete `.DS_Store` files
 alias cleanup_dsstore="find . -name '*.DS_Store' -type f -ls -delete"
 
