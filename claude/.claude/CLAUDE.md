@@ -1,9 +1,12 @@
 # Claude Personal Configuration
 
-## File Organization
+## Introduction
 
-### claude.md Files
-All `claude.md` files should be created in an `docs/` folder within the project directory, not in the root.
+This is your global configuration file for Claude Code. These guidelines apply across all projects and override default behavior. Claude Code will adhere to these instructions for every session.
+
+## Project-Specific claude.md Files
+
+When creating project-specific `claude.md` files, place them in a `docs/` folder within the project directory, not in the root.
 
 **Structure:**
 ```
@@ -13,29 +16,25 @@ project-root/
 └── ... other project files
 ```
 
-**When initializing or creating claude.md:**
+**Guidelines:**
 - Create the `docs/` directory if it doesn't exist
 - Place `claude.md` inside `docs/claude.md`
 - Never create `claude.md` in the project root
 
-## Purpose
-This keeps AI-related context and notes organized in a dedicated folder, separating them from the main project files.
+This keeps AI-related context organized in a dedicated folder, separate from main project files.
 
 ## Philosophy
 
-### Core Beliefs
+**Core Principles:**
 
 - **Incremental progress over big bangs** - Small changes that compile and pass tests
 - **Learning from existing code** - Study and plan before implementing
 - **Pragmatic over dogmatic** - Adapt to project reality
 - **Clear intent over clever code** - Be boring and obvious
-
-### Simplicity
-
 - **Single responsibility** per function/class
-- **Avoid premature abstractions**
-- **No clever tricks** - choose the boring solution
-- If you need to explain it, it's too complex
+- **Avoid premature abstractions** - Don't abstract until you have 3+ use cases
+- **No clever tricks** - Choose the boring solution
+- **If you need to explain it, it's too complex** - Simplify
 
 ## Technical Standards
 
@@ -49,18 +48,19 @@ This keeps AI-related context and notes organized in a dedicated folder, separat
 ### Error Handling
 
 - **Fail fast** with descriptive messages
-- **Include context** for debugging
-- **Handle errors** at appropriate level
+- **Include context** for debugging (variable values, state, operation being performed)
+- **Handle errors** at appropriate level (UI errors vs system errors)
 - **Never** silently swallow exceptions
 
 ## Project Integration
 
 ### Learn the Codebase
 
-- Find similar features/components
+Before implementing:
+- Find similar features/components to understand patterns
 - Identify common patterns and conventions
 - Use same libraries/utilities when possible
-- Follow existing test patterns
+- Follow existing test patterns and assertion styles
 
 ### Tooling
 
@@ -75,16 +75,39 @@ This keeps AI-related context and notes organized in a dedicated folder, separat
 - Refer to linter configurations and .editorconfig, if present
 - Text files should always end with an empty line
 
-## Important Reminders
+## Workflow Guidance
 
-**NEVER**:
+### When to Plan vs Execute
+
+**Use plan mode for:**
+- Multi-file changes or refactoring
+- New features with architectural decisions
+- Complex bug fixes requiring investigation
+- Tasks with multiple valid approaches
+
+**Execute directly for:**
+- Single-file changes
+- Simple bug fixes with clear solutions
+- Typos, formatting, or documentation updates
+
+### Commit Strategy
+
+- Commit working code incrementally
+- Each commit should compile and pass tests
+- Update documentation as you go, not after
+
+## Critical Reminders
+
+**NEVER:**
 - Use `--no-verify` to bypass commit hooks
 - Disable tests instead of fixing them
 - Commit code that doesn't compile
+- Silently swallow exceptions
 - Make assumptions - verify with existing code
 
-**ALWAYS**:
+**ALWAYS:**
+- Read files before modifying them
+- Learn from existing implementations first
+- Ask clarifying questions when requirements are ambiguous
+- Stop after 3 failed attempts and reassess approach
 - Commit working code incrementally
-- Update plan documentation as you go
-- Learn from existing implementations
-- Stop after 3 failed attempts and reassess
