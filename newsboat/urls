@@ -1,0 +1,15 @@
+https://reddit.com/r/soccer/new/.rss
+https://reddit.com/r/shortcuts/new/.rss
+
+"query:🤖 ai:tags # \"ai\""
+http://karpathy.github.io/feed.xml ai
+https://www.fast.ai/index.xml ai
+https://deepmind.com/blog/feed/basic/ ai "~DeepMind"
+https://www.technologyreview.com/topic/artificial-intelligence/feed ai
+https://openai.com/blog/rss/ ai
+http://ai.googleblog.com/feeds/posts/default?alt=rss ai
+http://news.mit.edu/rss/topic/artificial-intelligence2 ai
+https://simonwillison.net/atom/everything/ ai
+
+"query:😃 fun:tags # \"fun\""
+https://xkcd.com/rss.xml fun
